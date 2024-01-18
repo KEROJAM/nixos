@@ -2,9 +2,9 @@
 This is My full nixos config
 
 # Dependecies
-1- Ether have a hyprland config or change the window manager all together
+1- Ether have a hyprland config, clone a dwm config and change the overlay to your username or change to a different window manager all together
 
-2- I Run this in unstable branch, that implies that some syntax may be off from stable
+2- I Run this in unstable branch, that implies that some syntax may be different from stable
 
 # Contents
  ## configuration.nix
