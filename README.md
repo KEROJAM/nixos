@@ -7,6 +7,7 @@ This is My full nixos config
 2- I Run this in unstable branch, that implies that some syntax may be off from stable
 
 # Contents
+ * config.nix
 - ranging from all my packages
 - window managers
 - dns
@@ -15,4 +16,8 @@ This is My full nixos config
 - fonts
 - etc
 
+ * harware-configuration.nix
+- nvidia drivers
+- drives
+  
 # Enjoy :)
