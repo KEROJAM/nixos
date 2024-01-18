@@ -3,6 +3,7 @@ This is My full nixos config
 
 # Dependecies
 1- Ether have a hyprland config or change the window manager all together
+
 2- I Run this in unstable branch, that implies that some syntax may be off from stable
 
 # Contents
