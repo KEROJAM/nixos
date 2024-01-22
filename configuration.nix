@@ -102,10 +102,10 @@ services.resolved = {
    dunst
 
  # Web browser
-   firefox-devedition
+   firefox
    brave
    librewolf
-   floorp 
+
 # Wallpapers/windowmanagers
   swww
   feh
