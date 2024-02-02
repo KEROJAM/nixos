@@ -105,6 +105,7 @@ services.resolved = {
    firefox
    brave
    librewolf
+   floorp
 
 # Wallpapers/windowmanagers
   swww
