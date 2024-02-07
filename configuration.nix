@@ -153,6 +153,7 @@ services.resolved = {
 # Comunication
   vesktop
   signal-desktop
+  nheko
 
 # File Managers
   cinnamon.nemo-with-extensions   
