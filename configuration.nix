@@ -95,11 +95,14 @@ services.resolved = {
 
  # Terminal
    kitty
+   zoxide
+   fzf
 
  # Notifications
    libnotify
    mako
    dunst
+   inotify-tools
 
  # Web browser
    firefox
@@ -110,7 +113,8 @@ services.resolved = {
   swww
   feh
   dwmblocks
-  waybar
+  awesomegit
+  #waybar
   xorg.libxcb
 
 # Audio
@@ -118,6 +122,7 @@ services.resolved = {
   deadbeef
   lmms
   ardour
+  reaper
 
 # Video Playback
   mpv
@@ -131,7 +136,8 @@ services.resolved = {
     ];
   })
   davinci-resolve
-
+  aegisub
+  
 # Image Editing
   krita
   grim
@@ -143,6 +149,7 @@ services.resolved = {
 # Education
   jq
   anki
+  libsForQt5.kcalc
 
 # Launcher
   rofi-wayland
@@ -166,6 +173,7 @@ services.resolved = {
   osu-lazer-bin
 
 # Misc
+  wireplumber
   pavucontrol
   neofetch
   cbonsai
@@ -175,6 +183,8 @@ services.resolved = {
   wl-clipboard
   xclip
   xdotool
+  xorg.xcbutilwm
+  xcb-util-cursor
   lsd
   bat
   tldr
@@ -191,16 +201,20 @@ services.resolved = {
   home-manager
   papirus-icon-theme
   acpi
+  brightnessctl
+  ncmpcpp
+  pamixer
+  cairo
 
 # Virtualisation
   virt-manager
   virtiofsd
-  qemu
-  qemu_kvm
+  qemu_full
 
 # Languages 
   libclang
   lua-language-server
+  luajit
   ispell
 
 # Important
@@ -220,6 +234,8 @@ packages = with pkgs; [
 noto-fonts
 noto-fonts-cjk
 noto-fonts-emoji
+(nerdfonts.override { fonts = [ "JetBrainsMono" "Mononoki" ]; })
+cozette
 ];
 fontDir.enable = true;
 };
@@ -238,15 +254,17 @@ fontDir.enable = true;
 
  services.xserver = {
     enable = true;
-    displayManager.sddm.enable = true;
-    libinput = {
-      enable = true;
-      mouse = {
-        accelProfile = "flat";
-      };
-    };
+    displayManager.lightdm.enable = true;
   };
 
+ services.libinput = {
+    enable = true;
+    mouse = {
+        accelProfile = "flat";
+    };
+ };
+
+  #services.displayManager.sddm.enable = true;
   hardware.opentabletdriver.enable = true;
   hardware.opentabletdriver.daemon.enable = true;
   
@@ -257,7 +275,7 @@ fontDir.enable = true;
 	virtualisation.libvirtd ={
 		enable = true;
 		qemu = {
-			package = pkgs.qemu_kvm;
+			package = pkgs.qemu_full;
 			ovmf.enable = true;
 			ovmf.packages = [ pkgs.OVMFFull.fd ];
 			swtpm.enable = true;
@@ -315,25 +333,32 @@ fontDir.enable = true;
 	services.picom = {
 		enable = true;
   		fade = true;
-		settings = {
-			blur = 
-			{ method = "gaussian";
-			size = 10;
-			deviation = 5.0;
-			};
-		};
 	};
-  services.xserver.windowManager.dwm = {
-		enable = true;
+  services.xserver.windowManager = {
+
+    dwm = {
+		    enable = true;
 	        package = pkgs.dwm.overrideAttrs {
  			 src = /home/kerojam/dwm;
 			};
 		};
 
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
+    awesome = {	
+	enable = true;
+  package = pkgs.awesomegit;
+	luaModules = with pkgs.luaPackages; [
+#luajitPackages
+    luarocks
+	luadbi-mysql
+  lgi
+  ldoc
+	];
+    };
   };
+  #programs.hyprland = {
+  #  enable = true;
+  #  xwayland.enable = true;
+  #};
 
 	nixpkgs.overlays = [
  		(self: super: {
@@ -343,8 +368,23 @@ fontDir.enable = true;
 		
 		dwmblocks = super.dwmblocks.overrideAttrs (oldAttrs: {
 			src = /home/kerojam/dwmblocks;
-				}); 
-			})
+				});
+		awesomegit = super.awesome.overrideAttrs (old: rec	{
+			pname = "awesomegit";
+			version = "8b1f8958b46b3e75618bc822d512bb4d449a89aa";
+			src = super.fetchFromGitHub {
+				owner = "awesomeWM";
+				repo = "awesome";
+				rev = "8b1f8958b46b3e75618bc822d512bb4d449a89aa";
+				sha256 = "ZGZ53IWfQfNU8q/hKexFpb/2mJyqtK5M9t9HrXoEJCg=";
+			};
+			patches = [ ];
+
+   			 postPatch = ''
+     			 patchShebangs tests/examples/_postprocess.lua
+    			'';
+		});			
+	    })
 	];
 
 
