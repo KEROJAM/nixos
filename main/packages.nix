@@ -46,6 +46,7 @@ environment.systemPackages =  with pkgs; [
   swww
   feh
   dwmblocks
+  slstatus
   waybar
   xorg.libxcb
 

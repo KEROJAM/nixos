@@ -185,6 +185,9 @@
 		dwmblocks = super.dwmblocks.overrideAttrs (oldAttrs: {
 			src = /home/kerojam/dwmblocks;
 				});
+		slstatus = super.dwmblocks.overrideAttrs (oldAttrs: {
+			src = /home/kerojam/slstatus;
+		});
 	    })
 	];
 
