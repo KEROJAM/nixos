@@ -28,17 +28,22 @@
     tmp.cleanOnBoot = true;
   };
   #powerManagement.enable = true;
-  hardware.graphics = {
+  hardware = {
+  graphics = {
       enable = true;
       enable32Bit = true;
       extraPackages = with pkgs; [
-	intel-vaapi-driver
 	intel-media-driver
 	libvdpau-va-gl
 	intel-ocl
       ];
+      extraPackages32 = with pkgs; [
+	intel-media-driver
+      ];
   };
-  hardware.pulseaudio.enable = false;
+  intel-gpu-tools.enable = true;
+  pulseaudio.enable = false;
+};
 # Sound
 
 	security.rtkit.enable = true;
