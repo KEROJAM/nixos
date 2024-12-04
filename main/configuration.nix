@@ -18,13 +18,15 @@
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-  firewall.enable = true;
-  firewall.allowedTCPPorts = [ 80 443];
-
+  #firewall.enable = true;
+  #firewall.allowedTCPPorts = [ 80 443];
 
   # Enable networking
-  networkmanager.enable = true;
-   };
+  networkmanager = { 
+      enable = true;
+      wifi.powersave = null;
+    };
+  };
 
 
 # Set your time zone.
@@ -125,7 +127,7 @@
   services.dbus.enable = true;
         xdg.portal = {
 	enable = true;
-	extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+	extraPortals = [ pkgs.xdg-desktop-portal-gnome];
 };
 
   # Polkit
