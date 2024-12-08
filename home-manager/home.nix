@@ -3,6 +3,7 @@
 {
   imports = [
     inputs.ags.homeManagerModules.default
+    ./nvim.nix
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -46,7 +47,6 @@
   };
   programs.ags = {
     enable = true;
-    configDir = ../ags;
     extraPackages = with pkgs; [
       accountsservice
       gtksourceview

@@ -13,7 +13,6 @@
 environment.systemPackages =  with pkgs; [
 # Text Editors
    emacs
-   neovim
    vim
 
  # IDE
@@ -167,14 +166,10 @@ environment.systemPackages =  with pkgs; [
   qemu_full
 
 # Languages
-  libclang
   #cmake
-  lua-language-server
   luajit
   ispell
   python3
-  pyright
-  libgcc
 
 # Important
   keepassxc
@@ -182,7 +177,7 @@ environment.systemPackages =  with pkgs; [
   polkit_gnome
 
 # NUR
-  config.nur.repos.ataraxiasjel.waydroid-script
+ # config.nur.repos.ataraxiasjel.waydroid-script
 
  ];
 
@@ -192,7 +187,7 @@ fonts = {
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-emoji
-    (nerdfonts.override { fonts = [ "JetBrainsMono" "Mononoki" ]; })
+    nerd-fonts.mononoki
     cozette
   ];
   fontDir.enable = true;

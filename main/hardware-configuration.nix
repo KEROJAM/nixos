@@ -43,7 +43,13 @@
   };
   intel-gpu-tools.enable = true;
   pulseaudio.enable = false;
+  nvidia = {
+    modesetting.enable = true;
+    open = false;
+    package = config.boot.kernelPackages.nvidiaPackages.beta;
+  };
 };
+services.xserver.videoDrivers = [ "nvidia" ];
 # Sound
 
 	security.rtkit.enable = true;
@@ -71,7 +77,7 @@
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/DB8C-8509";
+    { device = "/dev/disk/by-uuid/323E-B6F3";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };

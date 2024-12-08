@@ -9,7 +9,7 @@
     };
     nur.url = "github:nix-community/NUR";
     matugen.url = "github:InioX/matugen?ref=v2.2.0";
-    ags.url = "github:Aylur/ags";
+    ags.url = "github:Aylur/ags/v1";
     astal.url = "github:Aylur/astal";
   };
 
@@ -23,8 +23,9 @@
     nixosConfigurations.YuriPC = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
       modules = [
-        nur.nixosModules.nur
+        #nur.modules.nixos.nur
         ./main/configuration.nix
+	./main/hardware-configuration.nix
         home-manager.nixosModules.home-manager
         {
           home-manager.extraSpecialArgs = {

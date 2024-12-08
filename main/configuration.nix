@@ -6,7 +6,6 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
       ./packages.nix
     ];
 
@@ -70,7 +69,6 @@
 
   # List services that you want to enable:
   
-
  # Software
 
   services.libinput = {
