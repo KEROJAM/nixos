@@ -8,7 +8,6 @@
     [ # Include the results of the hardware scan.
       ./packages.nix
     ];
-
   networking = {
 
   hostName = "YuriPC"; # Define your hostname.

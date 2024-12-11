@@ -18,8 +18,7 @@
   home.packages = with pkgs; [
     ripgrep
     fd
-    rust-analyzer-unwrapped
-    nodejs_22
+    hyprpanel
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
