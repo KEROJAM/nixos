@@ -46,6 +46,7 @@
   nvidia = {
     modesetting.enable = true;
     open = false;
+    powerManagement.enable = true;
     package = config.boot.kernelPackages.nvidiaPackages.beta;
   };
 };
@@ -85,6 +86,10 @@ services.xserver.videoDrivers = [ "nvidia" ];
   fileSystems."/home" =
     { device = "/dev/disk/by-uuid/f9b0f290-d088-43e8-981b-d82eea2d31f4";
       fsType = "ext4";
+    };
+  fileSystems."/mnt/Windows"=
+    { device = "/dev/disk/by-uuid/C64A1CD24A1CC0DB";
+      fsType = "ntfs";
     };
 
   swapDevices = [ ];

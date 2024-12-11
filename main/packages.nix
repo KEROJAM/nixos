@@ -177,7 +177,7 @@ environment.systemPackages =  with pkgs; [
   polkit_gnome
 
 # NUR
- # config.nur.repos.ataraxiasjel.waydroid-script
+  nur.repos.ataraxiasjel.waydroid-script
 
  ];
 

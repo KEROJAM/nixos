@@ -7,7 +7,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nur.url = "github:nix-community/NUR";
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     matugen.url = "github:InioX/matugen?ref=v2.2.0";
     ags.url = "github:Aylur/ags/v1";
     astal.url = "github:Aylur/astal";
@@ -23,7 +26,7 @@
     nixosConfigurations.YuriPC = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
       modules = [
-        #nur.modules.nixos.nur
+        nur.modules.nixos.default
         ./main/configuration.nix
 	./main/hardware-configuration.nix
         home-manager.nixosModules.home-manager

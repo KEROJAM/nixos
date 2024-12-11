@@ -15,6 +15,7 @@
         wl-clipboard
         nil
         luajitPackages.lua-lsp
+        kotlin-language-server
       ];
       plugins = with pkgs.vimPlugins; [
         nvim-treesitter.withAllGrammars
