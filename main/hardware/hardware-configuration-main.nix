@@ -20,7 +20,7 @@
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
     initrd.kernelModules = [ ];
-    kernelModules = [ "kvm-intel" ];
+    kernelModules = [ "kvm-amd" ];
     extraModulePackages =  with config.boot.kernelPackages; [ v4l2loopback ];
     extraModprobeConfig = ''
         options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1

@@ -96,7 +96,7 @@ environment.systemPackages =  with pkgs; [
   signal-desktop
   parsec-bin
   remmina
-
+  qbittorrent 
 # File Managers
   nemo-with-extensions
   yazi
@@ -113,8 +113,14 @@ environment.systemPackages =  with pkgs; [
   heroic
   osu-lazer-bin
   pcsx2
+  (lutris.override {
+    extraPkgs = pkgs: [
+      wineWowPackages.stable
+    ];
+  })
 
 # Misc
+  wineWowPackages.stable
   appimage-run
   trash-cli
   udiskie
@@ -188,6 +194,9 @@ fonts = {
     noto-fonts-cjk-sans
     noto-fonts-emoji
     nerd-fonts.mononoki
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.space-mono
+    material-symbols
     cozette
   ];
   fontDir.enable = true;

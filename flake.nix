@@ -14,7 +14,6 @@
     matugen.url = "github:InioX/matugen?ref=v2.2.0";
     ags.url = "github:Aylur/ags/v1";
     astal.url = "github:Aylur/astal";
-    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
   };
 
   outputs = { self, nixpkgs, home-manager, nur, ... }@inputs:
@@ -29,8 +28,6 @@
       modules = [
         nur.modules.nixos.default
         ./main/configuration.nix
-	./main/hardware-configuration.nix
-        ./overlays.nix
         home-manager.nixosModules.home-manager
         {
           home-manager.extraSpecialArgs = {

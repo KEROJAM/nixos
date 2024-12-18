@@ -18,7 +18,6 @@
   home.packages = with pkgs; [
     ripgrep
     fd
-    hyprpanel
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
