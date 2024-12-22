@@ -55,6 +55,9 @@
     enableCompletion = true;
   };
   users.defaultUserShell = pkgs.zsh;
+  console.font = ''
+    export XDG_CACHE_HOME="$(mktemp -d)"
+  '';
   # NIXOS
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -152,17 +155,29 @@
 	};
 
   # Window Managers
-	services.picom = {
-		enable = true;
-	};
+  services.picom = {
+    enable = true;
+  };
   services.xserver = {
   enable = true;
   xkb.layout = "us";
   displayManager.lightdm.enable = true;
   desktopManager.gnome.enable = true;
   windowManager = {
-    bspwm.enable = true;
-
+    awesome = {
+      enable = true;
+      luaModules = with pkgs.extraLuaPackages; [
+	 connman_dbus
+	 connman_widget
+	 dbus_proxy
+	 enum
+	 media_player
+	 power_widget
+	 pulseaudio_dbus
+	 pulseaudio_widget
+	 upower_dbus
+      ];
+    };
     dwm = {
 	enable = true;
 	package = pkgs.dwm.overrideAttrs {
@@ -171,12 +186,12 @@
 	};
     };
   };  
-    programs.hyprland = {
-      enable = true;
-      xwayland.enable = true;
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
   };
   environment.sessionVariables.NIXOS_OZONE_WL= "1";
-	nixpkgs.overlays = [
+	nixpkgs.overlays = with builtins; [
  		(self: super: {
    	 	mpv = super.mpv.override {
       		scripts = [ self.mpvScripts.mpvacious ];
@@ -185,10 +200,27 @@
 		dwmblocks = super.dwmblocks.overrideAttrs (oldAttrs: {
 			src = /home/kerojam/dwmblocks;
 				});
-		slstatus = super.dwmblocks.overrideAttrs (oldAttrs: {
-			src = /home/kerojam/slstatus;
-		});
+		awesome = super.awesome.overrideAttrs {
+		  gtk3Support = true;
+		 pname = "awesome-git";
+		 src = super.fetchFromGitHub {
+		   owner = "awesomeWM";
+		   repo = "awesome";
+		   rev = "0f950cbb625175134b45ea65acdf29b2cbe8c456";
+		   sha256 = "GIUkREl60vQ0cOalA37sCgn7Gv8j/9egfRk9emgGm/Y=";
+		  };
+		  patches = [];
+		  postPatch = ''
+		  patchShebangs tests/examples/_postprocess.lua 
+		 '';
+		};
 	    })
+	  (
+	    import (fetchGit {
+	      url = "https://github.com/stefano-m/nix-stefano-m-nix-overlays.git";
+	      rev = "6d0170471fa27f31bd7a136df33a39dcd0615255";
+	  })
+	  )
 	];
 
 

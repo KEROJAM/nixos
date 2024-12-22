@@ -200,6 +200,7 @@ fonts = {
     cozette
   ];
   fontDir.enable = true;
+  fontconfig.enable = true;
   };
 
 }
