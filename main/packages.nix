@@ -198,6 +198,7 @@ fonts = {
     nerd-fonts.space-mono
     material-symbols
     cozette
+    azuki
   ];
   fontDir.enable = true;
   fontconfig.enable = true;
