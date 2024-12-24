@@ -49,10 +49,13 @@
     packages = with pkgs; [];
   };
   # Shell
-  programs.zsh = {
-    enable = true;
-    autosuggestions.enable = true;
-    enableCompletion = true;
+  programs = {
+    zsh = {
+      enable = true;
+      autosuggestions.enable = true;
+      enableCompletion = true;
+    };
+    adb.enable = true;
   };
   users.defaultUserShell = pkgs.zsh;
   console.font = ''
