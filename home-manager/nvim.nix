@@ -9,6 +9,7 @@
         lua-language-server
         pyright
         libclang
+        clang-tools
         libgcc
         rust-analyzer
         xclip
@@ -22,6 +23,7 @@
         nvim-autopairs
         telescope-nvim
         telescope-fzf-native-nvim
+        luasnip
       ];
     };
 }
