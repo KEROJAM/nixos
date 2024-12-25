@@ -7,11 +7,10 @@
   imports =
     [ # Include the results of the hardware scan.
       ./packages.nix
-      ./hardware/hardware-configuration-main.nix
+      ./hardware/hardware-configuration-Lap.nix
     ];
   networking = {
 
-  hostName = "YuriPC"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
