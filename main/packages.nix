@@ -70,7 +70,7 @@ environment.systemPackages =  with pkgs; [
   })
   aegisub
   yt-dlp
-  davinci-resolve
+  #davinci-resolve
 
 # Image Editing
   krita

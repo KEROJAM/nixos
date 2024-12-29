@@ -7,7 +7,6 @@
   imports =
     [ # Include the results of the hardware scan.
       ./packages.nix
-      ./hardware/hardware-configuration-Lap.nix
     ];
   networking = {
 
@@ -55,11 +54,11 @@
       enableCompletion = true;
     };
     adb.enable = true;
+    java = {
+      enable = true;
+    };
   };
   users.defaultUserShell = pkgs.zsh;
-  console.font = ''
-    export XDG_CACHE_HOME="$(mktemp -d)"
-  '';
   # NIXOS
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 

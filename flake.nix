@@ -24,11 +24,36 @@
   in
     {
     packages.system.default = pkgs.callPackage ./ags {inherit inputs;};
-    nixosConfigurations.YuriPC = nixpkgs.lib.nixosSystem {
+    nixosConfigurations = { 
+
+      YuriPC = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs; };
+        modules = [
+          nur.modules.nixos.default
+            ./main/configuration.nix
+            ./main/hardware/hardware-configuration-main.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.extraSpecialArgs = {
+                inherit inputs;
+                inherit system;
+              };
+              home-manager.useGlobalPkgs = true;
+              home-manager.users."kerojam" = import ./home-manager/home.nix;
+            }
+        {
+          nixpkgs.overlays = [
+            nixpkgs-f2k.overlays.window-managers
+          ];
+        }
+        ];
+      };
+    lily = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
       modules = [
         nur.modules.nixos.default
         ./main/configuration.nix
+        ./main/hardware/hardware-configuration-Lap.nix
         home-manager.nixosModules.home-manager
         {
           home-manager.extraSpecialArgs = {
@@ -46,4 +71,5 @@
       ];
     };
   };
+ };
 }

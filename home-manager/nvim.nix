@@ -12,6 +12,7 @@
         clang-tools
         libgcc
         rust-analyzer
+        jdt-language-server
         xclip
         wl-clipboard
         nil

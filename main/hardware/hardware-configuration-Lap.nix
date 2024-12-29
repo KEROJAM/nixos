@@ -75,11 +75,11 @@ services.xserver.videoDrivers = [ "nvidia" ];
 
   networking.hostName = "Lily"; # Define your hostname.
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/45e0442b-382f-48c0-a179-189b78299be6";
+    { device = "/dev/disk/by-uuid/118486f6-39d7-426f-97df-e81ded522928";
       fsType = "ext4";
     };
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/B6C3-3BE7";
+    { device = "/dev/disk/by-uuid/71C9-1219";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
