@@ -15,6 +15,14 @@
     ags.url = "github:Aylur/ags/v1";
     astal.url = "github:Aylur/astal";
     nixpkgs-f2k.url = "github:fortuneteller2k/nixpkgs-f2k";
+    dwmblocks = {
+      url = "github:KEROJAM/dwmblocks";
+      flake = false;
+    };
+    dwm = {
+      url = "github:KEROJAM/dwm";
+      flake = false;
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, nur, nixpkgs-f2k , ... }@inputs:
@@ -41,11 +49,11 @@
               home-manager.useGlobalPkgs = true;
               home-manager.users."kerojam" = import ./home-manager/home.nix;
             }
-        {
-          nixpkgs.overlays = [
-            nixpkgs-f2k.overlays.window-managers
-          ];
-        }
+        #{
+        #  nixpkgs.overlays = [
+        #    nixpkgs-f2k.overlays.window-managers
+        #  ];
+        #}
         ];
       };
     lily = nixpkgs.lib.nixosSystem {

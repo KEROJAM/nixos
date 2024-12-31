@@ -182,7 +182,7 @@
     dwm = {
 	enable = true;
 	package = pkgs.dwm.overrideAttrs {
- 	src = /home/kerojam/dwm;
+ 	src = inputs.dwm;
 	  };
 	};
     };
@@ -199,12 +199,12 @@
     			};
 		
 		dwmblocks = super.dwmblocks.overrideAttrs (oldAttrs: {
-			src = /home/kerojam/dwmblocks;
-				});
+			src = inputs.dwmblocks;
+			});
 		awesome = super.awesome.overrideAttrs {
 		  gtk3Support = true;
-		 pname = "awesome-git";
-		 src = super.fetchFromGitHub {
+		  pname = "awesome-git";
+		  src = super.fetchFromGitHub {
 		   owner = "awesomeWM";
 		   repo = "awesome";
 		   rev = "0f950cbb625175134b45ea65acdf29b2cbe8c456";

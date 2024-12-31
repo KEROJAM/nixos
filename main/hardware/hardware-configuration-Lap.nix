@@ -34,6 +34,8 @@
       enable = true;
       enable32Bit = true;
       extraPackages = with pkgs; [
+	intel-media-driver
+	intel-ocl
 	libvdpau-va-gl
 	];
   };
@@ -73,7 +75,7 @@ services.xserver.videoDrivers = [ "nvidia" ];
   };
 
 
-  networking.hostName = "Lily"; # Define your hostname.
+  networking.hostName = "lily"; # Define your hostname.
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/118486f6-39d7-426f-97df-e81ded522928";
       fsType = "ext4";

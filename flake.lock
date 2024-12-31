@@ -38,6 +38,38 @@
         "type": "github"
       }
     },
+    "dwm": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1735052007,
+        "narHash": "sha256-zCD2pe0KvVvY17qkNscdZ7COXlfIhUvSh9+kExxKLCU=",
+        "owner": "KEROJAM",
+        "repo": "dwm",
+        "rev": "152cca566230861eefee63d0c50ca7a3d7421fda",
+        "type": "github"
+      },
+      "original": {
+        "owner": "KEROJAM",
+        "repo": "dwm",
+        "type": "github"
+      }
+    },
+    "dwmblocks": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1707868054,
+        "narHash": "sha256-eQV2O+SGVS/kZzxDzS9E/pRk66snX/KGX9sj7I+d9No=",
+        "owner": "KEROJAM",
+        "repo": "dwmblocks",
+        "rev": "e888349a6c7398e182ba761ca756d69831f6fd18",
+        "type": "github"
+      },
+      "original": {
+        "owner": "KEROJAM",
+        "repo": "dwmblocks",
+        "type": "github"
+      }
+    },
     "emacs": {
       "inputs": {
         "nixpkgs": "nixpkgs_5",
@@ -367,6 +399,8 @@
       "inputs": {
         "ags": "ags",
         "astal": "astal",
+        "dwm": "dwm",
+        "dwmblocks": "dwmblocks",
         "home-manager": "home-manager",
         "matugen": "matugen",
         "nixpkgs": "nixpkgs_4",

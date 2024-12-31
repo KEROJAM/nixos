@@ -33,12 +33,8 @@
       enable = true;
       enable32Bit = true;
       extraPackages = with pkgs; [
-	intel-media-driver
-	libvdpau-va-gl
-	intel-ocl
       ];
       extraPackages32 = with pkgs; [
-	intel-media-driver
       ];
   };
   intel-gpu-tools.enable = true;
