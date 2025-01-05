@@ -16,7 +16,7 @@ environment.systemPackages =  with pkgs; [
    vim
 
  # IDE
-   rstudio
+   #rstudio
    vscode-fhs
 
  # Git
@@ -39,20 +39,18 @@ environment.systemPackages =  with pkgs; [
  # Web browser
    firefox
    librewolf
-   google-chrome
+   chromium
 
 # Wallpapers/windowmanagers
   swww
   feh
   dwmblocks
-  slstatus
   waybar
   xorg.libxcb
 
 # Audio
   audacity
-  #deadbeef
-  ardour
+  #ardour
   reaper
   ncmpcpp
   alsa-utils
@@ -69,7 +67,6 @@ environment.systemPackages =  with pkgs; [
     ];
   })
   aegisub
-  yt-dlp
   #davinci-resolve
 
 # Image Editing
@@ -96,7 +93,8 @@ environment.systemPackages =  with pkgs; [
   signal-desktop
   parsec-bin
   remmina
-  qbittorrent 
+  qbittorrent
+
 # File Managers
   nemo-with-extensions
   yazi
@@ -107,7 +105,6 @@ environment.systemPackages =  with pkgs; [
   steam
   steam-run
   mangohud
-  weston
   waydroid
   prismlauncher
   heroic
@@ -121,13 +118,11 @@ environment.systemPackages =  with pkgs; [
 
 # Misc
   wineWowPackages.stable
-  appimage-run
   trash-cli
   udiskie
   wireplumber
   pavucontrol
   brightnessctl
-  neofetch
   fastfetch
   cbonsai
   wget
@@ -137,7 +132,6 @@ environment.systemPackages =  with pkgs; [
   wf-recorder
   bun
   dart-sass
-  pywal
   fd
   swappy
   gtk3
@@ -160,8 +154,6 @@ environment.systemPackages =  with pkgs; [
   home-manager
   papirus-icon-theme
   acpi
-  brightnessctl
-  ncmpcpp
   pamixer
   cairo
   inputs.matugen.packages.${system}.default
@@ -169,7 +161,6 @@ environment.systemPackages =  with pkgs; [
 # Virtualisation
   virt-manager
   virtiofsd
-  qemu_full
 
 # Languages
   #cmake

@@ -14,7 +14,6 @@
     matugen.url = "github:InioX/matugen?ref=v2.2.0";
     ags.url = "github:Aylur/ags/v1";
     astal.url = "github:Aylur/astal";
-    nixpkgs-f2k.url = "github:fortuneteller2k/nixpkgs-f2k";
     dwmblocks = {
       url = "github:KEROJAM/dwmblocks";
       flake = false;
@@ -25,7 +24,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, nur, nixpkgs-f2k , ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nur, ... }@inputs:
   let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.system;
@@ -49,11 +48,6 @@
               home-manager.useGlobalPkgs = true;
               home-manager.users."kerojam" = import ./home-manager/home.nix;
             }
-        #{
-        #  nixpkgs.overlays = [
-        #    nixpkgs-f2k.overlays.window-managers
-        #  ];
-        #}
         ];
       };
     lily = nixpkgs.lib.nixosSystem {
@@ -70,11 +64,6 @@
           };
           home-manager.useGlobalPkgs = true;
           home-manager.users."kerojam" = import ./home-manager/home.nix;
-        }
-        {
-          nixpkgs.overlays = [
-            nixpkgs-f2k.overlays.window-managers
-          ];
         }
       ];
     };

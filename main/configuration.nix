@@ -49,16 +49,22 @@
   # Shell
   programs = {
     zsh = {
-      enable = true;
+      enable = false;
       autosuggestions.enable = true;
       enableCompletion = true;
+    };
+    fish = {
+      enable = true;
+      shellAliases = {
+	
+      };
     };
     adb.enable = true;
     java = {
       enable = true;
     };
   };
-  users.defaultUserShell = pkgs.zsh;
+  users.defaultUserShell = pkgs.fish;
   # NIXOS
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -86,8 +92,10 @@
   };
  };
 
-  hardware.opentabletdriver.enable = true;
-  hardware.opentabletdriver.daemon.enable = true;
+  hardware.opentabletdriver =  {
+    enable = true;
+    daemon.enable = true;
+    };
   services.udisks2.enable = true;
   # Virtualisation
 
@@ -96,9 +104,11 @@
 	virtualisation.libvirtd ={
 		enable = true;
 		qemu = {
-			package = pkgs.qemu_full;
-			ovmf.enable = true;
-			ovmf.packages = [ pkgs.OVMFFull.fd ];
+			package = pkgs.qemu;
+			ovmf = { 
+			  enable = true;
+			  packages = [ pkgs.OVMFFull.fd ];
+			};
 			swtpm.enable = true;
 			runAsRoot = false;
 		};
