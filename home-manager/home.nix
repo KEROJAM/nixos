@@ -36,18 +36,29 @@
   home.sessionVariables = {
      EDITOR = "nvim";
   };
-  programs.git = {
-    enable = true;
-    userName = "KEROJAM";
-    userEmail = "majorekcs@hotmail.com";
-  };
-  programs.ags = {
-    enable = true;
-    extraPackages = with pkgs; [
-      accountsservice
-      gtksourceview
-      webkitgtk
-    ];
+  programs = {
+   git = {
+      enable = true;
+      userName = "KEROJAM";
+      userEmail = "majorekcs@hotmail.com";
+    };
+    ags = {
+      enable = true;
+      extraPackages = with pkgs; [
+        accountsservice
+          gtksourceview
+          webkitgtk
+      ];
+    };
+    starship = {
+      enable = true;
+    };
+    zoxide = {
+      enable = true;
+    };
+    tmux = {
+      enable = true;
+    };
   };
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
