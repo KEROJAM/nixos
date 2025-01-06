@@ -38,14 +38,30 @@
         "type": "github"
       }
     },
+    "awesome-git": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1732024569,
+        "narHash": "sha256-GIUkREl60vQ0cOalA37sCgn7Gv8j/9egfRk9emgGm/Y=",
+        "owner": "awesomeWM",
+        "repo": "awesome",
+        "rev": "0f950cbb625175134b45ea65acdf29b2cbe8c456",
+        "type": "github"
+      },
+      "original": {
+        "owner": "awesomeWM",
+        "repo": "awesome",
+        "type": "github"
+      }
+    },
     "dwm": {
       "flake": false,
       "locked": {
-        "lastModified": 1736114456,
-        "narHash": "sha256-XpxUjiVrL3TsG+RSxDRiVwEk1xe5uULIlQjy6sWYQdY=",
+        "lastModified": 1736204562,
+        "narHash": "sha256-FpP6TYKcIadEQpCXOQOU0W6rdAVM/zrIY6n605ucnZM=",
         "owner": "KEROJAM",
         "repo": "dwm",
-        "rev": "a32e70378f5dcab64b0878a0c07697cfe599e91f",
+        "rev": "deff43356b572431296cd353b8c7a154159ef210",
         "type": "github"
       },
       "original": {
@@ -98,11 +114,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1736089250,
-        "narHash": "sha256-/LPWMiiJGPHGd7ZYEgmbE2da4zvBW0acmshUjYC3WG4=",
+        "lastModified": 1736204492,
+        "narHash": "sha256-CoBPRgkUex9Iz6qGSzi/BFVUQjndB0PmME2B6eEyeCs=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "172b91bfb2b7f5c4a8c6ceac29fd53a01ef07196",
+        "rev": "20665c6efa83d71020c8730f26706258ba5c6b2a",
         "type": "github"
       },
       "original": {
@@ -203,11 +219,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1736181502,
-        "narHash": "sha256-TUXs41pz+NZldbxIJZFJGsEtzrvjJEuRXWIz3t7f1GY=",
+        "lastModified": 1736202678,
+        "narHash": "sha256-R0V+TUPAzP15a9ZcrGq4a28DL0c5EVu2biOZv7h4Q7I=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "6da13934ed5532e386ec1104e6ee8e0578f7a913",
+        "rev": "fb3d46a9e224c76b30d43b4116f93160edf7702c",
         "type": "github"
       },
       "original": {
@@ -220,6 +236,7 @@
       "inputs": {
         "ags": "ags",
         "astal": "astal",
+        "awesome-git": "awesome-git",
         "dwm": "dwm",
         "dwmblocks": "dwmblocks",
         "home-manager": "home-manager",

@@ -18,7 +18,7 @@
       };
      };
     kernelParams = [ "i915.force_probe=7d55" ];
-    kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+    kernelPackages = pkgs.linuxKernel.packages.linux_6_12;
     initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "rtsx_pci_sdmmc" "nvme" "vmd" "thunderbolt" "sdhci_pci"];
     initrd.kernelModules = [ ];
     kernelModules = [ "kvm-intel" ];

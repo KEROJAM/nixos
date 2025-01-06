@@ -214,12 +214,7 @@
 		awesome = super.awesome.overrideAttrs {
 		  gtk3Support = true;
 		  pname = "awesome-git";
-		  src = super.fetchFromGitHub {
-		   owner = "awesomeWM";
-		   repo = "awesome";
-		   rev = "0f950cbb625175134b45ea65acdf29b2cbe8c456";
-		   sha256 = "GIUkREl60vQ0cOalA37sCgn7Gv8j/9egfRk9emgGm/Y=";
-		  };
+		  src = inputs.awesome-git;
 		  patches = [];
 		  postPatch = ''
 		  patchShebangs tests/examples/_postprocess.lua 

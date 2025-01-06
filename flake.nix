@@ -22,6 +22,10 @@
       url = "github:KEROJAM/dwm";
       flake = false;
     };
+    awesome-git = {
+      url = "github:awesomeWM/awesome";
+      flake = false;
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, nur, ... }@inputs:

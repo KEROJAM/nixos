@@ -181,7 +181,6 @@ environment.systemPackages =  with pkgs; [
   # Fonts
 fonts = {
   packages = with pkgs; [
-    azuki
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-emoji
@@ -190,6 +189,8 @@ fonts = {
     nerd-fonts.space-mono
     material-symbols
     cozette
+    azuki
+    google-fonts
   ];
   fontDir.enable = true;
   fontconfig.enable = true;
