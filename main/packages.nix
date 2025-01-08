@@ -47,6 +47,7 @@ environment.systemPackages =  with pkgs; [
   dwmblocks
   waybar
   xorg.libxcb
+  sddm-astronaut
 
 # Audio
   audacity
@@ -118,6 +119,7 @@ environment.systemPackages =  with pkgs; [
 
 # Misc
   wineWowPackages.stable
+  android-tools
   trash-cli
   udiskie
   wireplumber

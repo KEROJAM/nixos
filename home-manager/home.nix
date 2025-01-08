@@ -43,12 +43,12 @@
       userEmail = "majorekcs@hotmail.com";
     };
     ags = {
-      enable = false;
-      #extraPackages = with pkgs; [
-      #  accountsservice
-      #    gtksourceview
-      #    webkitgtk
-      #];
+      enable = true;
+      extraPackages = with pkgs; [
+        accountsservice
+          gtksourceview
+          webkitgtk
+      ];
     };
     starship = {
       enable = true;

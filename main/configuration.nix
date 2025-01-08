@@ -172,7 +172,10 @@
   services.xserver = {
   enable = true;
   xkb.layout = "us";
-  displayManager.lightdm.enable = true;
+  displayManager.sddm = {
+    enable = true;
+    theme = "sddm-astronaut-theme";
+  };
   desktopManager.gnome.enable = true;
   windowManager = {
     awesome = {
