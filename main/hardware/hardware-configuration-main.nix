@@ -37,8 +37,6 @@
       extraPackages32 = with pkgs; [
       ];
   };
-  intel-gpu-tools.enable = true;
-  pulseaudio.enable = false;
   nvidia = {
     modesetting.enable = true;
     open = false;

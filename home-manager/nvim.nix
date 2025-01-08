@@ -25,6 +25,7 @@
         telescope-nvim
         telescope-fzf-native-nvim
         luasnip
+        yazi-nvim
       ];
     };
 }

@@ -3,13 +3,20 @@
 
 {
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    
+    allowUnfree = true;
 
             nixpkgs.config.permittedInsecurePackages = [
                 "python-2.7.18.6"
               ];
 
-
+    allowUnfreePredicate = pkg:
+           builtins.elem (lib.getName pkg) [
+             "joypixels"
+           ];
+    joypixels.acceptLicense = true;
+    };
 environment.systemPackages =  with pkgs; [
 # Text Editors
    emacs
@@ -120,6 +127,7 @@ environment.systemPackages =  with pkgs; [
 # Misc
   wineWowPackages.stable
   android-tools
+  heimdall
   trash-cli
   udiskie
   wireplumber
@@ -159,6 +167,7 @@ environment.systemPackages =  with pkgs; [
   pamixer
   cairo
   inputs.matugen.packages.${system}.default
+  emojify
 
 # Virtualisation
   virt-manager
@@ -185,7 +194,8 @@ fonts = {
   packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk-sans
-    noto-fonts-emoji
+    noto-fonts-color-emoji
+    joypixels
     nerd-fonts.mononoki
     nerd-fonts.jetbrains-mono
     nerd-fonts.space-mono
@@ -195,7 +205,10 @@ fonts = {
     google-fonts
   ];
   fontDir.enable = true;
-  fontconfig.enable = true;
+  fontconfig = {
+    enable = true;
+    defaultFonts.emoji = ["Noto Color Emoji"];
+    };
   };
 
 }

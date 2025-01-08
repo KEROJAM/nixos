@@ -25,7 +25,14 @@
     };
   };
 
-
+ stylix = {
+  enable = true;
+  image = /home/kerojam/Pictures/wallpapers/anime/BLIY/1178779.jpg;
+  fonts.emoji = {
+    package = pkgs.noto-fonts-emoji;
+    name = "Noto Color Emoji";
+  };
+ };
 # Set your time zone.
   time.timeZone = "America/Monterrey";
 
@@ -62,6 +69,11 @@
     adb.enable = true;
     java = {
       enable = true;
+    };
+    nix-ld = {
+      enable = true;
+      libraries = with pkgs; [
+      ];
     };
   };
   users.defaultUserShell = pkgs.fish;
@@ -139,11 +151,9 @@
   services.dbus.enable = true;
         xdg.portal = {
 	enable = true;
-	extraPortals = [ pkgs.xdg-desktop-portal-gnome];
-};
+	extraPortals = [ pkgs.xdg-desktop-portal-gnome ];  # Polkit
 
-  # Polkit
-
+  };
   security.polkit.enable = true;
   systemd = {
     user.services.polkit-gnome-authentication-agent-1 = {
@@ -164,45 +174,52 @@
 		 DefaultTimeoutStopSec=10s
 		'';
 	};
-
   # Window Managers
-  services.picom = {
+  services = { 
+    picom = {
     enable = true;
   };
-  services.xserver = {
-  enable = true;
-  xkb.layout = "us";
-  displayManager.sddm = {
+  xserver = {
     enable = true;
-    theme = "sddm-astronaut-theme";
-  };
-  desktopManager.gnome.enable = true;
-  windowManager = {
-    awesome = {
-      enable = true;
-      luaModules = with pkgs.extraLuaPackages; [
-	 connman_dbus
-	 connman_widget
-	 dbus_proxy
-	 enum
-	 media_player
-	 power_widget
-	 pulseaudio_dbus
-	 pulseaudio_widget
-	 upower_dbus
-      ];
-    };
-    dwm = {
+    xkb.layout = "us";
+    desktopManager.gnome.enable = true;
+    windowManager = {
+      awesome = {
+	enable = true;
+	luaModules = with pkgs.extraLuaPackages; [
+	  connman_dbus
+	    connman_widget
+	    dbus_proxy
+	    enum
+	    media_player
+	    power_widget
+	    pulseaudio_dbus
+	    pulseaudio_widget
+	    upower_dbus
+	];
+      };
+      dwm = {
 	enable = true;
 	package = pkgs.dwm.overrideAttrs {
- 	src = inputs.dwm;
-	  };
+	  src = inputs.dwm;
 	};
+      };
     };
   };  
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
+  displayManager.sddm = {
+      enable = true;
+      theme = "sddm-astronaut-theme";
+    };
+  pulseaudio.enable = false;
+  };
+  programs = {
+    hyprland = {
+      enable = true;
+      xwayland.enable = true;
+    };
+    river = {
+      enable = true;
+    };
   };
   environment.sessionVariables.NIXOS_OZONE_WL= "1";
 	nixpkgs.overlays = with builtins; [
