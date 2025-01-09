@@ -27,5 +27,8 @@
         luasnip
         yazi-nvim
       ];
+      extraLuaConfig = ''
+        ${builtins.readFile ../.config/nvim/init.lua}
+      '';
     };
 }
