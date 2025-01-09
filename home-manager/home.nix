@@ -4,6 +4,7 @@
   imports = [
     inputs.ags.homeManagerModules.default
     ./nvim.nix
+    ./terminal.nix
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -34,7 +35,7 @@
   };
 
   home.sessionVariables = {
-     EDITOR = "nvim";
+     EDITOR = "neovim";
   };
   programs = {
    git = {
@@ -50,20 +51,7 @@
           webkitgtk
       ];
     };
-    starship = {
-      enable = true;
-    };
-    zoxide = {
-      enable = true;
-    };
-    tmux = {
-      enable = true;
-    };
-    kitty = {
-      extraConfig = ''
-        Noto Color Emoji
-      '';
-    };
+    
   };
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

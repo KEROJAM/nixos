@@ -27,5 +27,6 @@
         luasnip
         yazi-nvim
       ];
+      extraConfig = builtins.readFile ../.config/nvim;
     };
 }

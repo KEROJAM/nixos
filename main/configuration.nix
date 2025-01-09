@@ -25,14 +25,6 @@
     };
   };
 
- stylix = {
-  enable = true;
-  image = /home/kerojam/Pictures/wallpapers/anime/BLIY/1178779.jpg;
-  fonts.emoji = {
-    package = pkgs.noto-fonts-emoji;
-    name = "Noto Color Emoji";
-  };
- };
 # Set your time zone.
   time.timeZone = "America/Monterrey";
 

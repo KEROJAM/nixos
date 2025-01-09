@@ -7,15 +7,9 @@
     
     allowUnfree = true;
 
-            nixpkgs.config.permittedInsecurePackages = [
+            permittedInsecurePackages = [
                 "python-2.7.18.6"
               ];
-
-    allowUnfreePredicate = pkg:
-           builtins.elem (lib.getName pkg) [
-             "joypixels"
-           ];
-    joypixels.acceptLicense = true;
     };
 environment.systemPackages =  with pkgs; [
 # Text Editors
@@ -28,6 +22,7 @@ environment.systemPackages =  with pkgs; [
 
  # Git
    git
+   lazygit
 
  # Terminal
    alacritty
@@ -195,19 +190,20 @@ fonts = {
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-color-emoji
-    joypixels
     nerd-fonts.mononoki
     nerd-fonts.jetbrains-mono
     nerd-fonts.space-mono
     material-symbols
     cozette
     azuki
-    google-fonts
   ];
   fontDir.enable = true;
   fontconfig = {
     enable = true;
-    defaultFonts.emoji = ["Noto Color Emoji"];
+    defaultFonts = {
+      emoji = ["Noto Color Emoji"];
+      serif = ["Noto serif CJK CS"];
+      };
     };
   };
 
