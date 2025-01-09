@@ -4,12 +4,11 @@
 programs = {
 kitty = {
 	enable = true;
-	extraConfig = builtins.readFile ../.config/kitty;
+	extraConfig = '' ${builtins.readFile ../.config/kitty/kitty.conf}'';
  };
 starship = {
       enable = true;
-      settings = builtins.readFile ../.config/starship.toml;
-    };
+};
     zoxide = {
       enable = true;
     };
