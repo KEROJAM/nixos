@@ -62,13 +62,6 @@ environment.systemPackages =  with pkgs; [
   mpv
   vlc
   ffmpeg_6-full
-  obs-studio
-  (pkgs.wrapOBS {
-    plugins = with pkgs.obs-studio-plugins; [
-      obs-pipewire-audio-capture
-      #obs-studio-plugins.obs-vkcapture
-    ];
-  })
   aegisub
   #davinci-resolve
 
@@ -92,9 +85,7 @@ environment.systemPackages =  with pkgs; [
   onlyoffice-bin
 
 # Comunication
-  vesktop
   signal-desktop
-  parsec-bin
   remmina
   qbittorrent
 
@@ -104,11 +95,8 @@ environment.systemPackages =  with pkgs; [
 
 # Games
   protonup-qt
-  protonup
-  steam
   steam-run
   mangohud
-  waydroid
   prismlauncher
   heroic
   osu-lazer-bin
@@ -135,10 +123,6 @@ environment.systemPackages =  with pkgs; [
   fd
   wl-clipboard
   wf-recorder
-  bun
-  dart-sass
-  fd
-  swappy
   gtk3
   xclip
   xdotool
@@ -154,14 +138,10 @@ environment.systemPackages =  with pkgs; [
   lzip
   unzip
   xorg.xf86inputlibinput
-  libinput
   lxappearance
-  home-manager
   papirus-icon-theme
   acpi
   pamixer
-  cairo
-  inputs.matugen.packages.${system}.default
   emojify
 
 # Virtualisation
@@ -169,7 +149,6 @@ environment.systemPackages =  with pkgs; [
   virtiofsd
 
 # Languages
-  #cmake
   luajit
   ispell
   python3

@@ -2,7 +2,6 @@
 
 {
   imports = [
-    inputs.ags.homeManagerModules.default
     ./nvim.nix
     ./terminal.nix
   ];
@@ -43,15 +42,6 @@
       userName = "KEROJAM";
       userEmail = "majorekcs@hotmail.com";
     };
-    ags = {
-      enable = true;
-      extraPackages = with pkgs; [
-        accountsservice
-          gtksourceview
-          webkitgtk
-      ];
-    };
-    
   };
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

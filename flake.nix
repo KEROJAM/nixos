@@ -11,9 +11,7 @@
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    matugen.url = "github:InioX/matugen?ref=v2.2.0";
-    ags.url = "github:Aylur/ags/v1";
-    astal.url = "github:Aylur/astal";
+    nix-flatpak.url = "github:gmodena/nix-flatpak";
     dwmblocks = {
       url = "github:KEROJAM/dwmblocks";
       flake = false;
@@ -28,19 +26,18 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, nur, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nur, nix-flatpak, ... }@inputs:
   let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.system;
   in
     {
-    packages.system.default = pkgs.callPackage ./ags {inherit inputs;};
     nixosConfigurations = { 
-
       YuriPC = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
         modules = [
             nur.modules.nixos.default
+            nix-flatpak.nixosModules.nix-flatpak
             ./main/configuration.nix
             ./main/hardware/hardware-configuration-main.nix
             home-manager.nixosModules.home-manager

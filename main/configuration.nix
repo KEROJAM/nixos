@@ -9,19 +9,13 @@
       ./packages.nix
     ];
   networking = {
-
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-  #firewall.enable = true;
-  #firewall.allowedTCPPorts = [ 80 443];
-
-  # Enable networking
-  networkmanager = { 
+    networkmanager = { 
       enable = true;
       wifi.powersave = null;
+    };
+    firewall = {
+      enable = true;
+      allowPing = false;
     };
   };
 
@@ -67,7 +61,16 @@
       libraries = with pkgs; [
       ];
     };
-  };
+    river = {
+      enable = true;
+    };
+    dconf.enable = true;
+    steam = {
+      enable = true;
+      remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+	dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    };
+ };
   users.defaultUserShell = pkgs.fish;
   # NIXOS
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -85,66 +88,41 @@
   
  # Software
 
-  services.libinput = {
-    enable = true;
-    mouse = {
-        accelProfile = "flat";
-	middleEmulation = false;
-    };
-    touchpad = {
-	naturalScrolling = true;
-  };
- };
+ 
 
   hardware.opentabletdriver =  {
     enable = true;
     daemon.enable = true;
     };
-  services.udisks2.enable = true;
   # Virtualisation
 
-  virtualisation.waydroid.enable = true;
-	programs.dconf.enable = true;
-	virtualisation.libvirtd ={
-		enable = true;
-		qemu = {
-			package = pkgs.qemu;
-			ovmf = { 
-			  enable = true;
-			  packages = [ pkgs.OVMFFull.fd ];
-			};
-			swtpm.enable = true;
-			runAsRoot = false;
-		};
+  virtualisation = { 
+    waydroid.enable = true;
+    libvirtd ={
+      enable = true;
+      qemu = {
+	package = pkgs.qemu;
+	ovmf = { 
+	  enable = true;
+	  packages = [ pkgs.OVMFFull.fd ];
 	};
-
-	environment.etc = {
-		"ovmf/edk2-x86_64-secure-code.fd" = {
-    			source = config.virtualisation.libvirtd.qemu.package + "/share/qemu/edk2-x86_64-secure-code.fd";
-  		};
-
-  		"ovmf/edk2-i386-vars.fd" = {
-    			source = config.virtualisation.libvirtd.qemu.package + "/share/qemu/edk2-i386-vars.fd";
-  			};
-
-		};
-
-
-  # Enable the OpenSSH daemon.
-  services.openssh = {
-    enable = true;
-    ports = [22];
-    settings = {
-        PasswordAuthentication = false;
+	swtpm.enable = true;
+	runAsRoot = false;
       };
     };
-  # Flatpak/dbus
-  services.flatpak.enable = true;
-  services.dbus.enable = true;
-        xdg.portal = {
+  };
+    environment.etc = {
+      "ovmf/edk2-x86_64-secure-code.fd" = {
+	source = config.virtualisation.libvirtd.qemu.package + "/share/qemu/edk2-x86_64-secure-code.fd";
+      };
+
+      "ovmf/edk2-i386-vars.fd" = {
+	source = config.virtualisation.libvirtd.qemu.package + "/share/qemu/edk2-i386-vars.fd";
+      };
+    };
+xdg.portal = {
 	enable = true;
 	extraPortals = [ pkgs.xdg-desktop-portal-gnome ];  # Polkit
-
   };
   security.polkit.enable = true;
   systemd = {
@@ -166,11 +144,60 @@
 		 DefaultTimeoutStopSec=10s
 		'';
 	};
-  # Window Managers
+  # Services and Window Managers
   services = { 
     picom = {
     enable = true;
   };
+  # Flatpak/dbus
+  flatpak = {
+    enable = true;
+    remotes = [
+      {
+	name = "flathub";
+	location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
+      }
+    ];
+    packages = [
+      "com.xnview.XnViewMP"
+      "one.ablaze.floorp"
+      "com.obsproject.Studio"
+      "dev.vencord.Vesktop"
+    ];
+    update.onActivation = true;
+    uninstallUnmanaged = true;
+    };
+  dbus.enable = true;
+  udisks2.enable = true;
+  libinput = {
+    enable = true;
+    mouse = {
+        accelProfile = "flat";
+	middleEmulation = false;
+    };
+    touchpad = {
+	naturalScrolling = true;
+    };
+   };
+  # Enable the OpenSSH daemon.
+    openssh = {
+      enable = true;
+      ports = [22];
+      settings = {
+	PasswordAuthentication = false;
+      };
+    };
+    redshift = {
+      enable = true;
+      brightness = {
+        day = "1";
+        night = "1";
+      };
+      temperature = {
+        day = 8500;
+        night = 3700;
+      };
+    };
   xserver = {
     enable = true;
     xkb.layout = "us";
@@ -178,16 +205,9 @@
     windowManager = {
       awesome = {
 	enable = true;
-	luaModules = with pkgs.extraLuaPackages; [
-	  connman_dbus
-	    connman_widget
-	    dbus_proxy
-	    enum
-	    media_player
-	    power_widget
-	    pulseaudio_dbus
-	    pulseaudio_widget
-	    upower_dbus
+	luaModules = with pkgs.luaPackages; [
+	  luarocks
+	  luadbi-mysql
 	];
       };
       dwm = {
@@ -204,15 +224,9 @@
     };
   pulseaudio.enable = false;
   };
-  programs = {
-    hyprland = {
-      enable = true;
-      xwayland.enable = true;
-    };
-    river = {
-      enable = true;
-    };
-  };
+  
+
+# Nix Overlays
   environment.sessionVariables.NIXOS_OZONE_WL= "1";
 	nixpkgs.overlays = with builtins; [
  		(self: super: {
@@ -233,27 +247,11 @@
 		 '';
 		};
 	    })
-	  (
-	    import (fetchGit {
-	      url = "https://github.com/stefano-m/nix-stefano-m-nix-overlays.git";
-	      rev = "6d0170471fa27f31bd7a136df33a39dcd0615255";
-	  })
-	  )
 	];
 
 
 
-  services.redshift = {
-      enable = true;
-      brightness = {
-        day = "1";
-        night = "1";
-      };
-      temperature = {
-        day = 8500;
-        night = 3700;
-      };
-  };
+  
   location.provider = "geoclue2";
 
   # Open ports in the firewall.
@@ -261,12 +259,7 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
  
-    # Games
-	programs.steam = {
-		enable = true;
-		remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-  		dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-	};
+	
   nix.optimise.automatic = true;
   nix.gc = {
   	automatic = true;
