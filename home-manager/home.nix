@@ -44,7 +44,10 @@
     };
   };
   wayland.windowManager.river = {
-    extraConfig = ''${builtins.readFile ../.config/river/init}'';
+    extraConfig = ''
+    ${builtins.readFile ../.config/river/init}
+    ${builtins.readFile ../config/river/disable}
+    '';
   };
   xdg.configFile."river/init" = {
     enable = true;
