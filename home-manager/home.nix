@@ -43,7 +43,7 @@
       userEmail = "majorekcs@hotmail.com";
     };
   };
-  wayland.windowManagers.river = {
+  wayland.windowManager.river = {
     extraConfig = ''${builtins.readFile ../.config/river/init}'';
   };
   # Let Home Manager install and manage itself.
