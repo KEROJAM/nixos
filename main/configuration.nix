@@ -50,7 +50,6 @@
       enable = true;
       interactiveShellInit = ''
 	${builtins.readFile ../.config/fish/config.fish}
-	${builtins.readFile ../.config/fish/themes/RosePineDawn.theme}
 	'';
     };
     adb.enable = true;

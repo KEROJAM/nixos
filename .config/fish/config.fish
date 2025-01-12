@@ -6,7 +6,6 @@ if status is-interactive
         eval $TMUX
         tmux attach-session
     end
-    fish_config theme choose "RosePineDawn"
     zoxide init fish | source
     starship init fish | source
 end
