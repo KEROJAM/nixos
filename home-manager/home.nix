@@ -46,12 +46,17 @@
   wayland.windowManager.river = {
     extraConfig = ''
     ${builtins.readFile ../.config/river/init}
-    ${builtins.readFile ../config/river/disable}
+    ${builtins.readFile ../.config/river/disable-gpu.sh}
     '';
   };
   xdg.configFile."river/init" = {
     enable = true;
     source = "${../.config/river/init}";
+    executable = true;
+    };
+  xdg.configFile."river/disable-gpu" = {
+    enable = true;
+    source = "${../.config/river/disable-gpu.sh}";
     executable = true;
     };
   # Let Home Manager install and manage itself.
