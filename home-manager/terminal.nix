@@ -15,9 +15,9 @@ zoxide = {
 tmux = {
       enable = true;
     };
-fish = {
-      enable = true;
-      interactiveShellInit = ''${builtins.readFile ../.config/fish/config.fish}'';
-    };
+#fish = {
+#      enable = true;
+#      interactiveShellInit = ''${builtins.readFile ../.config/fish/config.fish}'';
+#    };
   };
 }

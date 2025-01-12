@@ -48,9 +48,10 @@
     };
     fish = {
       enable = true;
-      shellAliases = {
-	
-      };
+      interactiveShellInit = ''
+	${builtins.readFile ../.config/fish/config.fish}
+	${builtins.readFile ../.config/fish/themes/RosePineDawn.theme}
+	'';
     };
     adb.enable = true;
     java = {
@@ -68,7 +69,7 @@
     steam = {
       enable = true;
       remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-	dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+      dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
     };
  };
   users.defaultUserShell = pkgs.fish;
