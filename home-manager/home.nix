@@ -43,6 +43,9 @@
       userEmail = "majorekcs@hotmail.com";
     };
   };
+  wayland.windowManagers.river = {
+    extraConfig = ''${builtins.readFile ../.config/river/init}'';
+  };
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
