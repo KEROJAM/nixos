@@ -46,6 +46,11 @@
   wayland.windowManager.river = {
     extraConfig = ''${builtins.readFile ../.config/river/init}'';
   };
+  xdg.configFile."river/init" = {
+    enable = true;
+    source = "${../.config/river/init}";
+    executable = true;
+    };
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
