@@ -122,7 +122,7 @@
     };
 xdg.portal = {
 	enable = true;
-	extraPortals = [ pkgs.xdg-desktop-portal-gnome ];  # Polkit
+	extraPortals = [ pkgs.xdg-desktop-portal-wlr ];  # Polkit
   };
   security.polkit.enable = true;
   systemd = {
@@ -201,7 +201,6 @@ xdg.portal = {
   xserver = {
     enable = true;
     xkb.layout = "us";
-    desktopManager.gnome.enable = true;
     windowManager = {
       awesome = {
 	enable = true;

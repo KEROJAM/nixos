@@ -9,11 +9,15 @@ kitty = {
 starship = {
       enable = true;
 };
-    zoxide = {
+zoxide = {
       enable = true;
     };
-    tmux = {
+tmux = {
       enable = true;
+    };
+fish = {
+      enable = true;
+      interactiveShellInit = ''${builtins.readFile ../.config/fish/config.fish}'';
     };
   };
 }

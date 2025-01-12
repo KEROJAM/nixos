@@ -48,6 +48,7 @@ environment.systemPackages =  with pkgs; [
   feh
   dwmblocks
   waybar
+  yambar
   xorg.libxcb
   sddm-astronaut
 

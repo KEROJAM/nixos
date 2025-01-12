@@ -55,6 +55,7 @@
         specialArgs = { inherit inputs; };
         modules = [
             nur.modules.nixos.default
+            nix-flatpak.nixosModules.nix-flatpak
             ./main/configuration.nix
             ./main/hardware/hardware-configuration-Lap.nix
             home-manager.nixosModules.home-manager
