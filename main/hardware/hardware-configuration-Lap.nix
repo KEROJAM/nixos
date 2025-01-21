@@ -28,13 +28,14 @@
       '';
     tmp.cleanOnBoot = true;
   };
-  #powerManagement.enable = true;
+  powerManagement.enable = true;
   hardware = {
   graphics = {
       enable = true;
       enable32Bit = true;
       extraPackages = with pkgs; [
 	intel-media-driver
+	vaapiIntel
 	intel-ocl
 	libvdpau-va-gl
 	];
@@ -43,16 +44,34 @@
   nvidia = {
     modesetting.enable = true;
     open = false;
-    powerManagement.enable = true;
+    powerManagement.enable = false;
+    powerManagement.finegrained = true;
     package = config.boot.kernelPackages.nvidiaPackages.beta;
     prime = {
-	sync.enable = true;
-	nvidiaBusId = "PCI:1:0:0";
 	intelBusId = "PCI:0:2:0";
+	nvidiaBusId = "PCI:1:0:0";
+	offload = {
+	  enable = true;
+	  enableOffloadCmd = true;
+	};
     };
   };
 };
 services.xserver.videoDrivers = [ "nvidia" ];
+
+services.tlp = {
+  enable = true;
+  settings = {
+    CPU_SCALING_GOVERNOR_ON_AC = "performance";
+    CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+
+    CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+    CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+
+    START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
+    STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
+  };
+};
 # Sound
 
 	security.rtkit.enable = true;
@@ -89,7 +108,8 @@ services.xserver.videoDrivers = [ "nvidia" ];
 #      fsType = "ntfs";
 #    };
 
-  swapDevices = [ ];
+  swapDevices = [
+  ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

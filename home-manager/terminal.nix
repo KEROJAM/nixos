@@ -11,6 +11,12 @@ zoxide = {
     };
 tmux = {
       enable = true;
+      plugins = with pkgs.tmuxPlugins; [
+	rose-pine
+      ];
+      extraConfig = ''
+      set -g @rose_pine_variant "dawn"
+    '';
     };
 starship = {
       enable = true;
@@ -46,7 +52,7 @@ starship = {
 	  show_always = true;
 	};
 	git_branch = {
-	  symbol = "🌱"; 
+	  symbol = "🌱 "; 
 	};
 	custom = {
 	  syncthing = {

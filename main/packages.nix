@@ -19,6 +19,7 @@ environment.systemPackages =  with pkgs; [
  # IDE
    #rstudio
    vscode-fhs
+   jetbrains.idea-community-bin
 
  # Git
    git
@@ -73,6 +74,7 @@ environment.systemPackages =  with pkgs; [
   maim
   slop
   flameshot
+  imagemagick
 
 # Education
   jq
@@ -109,7 +111,9 @@ environment.systemPackages =  with pkgs; [
   })
 
 # Misc
+  networkmanagerapplet
   wineWowPackages.stable
+  findutils
   android-tools
   heimdall
   trash-cli

@@ -42,7 +42,7 @@
   # Shell
   programs = {
     zsh = {
-      enable = false;
+      enable = true;
       autosuggestions.enable = true;
       enableCompletion = true;
     };
@@ -163,6 +163,7 @@ xdg.portal = {
       "one.ablaze.floorp"
       "com.obsproject.Studio"
       "dev.vencord.Vesktop"
+      "com.github.tchx84.Flatseal"
     ];
     update.onActivation = true;
     uninstallUnmanaged = true;
@@ -177,6 +178,7 @@ xdg.portal = {
     };
     touchpad = {
 	naturalScrolling = true;
+	disableWhileTyping = true;
     };
    };
   # Enable the OpenSSH daemon.

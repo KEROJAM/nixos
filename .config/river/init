@@ -11,6 +11,8 @@ riverctl map normal Super S spawn chromium
 riverctl map normal Super E spawn nemo
 riverctl map normal Super U spawn emacs
 riverctl map normal Super R spawn '~/.config/rofi/launchers/type-2/launcher.sh'
+riverctl map normal Super F7 spawn "flameshot gui"
+riverctl map normal Super+Shift Y spawn '~/.config/rofi/powermenu/type-2/powermenu.sh'
 
 # Super+Q to close the focused view
 riverctl map normal Super Q close
@@ -168,12 +170,16 @@ pkill swww-daemon
 pkill fcitx5
 pkill mako
 pkill yambar 
+pkill udiskie
 
 # Spawn new ones
 riverctl spawn swww-daemon
 riverctl spawn fcitx5
 riverctl spawn mako
-riverctl spwan yambar 
+riverctl spawn yambar 
+riverctl spawn udiskie
+riverctl spawn 'syncthing -no-browser'
+riverctl spawn flameshot
 
 # fix a few issues (i forgot which lol)
 dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river
