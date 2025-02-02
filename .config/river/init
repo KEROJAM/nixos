@@ -182,6 +182,7 @@ riverctl spawn 'syncthing -no-browser'
 riverctl spawn flameshot
 
 # fix a few issues (i forgot which lol)
+systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river
 dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river
 
 riverctl default-layout rivertile

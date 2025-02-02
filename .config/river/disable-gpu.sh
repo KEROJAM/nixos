@@ -2,7 +2,7 @@
 
 shopt -s globstar
 
-programs="dev.vencord.Vesktop.desktop"
+programs="vesktop"
 
 IFS=':'
 read -r -a paths <<< "$XDG_DATA_DIRS"

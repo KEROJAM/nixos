@@ -595,6 +595,12 @@ require('lazy').setup({
       cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
     end,
   },
+{
+  'nvzone/typr',
+  dependencies = 'nvzone/volt',
+  opts = {},
+  cmd = { 'Typr', 'TyprStats' },
+},
 }, {
   ui = {
     icons = vim.g.have_nerd_font and {} or {

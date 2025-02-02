@@ -8,7 +8,7 @@
     allowUnfree = true;
 
             permittedInsecurePackages = [
-                "python-2.7.18.6"
+              "olm-3.2.16"
               ];
     };
 environment.systemPackages =  with pkgs; [
@@ -18,37 +18,30 @@ environment.systemPackages =  with pkgs; [
 
  # IDE
    #rstudio
-   vscode-fhs
    jetbrains.idea-community-bin
+   gaphor
 
  # Git
    git
    lazygit
 
  # Terminal
-   alacritty
-   kitty
-   zoxide
    fzf
-   starship
-   tmux
 
  # Notifications
-   libnotify
-   mako
-   dunst
-   inotify-tools
+  libnotify
+  mako
+  dunst
 
  # Web browser
-   firefox
-   librewolf
-   chromium
+  firefox
+  librewolf
+  chromium
 
 # Wallpapers/windowmanagers
   swww
   feh
   dwmblocks
-  waybar
   yambar
   xorg.libxcb
   sddm-astronaut
@@ -89,8 +82,9 @@ environment.systemPackages =  with pkgs; [
 
 # Comunication
   signal-desktop
-  remmina
   qbittorrent
+  nheko
+  vesktop
 
 # File Managers
   nemo-with-extensions
@@ -99,11 +93,8 @@ environment.systemPackages =  with pkgs; [
 # Games
   protonup-qt
   steam-run
-  mangohud
   prismlauncher
-  heroic
   osu-lazer-bin
-  pcsx2
   (lutris.override {
     extraPkgs = pkgs: [
       wineWowPackages.stable
@@ -138,7 +129,6 @@ environment.systemPackages =  with pkgs; [
   tldr
   gparted
   btop
-  dbus
   xdg-utils
   lzip
   unzip
@@ -147,7 +137,6 @@ environment.systemPackages =  with pkgs; [
   papirus-icon-theme
   acpi
   pamixer
-  emojify
 
 # Virtualisation
   virt-manager
@@ -157,10 +146,10 @@ environment.systemPackages =  with pkgs; [
   luajit
   ispell
   python3
+  texliveMedium
 
 # Important
   keepassxc
-  syncthing
   polkit_gnome
 
 # NUR
@@ -176,9 +165,7 @@ fonts = {
     noto-fonts-color-emoji
     nerd-fonts.mononoki
     nerd-fonts.jetbrains-mono
-    nerd-fonts.space-mono
     material-symbols
-    cozette
     azuki
   ];
   fontDir.enable = true;

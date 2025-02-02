@@ -162,8 +162,8 @@ xdg.portal = {
       "com.xnview.XnViewMP"
       "one.ablaze.floorp"
       "com.obsproject.Studio"
-      "dev.vencord.Vesktop"
       "com.github.tchx84.Flatseal"
+      "com.ktechpit.torrhunt"
     ];
     update.onActivation = true;
     uninstallUnmanaged = true;
@@ -200,6 +200,9 @@ xdg.portal = {
         night = 3700;
       };
     };
+    syncthing = {
+      enable = true;
+    };
   xserver = {
     enable = true;
     xkb.layout = "us";
@@ -224,6 +227,7 @@ xdg.portal = {
       theme = "sddm-astronaut-theme";
     };
   pulseaudio.enable = false;
+  system76-scheduler.enable = true;
   };
   
 
