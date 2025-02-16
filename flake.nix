@@ -68,6 +68,11 @@
               home-manager.useGlobalPkgs = true;
               home-manager.users."kerojam" = import ./home-manager/home.nix;
             }
+            {
+            nixpkgs.overlays = [
+              nixpkgs-f2k.overlays.window-managers
+            ];
+            }
         ];
       };
     };
