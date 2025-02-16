@@ -7,7 +7,7 @@
 
 riverctl map normal Super Return spawn kitty
 riverctl map normal Super B spawn firefox
-riverctl map normal Super S spawn chromium
+riverctl map normal Super S spawn "chromium --enable-features=UseOzonePlatform --enable-wayland-ime"
 riverctl map normal Super E spawn nemo
 riverctl map normal Super U spawn emacs
 riverctl map normal Super R spawn '~/.config/rofi/launchers/type-2/launcher.sh'
@@ -178,7 +178,6 @@ riverctl spawn fcitx5
 riverctl spawn mako
 riverctl spawn yambar 
 riverctl spawn udiskie
-riverctl spawn 'syncthing -no-browser'
 riverctl spawn flameshot
 
 # fix a few issues (i forgot which lol)

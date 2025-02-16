@@ -19,7 +19,7 @@ environment.systemPackages =  with pkgs; [
  # IDE
    #rstudio
    jetbrains.idea-community-bin
-   gaphor
+   #gaphor
 
  # Git
    git
@@ -44,7 +44,9 @@ environment.systemPackages =  with pkgs; [
   dwmblocks
   yambar
   xorg.libxcb
-  sddm-astronaut
+  (sddm-astronaut.override{
+    embeddedTheme = "pixel_sakura";
+    })
 
 # Audio
   audacity
@@ -68,6 +70,7 @@ environment.systemPackages =  with pkgs; [
   slop
   flameshot
   imagemagick
+  tesseract
 
 # Education
   jq
@@ -76,6 +79,7 @@ environment.systemPackages =  with pkgs; [
 
 # Launcher
   rofi-wayland
+  rofimoji
 
 # Office
   onlyoffice-bin
@@ -166,7 +170,9 @@ fonts = {
     nerd-fonts.mononoki
     nerd-fonts.jetbrains-mono
     material-symbols
+    hachimarupop
     azuki
+    minecraftia
   ];
   fontDir.enable = true;
   fontconfig = {

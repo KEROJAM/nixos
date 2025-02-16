@@ -31,6 +31,7 @@
         fcitx5-mozc
         fcitx5-gtk
     ];
+    fcitx5.waylandFrontend = true;
 }; 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.kerojam = {
@@ -64,6 +65,7 @@
     river = {
       enable = true;
     };
+    hyprland.enable = true;
     dconf.enable = true;
     steam = {
       enable = true;
@@ -122,7 +124,7 @@
     };
 xdg.portal = {
 	enable = true;
-	extraPortals = [ pkgs.xdg-desktop-portal-wlr ];  # Polkit
+	extraPortals = [ pkgs.xdg-desktop-portal-gtk ];  # Polkit
   };
   security.polkit.enable = true;
   systemd = {
@@ -164,6 +166,7 @@ xdg.portal = {
       "com.obsproject.Studio"
       "com.github.tchx84.Flatseal"
       "com.ktechpit.torrhunt"
+      "org.gaphor.Gaphor"
     ];
     update.onActivation = true;
     uninstallUnmanaged = true;
@@ -202,6 +205,13 @@ xdg.portal = {
     };
     syncthing = {
       enable = true;
+      group = "users";
+      user = "kerojam";
+      dataDir = "/home/kerojam/";
+      configDir = "/home/kerojam/.config/syncthing";
+      extraFlags = [
+	"--no-browser"
+      ];
     };
   xserver = {
     enable = true;
@@ -222,10 +232,12 @@ xdg.portal = {
       };
     };
   };  
-  displayManager.sddm = {
+  displayManager = {
+    sddm = {
       enable = true;
-      theme = "sddm-astronaut-theme";
+      theme = "sddm-astronaut";
     };
+  };
   pulseaudio.enable = false;
   system76-scheduler.enable = true;
   };
@@ -233,7 +245,7 @@ xdg.portal = {
 
 # Nix Overlays
   environment.sessionVariables.NIXOS_OZONE_WL= "1";
-	nixpkgs.overlays = with builtins; [
+  nixpkgs.overlays = with builtins; [
  		(self: super: {
    	 	mpv = super.mpv.override {
       		scripts = [ self.mpvScripts.mpvacious ];

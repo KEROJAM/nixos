@@ -24,9 +24,10 @@
       url = "github:awesomeWM/awesome";
       flake = false;
     };
+    nixpkgs-f2k.url = "github:fortuneteller2k/nixpkgs-f2k";
   };
 
-  outputs = { self, nixpkgs, home-manager, nur, nix-flatpak, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nur, nix-flatpak, nixpkgs-f2k,... }@inputs:
   let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.system;

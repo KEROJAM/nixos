@@ -18,7 +18,7 @@
       };
      };
     kernelParams = [ "i915.force_probe=7d55" ];
-    kernelPackages = pkgs.linuxKernel.packages.linux_6_12;
+    kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "rtsx_pci_sdmmc" "nvme" "vmd" "thunderbolt" "sdhci_pci"];
     initrd.kernelModules = [ ];
     kernelModules = [ "kvm-intel" ];
@@ -44,9 +44,8 @@
   nvidia = {
     modesetting.enable = true;
     open = false;
-    powerManagement.enable = true;
-    powerManagement.finegrained = true;
-    package = config.boot.kernelPackages.nvidiaPackages.beta;
+    powerManagement.enable = false;
+    powerManagement.finegrained = false;
     prime = {
 	offload = {
 	  enable = true;
@@ -55,10 +54,11 @@
 	intelBusId = "PCI:0:2:0";
 	nvidiaBusId = "PCI:1:0:0";
     };
+    package = config.boot.kernelPackages.nvidiaPackages.beta;
   };
 };
 services.xserver.videoDrivers = [ "nvidia" ];
-
+services.thermald.enable = true;
 services.tlp = {
   enable = true;
   settings = {
@@ -69,7 +69,7 @@ services.tlp = {
     CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
 
     START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
-    STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
+    STOP_CHARGE_THRESH_BAT0 = 85; # 80 and above it stops charging
   };
 };
 # Sound
