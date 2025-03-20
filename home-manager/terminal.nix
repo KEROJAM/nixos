@@ -46,7 +46,7 @@ starship = {
 	  ssh_only = false;
 	};
 	username = {
-	  style_user = "white bold";
+	  style_user = "white";
 	  format = "[$user]($style) ";
 	  disabled = false;
 	  show_always = true;

@@ -15,6 +15,12 @@
 	devices = [ "nodev" ];
 	efiSupport = true;
 	useOSProber = true;
+	minegrub-theme = {
+	  enable = true;
+	  splash = "Yuri In Here";
+	  background = "background_options/1.8  - [Classic Minecraft].png";
+	  boot-options-count = 4;
+	};
       };
      };
     kernelParams = [ "i915.force_probe=7d55" ];
@@ -28,7 +34,6 @@
       '';
     tmp.cleanOnBoot = true;
   };
-  powerManagement.enable = true;
   hardware = {
   graphics = {
       enable = true;
@@ -44,8 +49,8 @@
   nvidia = {
     modesetting.enable = true;
     open = false;
-    powerManagement.enable = false;
-    powerManagement.finegrained = false;
+    powerManagement.enable = true;
+    powerManagement.finegrained = true;
     prime = {
 	offload = {
 	  enable = true;
@@ -60,7 +65,7 @@
 services.xserver.videoDrivers = [ "nvidia" ];
 services.thermald.enable = true;
 services.tlp = {
-  enable = true;
+  enable = false;
   settings = {
     CPU_SCALING_GOVERNOR_ON_AC = "performance";
     CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
@@ -69,28 +74,28 @@ services.tlp = {
     CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
 
     START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
-    STOP_CHARGE_THRESH_BAT0 = 85; # 80 and above it stops charging
+    STOP_CHARGE_THRESH_BAT0 = 88; # 80 and above it stops charging
   };
 };
 # Sound
 
-	security.rtkit.enable = true;
-	services.pipewire = {
-		enable = true;
-		alsa.enable = true;
-		alsa.support32Bit = true;
-		pulse.enable = true;
-		jack.enable = true;
-		wireplumber.enable = true;
-		extraConfig.pipewire."92-low-latency" = {
-  			context.properties = {
-    			default.clock.rate = 48000;
-    			default.clock.quantum = 32;
-    			default.clock.min-quantum = 32;
-    			default.clock.max-quantum = 32;
- 		 	};
-	    };
+security.rtkit.enable = true;
+services.pipewire = {
+  enable = true;
+  alsa.enable = true;
+  alsa.support32Bit = true;
+  pulse.enable = true;
+  jack.enable = true;
+  wireplumber.enable = true;
+  extraConfig.pipewire."92-low-latency" = {
+    context.properties = {
+      default.clock.rate = 48000;
+      default.clock.quantum = 32;
+      default.clock.min-quantum = 32;
+      default.clock.max-quantum = 32;
+    };
   };
+};
 
 
   networking.hostName = "lily"; # Define your hostname.

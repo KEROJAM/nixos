@@ -12,6 +12,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-flatpak.url = "github:gmodena/nix-flatpak";
+    minegrub-theme.url = "github:Lxtharia/minegrub-theme"; 
+    astal = {
+        url = "github:aylur/astal";
+        inputs.nixpkgs.follows = "nixpkgs";
+    };
     dwmblocks = {
       url = "github:KEROJAM/dwmblocks";
       flake = false;
@@ -24,10 +29,9 @@
       url = "github:awesomeWM/awesome";
       flake = false;
     };
-    nixpkgs-f2k.url = "github:fortuneteller2k/nixpkgs-f2k";
   };
 
-  outputs = { self, nixpkgs, home-manager, nur, nix-flatpak, nixpkgs-f2k,... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nur, nix-flatpak, astal, minegrub-theme,... }@inputs:
   let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.system;
@@ -57,6 +61,7 @@
         modules = [
             nur.modules.nixos.default
             nix-flatpak.nixosModules.nix-flatpak
+            minegrub-theme.nixosModules.default
             ./main/configuration.nix
             ./main/hardware/hardware-configuration-Lap.nix
             home-manager.nixosModules.home-manager
@@ -67,11 +72,6 @@
               };
               home-manager.useGlobalPkgs = true;
               home-manager.users."kerojam" = import ./home-manager/home.nix;
-            }
-            {
-            nixpkgs.overlays = [
-              nixpkgs-f2k.overlays.window-managers
-            ];
             }
         ];
       };

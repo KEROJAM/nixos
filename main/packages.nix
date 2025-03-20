@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, pkgs-stable,inputs, ... }:
 
 
 {
@@ -17,9 +17,8 @@ environment.systemPackages =  with pkgs; [
    vim
 
  # IDE
-   #rstudio
    jetbrains.idea-community-bin
-   #gaphor
+   zed-editor
 
  # Git
    git
@@ -34,19 +33,21 @@ environment.systemPackages =  with pkgs; [
   dunst
 
  # Web browser
-  firefox
+  floorp
   librewolf
   chromium
 
 # Wallpapers/windowmanagers
   swww
+  swaylock
+  waybar
   feh
   dwmblocks
-  yambar
   xorg.libxcb
   (sddm-astronaut.override{
     embeddedTheme = "pixel_sakura";
     })
+  playerctl
 
 # Audio
   audacity
@@ -54,6 +55,7 @@ environment.systemPackages =  with pkgs; [
   reaper
   ncmpcpp
   alsa-utils
+  spicetify-cli
 
 # Video Playback
   mpv
@@ -66,7 +68,7 @@ environment.systemPackages =  with pkgs; [
   krita
   grim
   slurp
-  maim
+  #maim
   slop
   flameshot
   imagemagick
@@ -138,7 +140,10 @@ environment.systemPackages =  with pkgs; [
   unzip
   xorg.xf86inputlibinput
   lxappearance
+  darkman
   papirus-icon-theme
+  rose-pine-gtk-theme
+  bibata-cursors
   acpi
   pamixer
 
@@ -171,8 +176,8 @@ fonts = {
     nerd-fonts.jetbrains-mono
     material-symbols
     hachimarupop
-    azuki
-    minecraftia
+    monocraft
+    maple-mono
   ];
   fontDir.enable = true;
   fontconfig = {

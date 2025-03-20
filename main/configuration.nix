@@ -63,9 +63,11 @@
       ];
     };
     river = {
+      enable = false;
+    };
+    niri = {
       enable = true;
     };
-    hyprland.enable = true;
     dconf.enable = true;
     steam = {
       enable = true;
@@ -162,11 +164,13 @@ xdg.portal = {
     ];
     packages = [
       "com.xnview.XnViewMP"
-      "one.ablaze.floorp"
       "com.obsproject.Studio"
+      "app.zen_browser.zen"
+      "com.spotify.Client"
       "com.github.tchx84.Flatseal"
       "com.ktechpit.torrhunt"
       "org.gaphor.Gaphor"
+      "com.heroicgameslauncher.hgl"
     ];
     update.onActivation = true;
     uninstallUnmanaged = true;
@@ -192,6 +196,10 @@ xdg.portal = {
 	PasswordAuthentication = false;
       };
     };
+    mongodb = {
+      enable = true;
+      package = pkgs.mongodb-ce;
+    };
     redshift = {
       enable = true;
       brightness = {
@@ -205,8 +213,8 @@ xdg.portal = {
     };
     syncthing = {
       enable = true;
-      group = "users";
       user = "kerojam";
+      group = "users";
       dataDir = "/home/kerojam/";
       configDir = "/home/kerojam/.config/syncthing";
       extraFlags = [
@@ -217,13 +225,6 @@ xdg.portal = {
     enable = true;
     xkb.layout = "us";
     windowManager = {
-      awesome = {
-	enable = true;
-	luaModules = with pkgs.luaPackages; [
-	  luarocks
-	  luadbi-mysql
-	];
-      };
       dwm = {
 	enable = true;
 	package = pkgs.dwm.overrideAttrs {
@@ -238,10 +239,13 @@ xdg.portal = {
       theme = "sddm-astronaut";
     };
   };
-  pulseaudio.enable = false;
-  system76-scheduler.enable = true;
-  };
   
+  pulseaudio.enable = false;
+  system76-scheduler = {
+      enable = true;
+      settings.cfsProfiles.enable = true;
+    };
+  };
 
 # Nix Overlays
   environment.sessionVariables.NIXOS_OZONE_WL= "1";
@@ -254,15 +258,7 @@ xdg.portal = {
 		dwmblocks = super.dwmblocks.overrideAttrs (oldAttrs: {
 			src = inputs.dwmblocks;
 			});
-		awesome = super.awesome.overrideAttrs {
-		  gtk3Support = true;
-		  pname = "awesome-git";
-		  src = inputs.awesome-git;
-		  patches = [];
-		  postPatch = ''
-		  patchShebangs tests/examples/_postprocess.lua 
-		 '';
-		};
+		
 	    })
 	];
 

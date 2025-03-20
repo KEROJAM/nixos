@@ -483,10 +483,11 @@ require('lazy').setup({
   {
     --'AmberLehmann/candyland.nvim',
     --'rose-pine/neovim',
-    'mellow-theme/mellow.nvim',
+    'AhmedAbdulrahman/aylin.vim',
+    --'mellow-theme/mellow.nvim',
     priority = 1000, -- Make sure to load this before all the other start plugins.
     init = function()
-      vim.cmd.colorscheme 'mellow'
+      vim.cmd.colorscheme 'aylin'
       vim.cmd.hi 'Comment gui=none'
     end,
   },
