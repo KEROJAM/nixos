@@ -18,7 +18,6 @@ environment.systemPackages =  with pkgs; [
 
  # IDE
    jetbrains.idea-community-bin
-   zed-editor
 
  # Git
    git
@@ -78,6 +77,7 @@ environment.systemPackages =  with pkgs; [
   jq
   anki
   gnome-calculator
+  foliate
 
 # Launcher
   rofi-wayland
@@ -177,7 +177,6 @@ fonts = {
     material-symbols
     hachimarupop
     monocraft
-    maple-mono
   ];
   fontDir.enable = true;
   fontconfig = {

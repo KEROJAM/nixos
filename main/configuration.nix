@@ -27,11 +27,29 @@
   i18n.inputMethod = {
     enable = true;
     type = "fcitx5";
-    fcitx5.addons = with pkgs; [
-        fcitx5-mozc
-        fcitx5-gtk
-    ];
-    fcitx5.waylandFrontend = true;
+    fcitx5 = {
+      addons = with pkgs; [
+	fcitx5-mozc
+	  fcitx5-gtk
+	  fcitx5-rose-pine
+      ];
+      waylandFrontend = true;
+      settings.inputMethod = {
+	"keyboard-us" = {
+	  "KeyDelay" = 0;
+	};
+	"keyboard-latam" = {
+	  "KeyDelay" = 0;
+	};
+	"mozc" = {
+	  "ActivateOnLaunch" = true;
+            "CompositionMode" = "Direct";
+            "PreeditMethod" = "Roman";
+            "Display/AsciiMode" = "HalfWidthAlphanumeric";
+            "Display/CandidateWindowStyle" = "Vertical";
+	};
+      };
+    };
 }; 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.kerojam = {
@@ -220,6 +238,9 @@ xdg.portal = {
       extraFlags = [
 	"--no-browser"
       ];
+    };
+    emacs = {
+      enable = true;
     };
   xserver = {
     enable = true;
