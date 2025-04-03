@@ -18,6 +18,8 @@ environment.systemPackages =  with pkgs; [
 
  # IDE
    jetbrains.idea-community-bin
+   mongodb-compass
+   mongosh
 
  # Git
    git
@@ -39,6 +41,7 @@ environment.systemPackages =  with pkgs; [
 # Wallpapers/windowmanagers
   swww
   swaylock
+  betterlockscreen
   waybar
   feh
   dwmblocks
@@ -91,6 +94,7 @@ environment.systemPackages =  with pkgs; [
   qbittorrent
   nheko
   vesktop
+  parsec-bin
 
 # File Managers
   nemo-with-extensions

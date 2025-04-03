@@ -86,6 +86,9 @@
     niri = {
       enable = true;
     };
+    hyprland = {
+      enable = true;
+    };
     dconf.enable = true;
     steam = {
       enable = true;
@@ -144,7 +147,7 @@
     };
 xdg.portal = {
 	enable = true;
-	extraPortals = [ pkgs.xdg-desktop-portal-gtk ];  # Polkit
+	extraPortals = [ pkgs.xdg-desktop-portal-gnome];  # Polkit
   };
   security.polkit.enable = true;
   systemd = {
@@ -229,6 +232,7 @@ xdg.portal = {
         night = 3700;
       };
     };
+    geoclue2.enable = true;
     syncthing = {
       enable = true;
       user = "kerojam";
@@ -253,8 +257,10 @@ xdg.portal = {
 	};
       };
     };
+    desktopManager.gnome.enable = false;
   };  
   displayManager = {
+    #ly.enable = true;
     sddm = {
       enable = true;
       theme = "sddm-astronaut";

@@ -16,22 +16,19 @@
 	efiSupport = true;
 	useOSProber = true;
 	minegrub-theme = {
-	  enable = true;
+	  enable = false;
 	  splash = "Yuri In Here";
 	  background = "background_options/1.8  - [Classic Minecraft].png";
 	  boot-options-count = 4;
 	};
       };
      };
-    kernelParams = [ "i915.force_probe=7d55" ];
-    kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+    kernelParams = [ "i915.force_probe=7d55" "quiet" "loglevel=3"];
+    #kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+    kernelPackages = pkgs.linuxKernel.packages.linux_6_14;
     initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "rtsx_pci_sdmmc" "nvme" "vmd" "thunderbolt" "sdhci_pci"];
     initrd.kernelModules = [ ];
     kernelModules = [ "kvm-intel" ];
-    extraModulePackages =  with config.boot.kernelPackages; [ v4l2loopback ];
-    extraModprobeConfig = ''
-        options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
-      '';
     tmp.cleanOnBoot = true;
   };
   hardware = {
@@ -40,17 +37,17 @@
       enable32Bit = true;
       extraPackages = with pkgs; [
 	intel-media-driver
-	vaapiIntel
-	intel-ocl
-	libvdpau-va-gl
+	vpl-gpu-rt
 	];
+      extraPackages32 = with pkgs.pkgsi686Linux; [ intel-vaapi-driver ];
   };
-  intel-gpu-tools.enable = true;
   nvidia = {
     modesetting.enable = true;
-    open = false;
-    powerManagement.enable = true;
-    powerManagement.finegrained = true;
+    open = true;
+    powerManagement = {
+      enable = true;
+      finegrained = false;
+    };
     prime = {
 	offload = {
 	  enable = true;
@@ -59,7 +56,7 @@
 	intelBusId = "PCI:0:2:0";
 	nvidiaBusId = "PCI:1:0:0";
     };
-    package = config.boot.kernelPackages.nvidiaPackages.beta;
+    package = config.boot.kernelPackages.nvidiaPackages.latest;
   };
 };
 services.xserver.videoDrivers = [ "nvidia" ];
@@ -74,7 +71,7 @@ services.tlp = {
     CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
 
     START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
-    STOP_CHARGE_THRESH_BAT0 = 88; # 80 and above it stops charging
+    STOP_CHARGE_THRESH_BAT0 = 90; # 80 and above it stops charging
   };
 };
 # Sound
