@@ -13,20 +13,20 @@
     };
 environment.systemPackages =  with pkgs; [
 # Text Editors
-   emacs
-   vim
+  emacs
+  vim
 
  # IDE
-   jetbrains.idea-community-bin
-   mongodb-compass
-   mongosh
+  jetbrains.idea-community-bin
+  mongodb-compass
+  mongosh
 
  # Git
-   git
-   lazygit
+  git
+  lazygit
 
  # Terminal
-   fzf
+  fzf
 
  # Notifications
   libnotify
@@ -46,8 +46,15 @@ environment.systemPackages =  with pkgs; [
   feh
   dwmblocks
   xorg.libxcb
-  (sddm-astronaut.override{
-    embeddedTheme = "pixel_sakura";
+(pkgs.callPackage ./sddm-astronaut-theme.nix {
+      theme = "hyprland_kath";
+      themeConfig = {
+        General = {
+      #  HeaderText = "Yuri In Here";
+      #  Background="";
+        FontSize ="20";
+        };
+      };
     })
   playerctl
 
@@ -150,6 +157,7 @@ environment.systemPackages =  with pkgs; [
   bibata-cursors
   acpi
   pamixer
+  xwayland-satellite
 
 # Virtualisation
   virt-manager

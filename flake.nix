@@ -13,10 +13,15 @@
     };
     nix-flatpak.url = "github:gmodena/nix-flatpak";
     minegrub-theme.url = "github:Lxtharia/minegrub-theme"; 
-    astal = {
-        url = "github:aylur/astal";
-        inputs.nixpkgs.follows = "nixpkgs";
-    };
+    astalbar.url = "github:linuxmobile/astal-bar";
+    #astal = {
+    #    url = "github:aylur/astal";
+    #    inputs.nixpkgs.follows = "nixpkgs";
+    #};
+    #ags = { 
+    #url = "github:aylur/ags";
+    #inputs.nixpkgs.follows = "nixpkgs";
+    #};
     dwmblocks = {
       url = "github:KEROJAM/dwmblocks";
       flake = false;
@@ -29,9 +34,13 @@
       url = "github:awesomeWM/awesome";
       flake = false;
     };
+    CRT-Amber = {
+      url = "github:Jacksaur/CRT-Amber-GRUB-Theme";
+      flake = false;
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, nur, nix-flatpak, astal, minegrub-theme,... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nur, nix-flatpak, minegrub-theme,... }@inputs:
   let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.system;

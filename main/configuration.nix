@@ -83,10 +83,10 @@
     river = {
       enable = false;
     };
-    niri = {
-      enable = true;
-    };
     hyprland = {
+     enable = true;
+    };
+    niri = {
       enable = true;
     };
     dconf.enable = true;
@@ -186,12 +186,11 @@ xdg.portal = {
     packages = [
       "com.xnview.XnViewMP"
       "com.obsproject.Studio"
-      "app.zen_browser.zen"
-      "com.spotify.Client"
       "com.github.tchx84.Flatseal"
       "com.ktechpit.torrhunt"
       "org.gaphor.Gaphor"
       "com.heroicgameslauncher.hgl"
+      "com.beavernotes.beavernotes"
     ];
     update.onActivation = true;
     uninstallUnmanaged = true;
@@ -260,16 +259,21 @@ xdg.portal = {
     desktopManager.gnome.enable = false;
   };  
   displayManager = {
-    #ly.enable = true;
     sddm = {
       enable = true;
-      theme = "sddm-astronaut";
+      package = pkgs.kdePackages.sddm;
+      theme = "sddm-astronaut-theme";
+      extraPackages = with pkgs; [
+	kdePackages.qtmultimedia
+        kdePackages.qtsvg
+        kdePackages.qtvirtualkeyboard
+      ];
     };
   };
   
   pulseaudio.enable = false;
   system76-scheduler = {
-      enable = true;
+      enable = false;
       settings.cfsProfiles.enable = true;
     };
   };

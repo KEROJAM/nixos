@@ -4,6 +4,7 @@
   imports = [
     ./nvim.nix
     ./terminal.nix
+    #inputs.ags.homeManagerModules.default
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -16,7 +17,7 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-    inputs.astal.packages.${system}.default
+    #inputs.astal.packages.${system}.default
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -43,6 +44,13 @@
       userName = "KEROJAM";
       userEmail = "majorekcs@hotmail.com";
     };
+    #ags = {
+     # enable = true;
+     # extraPackages = with pkgs; [
+     #   inputs.ags.packages.${pkgs.system}.battery
+     #   fzf
+     # ];
+    #};
   };
   
   wayland.windowManager.river = {
