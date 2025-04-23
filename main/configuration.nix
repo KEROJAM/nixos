@@ -60,43 +60,7 @@
     packages = with pkgs; [];
   };
   # Shell
-  programs = {
-    zsh = {
-      enable = true;
-      autosuggestions.enable = true;
-      enableCompletion = true;
-    };
-    fish = {
-      enable = true;
-      interactiveShellInit = ''
-	${builtins.readFile ../.config/fish/config.fish}
-	'';
-    };
-    adb.enable = true;
-    java = {
-      enable = true;
-    };
-    nix-ld = {
-      enable = true;
-      libraries = with pkgs; [
-      ];
-    };
-    river = {
-      enable = false;
-    };
-    hyprland = {
-     enable = true;
-    };
-    niri = {
-      enable = true;
-    };
-    dconf.enable = true;
-    steam = {
-      enable = true;
-      remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-      dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-    };
- };
+  
   users.defaultUserShell = pkgs.fish;
   # NIXOS
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -148,7 +112,7 @@
     };
 xdg.portal = {
 	enable = true;
-	extraPortals = [ pkgs.xdg-desktop-portal-hyprland];  # Polkit
+	extraPortals = [ pkgs.xdg-desktop-portal-hyprland pkgs.xdg-desktop-portal-gtk];  # Polkit
   };
   security.polkit.enable = true;
   systemd = {
@@ -165,13 +129,13 @@ xdg.portal = {
         TimeoutStopSec = 10;
       };
   };
-
-		extraConfig = ''
-		 DefaultTimeoutStopSec=10s
-		'';
-	};
+    extraConfig = ''
+      DefaultTimeoutStopSec=10s
+      '';
+};
   # Services and Window Managers
-  services.xserver = {
+  services = {
+    xserver = {
     enable = true;
     xkb.layout = "us";
     windowManager = {
@@ -182,6 +146,7 @@ xdg.portal = {
 	};
       };
     };
+  };
   desktopManager.cosmic = {
       enable = true;
       xwayland.enable = true;
@@ -198,7 +163,7 @@ xdg.portal = {
       ];
     };
   };
- };
+};
 # Nix Overlays
   environment.sessionVariables.NIXOS_OZONE_WL= "1";
   nixpkgs.overlays = with builtins; [
