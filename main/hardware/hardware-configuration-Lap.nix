@@ -17,23 +17,11 @@
 	devices = [ "nodev" ];
 	efiSupport = true;
 	useOSProber = true;
-	#theme = pkgs.stdenv.mkDerivation {
-	#  pname = "CRT-Amber";
-	#  src = inputs.CRT-Amber;
-	#  installPhase = "
-	#  mkdir -p $out/share/grub/themes
-	#  cp -r CRT-Amber $out/share/grub/themes/";
-	#};
-	minegrub-theme = {
-	  enable = true;
-	  splash = "Yuri In Here";
-	  background = "background_options/1.8  - [Classic Minecraft].png";
-	  boot-options-count = 4;
-	};
       };
      };
     kernelParams = [ "i915.force_probe=7d55" "quiet" "loglevel=3" "pcie_aspm=off" "intel_idle.max_cstate=1" "xe.enable_dc=0" "ahci.mobile_lpm_policy=1"];
-    kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+    #kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+    kernelPackages = pkgs.linuxPackages_cachyos;
     initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "rtsx_pci_sdmmc" "nvme" "vmd" "thunderbolt" "sdhci_pci"];
     initrd.kernelModules = [ "i915" ];
     kernelModules = [ "kvm-intel" ];
@@ -67,6 +55,7 @@
     package = config.boot.kernelPackages.nvidiaPackages.latest;
   };
   i2c.enable = true;
+  bluetooth.enable = true;
 };
 services.xserver.videoDrivers = [ "nvidia" ];
 services.thermald.enable = true;

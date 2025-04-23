@@ -12,16 +12,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-flatpak.url = "github:gmodena/nix-flatpak";
-    minegrub-theme.url = "github:Lxtharia/minegrub-theme"; 
+    minegrub-theme.url = "github:Lxtharia/minegrub-theme";
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     astalbar.url = "github:linuxmobile/astal-bar";
-    #astal = {
-    #    url = "github:aylur/astal";
-    #    inputs.nixpkgs.follows = "nixpkgs";
-    #};
-    #ags = { 
-    #url = "github:aylur/ags";
-    #inputs.nixpkgs.follows = "nixpkgs";
-    #};
+    astal = {
+        url = "github:aylur/astal";
+        inputs.nixpkgs.follows = "nixpkgs";
+    };
+    ags = { 
+      url = "github:aylur/ags";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     dwmblocks = {
       url = "github:KEROJAM/dwmblocks";
       flake = false;
@@ -40,7 +41,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, nur, nix-flatpak, minegrub-theme,... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nur, nix-flatpak, chaotic ,minegrub-theme,... }@inputs:
   let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.system;
@@ -52,6 +53,7 @@
         modules = [
             nur.modules.nixos.default
             nix-flatpak.nixosModules.nix-flatpak
+            chaotic.nixosModules.default
             ./main/configuration.nix
             ./main/hardware/hardware-configuration-main.nix
             home-manager.nixosModules.home-manager
@@ -71,6 +73,7 @@
             nur.modules.nixos.default
             nix-flatpak.nixosModules.nix-flatpak
             minegrub-theme.nixosModules.default
+            chaotic.nixosModules.default
             ./main/configuration.nix
             ./main/hardware/hardware-configuration-Lap.nix
             home-manager.nixosModules.home-manager

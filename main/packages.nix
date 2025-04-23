@@ -20,6 +20,7 @@ environment.systemPackages =  with pkgs; [
   jetbrains.idea-community-bin
   mongodb-compass
   mongosh
+  zed-editor
 
  # Git
   git
@@ -40,19 +41,19 @@ environment.systemPackages =  with pkgs; [
 
 # Wallpapers/windowmanagers
   swww
-  swaylock
+  hyprlock 
   betterlockscreen
   waybar
   feh
   dwmblocks
   xorg.libxcb
 (pkgs.callPackage ./sddm-astronaut-theme.nix {
-      theme = "hyprland_kath";
+      theme = "pixel_sakura";
       themeConfig = {
         General = {
       #  HeaderText = "Yuri In Here";
       #  Background="";
-        FontSize ="20";
+        FontSize ="10";
         };
       };
     })
@@ -88,6 +89,7 @@ environment.systemPackages =  with pkgs; [
   anki
   gnome-calculator
   foliate
+  hugo
 
 # Launcher
   rofi-wayland
@@ -97,7 +99,7 @@ environment.systemPackages =  with pkgs; [
   onlyoffice-bin
 
 # Comunication
-  signal-desktop
+  signal-desktop-bin
   qbittorrent
   nheko
   vesktop
@@ -186,6 +188,7 @@ fonts = {
     noto-fonts-color-emoji
     nerd-fonts.mononoki
     nerd-fonts.jetbrains-mono
+    google-fonts
     material-symbols
     hachimarupop
     monocraft

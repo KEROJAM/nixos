@@ -483,10 +483,11 @@ require('lazy').setup({
   {
     --'AmberLehmann/candyland.nvim',
     'rose-pine/neovim',
-    --'AhmedAbdulrahman/aylin.vim',
-    --'mellow-theme/mellow.nvim',
+    --'nyoom-engineering/oxocarbon.nvim',
+    --'rayes0/blossom.vim',
     priority = 1000, -- Make sure to load this before all the other start plugins.
     init = function()
+      vim.opt.background = 'light' -- set this to dark or light
       vim.cmd.colorscheme 'rose-pine'
       vim.cmd.hi 'Comment gui=none'
     end,
