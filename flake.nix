@@ -35,13 +35,13 @@
       url = "github:awesomeWM/awesome";
       flake = false;
     };
-    CRT-Amber = {
-      url = "github:Jacksaur/CRT-Amber-GRUB-Theme";
-      flake = false;
-    };
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      };
   };
 
-  outputs = { self, nixpkgs, home-manager, nur, nix-flatpak, chaotic ,minegrub-theme,... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nur, nix-flatpak, chaotic ,minegrub-theme, spicetify-nix, ... }@inputs:
   let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.system;

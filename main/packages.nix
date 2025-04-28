@@ -42,12 +42,16 @@ environment.systemPackages =  with pkgs; [
 # Wallpapers/windowmanagers
   swww
   hyprlock 
+  hyprsunset
+  hyprpicker
+  wlinhibit
   betterlockscreen
   waybar
   feh
   dwmblocks
+  slstatus
   xorg.libxcb
-(pkgs.callPackage ./sddm-astronaut-theme.nix {
+  (pkgs.callPackage ./sddm-astronaut-theme.nix {
       theme = "pixel_sakura";
       themeConfig = {
         General = {
@@ -56,7 +60,7 @@ environment.systemPackages =  with pkgs; [
         FontSize ="10";
         };
       };
-    })
+  })
   playerctl
 
 # Audio
@@ -65,7 +69,6 @@ environment.systemPackages =  with pkgs; [
   reaper
   ncmpcpp
   alsa-utils
-  spicetify-cli
 
 # Video Playback
   mpv
@@ -190,7 +193,6 @@ fonts = {
     nerd-fonts.jetbrains-mono
     google-fonts
     material-symbols
-    hachimarupop
     monocraft
   ];
   fontDir.enable = true;

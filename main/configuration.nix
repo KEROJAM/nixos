@@ -8,6 +8,7 @@
     [ # Include the results of the hardware scan.
       ./packages.nix
       ./services.nix
+      ./programs.nix
     ];
   networking = {
     networkmanager = { 
@@ -175,6 +176,9 @@ xdg.portal = {
 		dwmblocks = super.dwmblocks.overrideAttrs (oldAttrs: {
 			src = inputs.dwmblocks;
 			});
+		slstatus = super.slstatus.overrideAttrs (oldAttrs: {
+			src = /home/kerojam/slstatus;
+		});
 		
 	    })
 	];

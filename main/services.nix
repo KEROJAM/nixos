@@ -29,6 +29,7 @@ services = {
     };
   dbus.enable = true;
   udisks2.enable = true;
+  gvfs.enable = true;
   libinput = {
     enable = true;
     mouse = {
@@ -47,10 +48,6 @@ services = {
       settings = {
 	PasswordAuthentication = false;
       };
-    };
-    mongodb = {
-      enable = true;
-      package = pkgs.mongodb-ce;
     };
     redshift = {
       enable = true;

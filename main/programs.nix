@@ -3,7 +3,7 @@
 {
 programs = {
     zsh = {
-      enable = true;
+      enable = false;
       autosuggestions.enable = true;
       enableCompletion = true;
     };
@@ -11,7 +11,11 @@ programs = {
       enable = true;
       interactiveShellInit = ''
 	${builtins.readFile ../.config/fish/config.fish}
-	'';
+      '';
+    };
+    direnv = {
+      enable = true;
+      loadInNixShell = true;
     };
     adb.enable = true;
     java = {

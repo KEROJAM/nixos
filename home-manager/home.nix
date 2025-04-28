@@ -5,6 +5,7 @@
     ./nvim.nix
     ./terminal.nix
     inputs.ags.homeManagerModules.default
+    inputs.spicetify-nix.homeManagerModules.default
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -64,6 +65,20 @@
         astal.bluetooth
         fzf
       ];
+    };
+    spicetify = 
+      let
+        spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
+      in
+      {
+      enable = true;
+      enabledExtensions = with spicePkgs.extensions; [
+          adblock
+          hidePodcasts
+          shuffle # shuffle+ (special characters are sanitized out of extension names)
+      ];
+      theme = spicePkgs.themes.comfy;
+      colorScheme = "rose-pine-dawn";
     };
   };
   
