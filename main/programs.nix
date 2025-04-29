@@ -1,5 +1,3 @@
-{ inputs, config, pkgs, ... }:
-
 {
 programs = {
     zsh = {

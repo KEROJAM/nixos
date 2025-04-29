@@ -42,7 +42,7 @@
     open = true;
     powerManagement = {
       enable = true;
-      finegrained = false;
+      finegrained = true;
     };
     prime = {
 	offload = {

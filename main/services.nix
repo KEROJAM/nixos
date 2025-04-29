@@ -1,5 +1,3 @@
-{ inputs, config, pkgs, ... }:
-
 {
 services = { 
     picom = {
@@ -21,7 +19,6 @@ services = {
       "com.ktechpit.torrhunt"
       "org.gaphor.Gaphor"
       "com.heroicgameslauncher.hgl"
-      "com.beavernotes.beavernotes"
       "org.vinegarhq.Sober"
     ];
     update.onActivation = true;

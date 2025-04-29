@@ -9,11 +9,12 @@
       ./packages.nix
       ./services.nix
       ./programs.nix
+      ./input.nix
     ];
   networking = {
     networkmanager = { 
       enable = true;
-      wifi.powersave = null;
+      wifi.powersave = true;
     };
     firewall = {
       enable = true;
