@@ -14,7 +14,6 @@
     nix-flatpak.url = "github:gmodena/nix-flatpak";
     minegrub-theme.url = "github:Lxtharia/minegrub-theme";
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    astalbar.url = "github:linuxmobile/astal-bar";
     astal = {
         url = "github:aylur/astal";
         inputs.nixpkgs.follows = "nixpkgs";

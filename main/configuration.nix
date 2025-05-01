@@ -142,7 +142,7 @@ xdg.portal = {
     xkb.layout = "us";
     windowManager = {
       dwm = {
-	enable = true;
+	enable = false;
 	package = pkgs.dwm.overrideAttrs {
 	  src = inputs.dwm;
 	};

@@ -11,7 +11,7 @@
               "olm-3.2.16"
               ];
     };
-environment.systemPackages =  with pkgs; [
+environment.systemPackages = with pkgs; [
 # Text Editors
   emacs
   vim
@@ -28,6 +28,7 @@ environment.systemPackages =  with pkgs; [
 
  # Terminal
   fzf
+  wezterm
 
  # Notifications
   libnotify
