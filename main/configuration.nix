@@ -150,7 +150,7 @@ xdg.portal = {
     };
   };
   desktopManager.cosmic = {
-      enable = true;
+      enable = false;
       xwayland.enable = true;
   };
   displayManager = {

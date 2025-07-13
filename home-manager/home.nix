@@ -52,17 +52,15 @@
         inputs.astal.packages.${system}.tray
         inputs.astal.packages.${system}.apps
         inputs.astal.packages.${system}.battery
-        astal.river
-        astal.hyprland
-        astal.astal4
-        astal.io
-        astal.notifd
-        astal.battery
-        astal.mpris
-        astal.wireplumber
-        astal.powerprofiles
-        astal.network
-        astal.bluetooth
+        inputs.astal.packages.${system}.io
+        inputs.astal.packages.${system}.hyprland
+        inputs.astal.packages.${system}.battery
+        inputs.astal.packages.${system}.notifd
+        inputs.astal.packages.${system}.wireplumber
+        inputs.astal.packages.${system}.bluetooth
+        inputs.astal.packages.${system}.mpris
+        inputs.astal.packages.${system}.powerprofiles
+        inputs.astal.packages.${system}.astal4
         fzf
       ];
     };

@@ -487,7 +487,7 @@ require('lazy').setup({
     --'rayes0/blossom.vim',
     priority = 1000, -- Make sure to load this before all the other start plugins.
     init = function()
-      vim.opt.background = 'light' -- set this to dark or light
+      --vim.opt.background = 'l' -- set this to dark or light
       vim.cmd.colorscheme 'rose-pine'
       vim.cmd.hi 'Comment gui=none'
     end,
@@ -501,7 +501,9 @@ require('lazy').setup({
       require('mini.ai').setup { n_lines = 500 }
 
       require('mini.surround').setup()
-
+      require('rose-pine').setup {
+        dark_variant = 'moon',
+      }
       local statusline = require 'mini.statusline'
       statusline.setup { use_icons = vim.g.have_nerd_font }
 

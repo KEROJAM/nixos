@@ -12,7 +12,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-flatpak.url = "github:gmodena/nix-flatpak";
-    minegrub-theme.url = "github:Lxtharia/minegrub-theme";
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     astal = {
         url = "github:aylur/astal";
@@ -22,9 +21,9 @@
       url = "github:aylur/ags";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    dwmblocks = {
-      url = "github:KEROJAM/dwmblocks";
-      flake = false;
+    quickshell = {
+      url = "github:quickshell-mirror/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     dwm = {
       url = "github:KEROJAM/dwm";
@@ -40,7 +39,7 @@
       };
   };
 
-  outputs = { self, nixpkgs, home-manager, nur, nix-flatpak, chaotic ,minegrub-theme, spicetify-nix, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nur, nix-flatpak, chaotic , spicetify-nix, quickshell, ... }@inputs:
   let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.system;
@@ -71,7 +70,6 @@
         modules = [
             nur.modules.nixos.default
             nix-flatpak.nixosModules.nix-flatpak
-            minegrub-theme.nixosModules.default
             chaotic.nixosModules.default
             ./main/configuration.nix
             ./main/hardware/hardware-configuration-Lap.nix

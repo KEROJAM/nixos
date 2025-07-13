@@ -13,12 +13,9 @@ services = {
       }
     ];
     packages = [
-      "com.xnview.XnViewMP"
       "com.obsproject.Studio"
       "com.github.tchx84.Flatseal"
       "com.ktechpit.torrhunt"
-      "org.gaphor.Gaphor"
-      "com.heroicgameslauncher.hgl"
       "org.vinegarhq.Sober"
     ];
     update.onActivation = true;

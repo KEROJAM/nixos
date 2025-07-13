@@ -3,7 +3,6 @@
 {
     programs.neovim = {
       enable = true;
-      vimAlias = true;
       withNodeJs = true;
       extraPackages = with pkgs; [
         lua-language-server
@@ -18,6 +17,7 @@
         nil
         luajitPackages.lua-lsp
         kotlin-language-server
+        hyprls
       ];
       plugins = with pkgs.vimPlugins; [
         nvim-treesitter.withAllGrammars
