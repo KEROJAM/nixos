@@ -24,6 +24,8 @@
 
     # IDE
     zed-editor
+    vscode
+    jetbrains.idea-community-bin
 
     # Terminal
     fzf
@@ -35,13 +37,15 @@
     dunst
 
     # Web browser
-    floorp
     firefox
     librewolf
     chromium
+    vivaldi
+    vimb
 
     # Wallpapers/windowmanagers
     swww
+    matugen
     inputs.quickshell.packages.x86_64-linux.default
     hyprlock
     hyprsunset
@@ -106,6 +110,8 @@
     qbittorrent
     vesktop
     parsec-bin
+    tailscale
+    trayscale
 
     # File Managers
     nemo-with-extensions
@@ -149,7 +155,7 @@
     lzip
     unzip
     xorg.xf86inputlibinput
-    lxappearance
+    nwg-look
     darkman
     papirus-icon-theme
     rose-pine-gtk-theme

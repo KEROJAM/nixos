@@ -27,15 +27,15 @@
     };
     kernelParams = [
       "i915.force_probe=7d55"
-      "quiet"
-      "loglevel=3"
+      #"quiet"
+      #"loglevel=3"
       "pcie_aspm=off"
       "intel_idle.max_cstate=1"
       "xe.enable_dc=0"
       "ahci.mobile_lpm_policy=1"
     ];
-    #kernelPackages = pkgs.linuxKernel.packages.linux_zen;
-    kernelPackages = pkgs.linuxPackages_cachyos;
+    kernelPackages = pkgs.linuxKernel.packages.linux_6_16;
+    #kernelPackages = pkgs.linuxPackages_cachyos;
     initrd.availableKernelModules = [
       "xhci_pci"
       "ahci"
@@ -69,6 +69,7 @@
         enable = true;
         finegrained = true;
       };
+      #dynamicBoost.enable = true;
       prime = {
         offload = {
           enable = true;
@@ -82,7 +83,10 @@
     i2c.enable = true;
     bluetooth.enable = true;
   };
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = [
+    "modesetting"
+    "nvidia"
+  ];
   services.thermald.enable = true;
   services.tlp = {
     enable = false;
@@ -135,11 +139,12 @@
   #      fsType = "ntfs";
   #    };
 
-  #swapDevices = [
-  #  {
-  #    device = "/dev/disk/by-uuid/f86fe5e6-8bd7-4a74-a599-e3302aa152c4";
-  #  }
-  #];
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 16 * 1024;
+    }
+  ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

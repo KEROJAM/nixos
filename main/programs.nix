@@ -1,5 +1,5 @@
 {
-programs = {
+  programs = {
     zsh = {
       enable = false;
       autosuggestions.enable = true;
@@ -8,7 +8,7 @@ programs = {
     fish = {
       enable = true;
       interactiveShellInit = ''
-	${builtins.readFile ../.config/fish/config.fish}
+        	${builtins.readFile ../.config/fish/config.fish}
       '';
     };
     adb.enable = true;
@@ -22,16 +22,16 @@ programs = {
       enable = false;
     };
     hyprland = {
-     enable = true;
+      enable = true;
     };
     niri = {
       enable = true;
     };
     dconf.enable = true;
     steam = {
-      enable = false;
+      enable = true;
       remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
       dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
     };
- };
+  };
 }

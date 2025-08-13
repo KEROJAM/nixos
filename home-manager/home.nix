@@ -1,10 +1,14 @@
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   imports = [
     ./nvim.nix
     ./terminal.nix
-    inputs.ags.homeManagerModules.default
     inputs.spicetify-nix.homeManagerModules.default
   ];
   # Home Manager needs a bit of information about you and the paths it should
@@ -12,13 +16,12 @@
   home.username = "kerojam";
   home.homeDirectory = "/home/kerojam";
 
-
   home.stateVersion = "24.05"; # Please read the comment before changing.
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-   # inputs.astal.packages.${system}.default
+    # inputs.astal.packages.${system}.default
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -37,65 +40,46 @@
   };
 
   home.sessionVariables = {
-     EDITOR = "neovim";
+    EDITOR = "neovim";
   };
   programs = {
-   git = {
+    git = {
       enable = true;
       userName = "KEROJAM";
       userEmail = "majorekcs@hotmail.com";
     };
-    ags = {
-      enable = true;
-      extraPackages = with pkgs; [
-        inputs.astal.packages.${system}.network
-        inputs.astal.packages.${system}.tray
-        inputs.astal.packages.${system}.apps
-        inputs.astal.packages.${system}.battery
-        inputs.astal.packages.${system}.io
-        inputs.astal.packages.${system}.hyprland
-        inputs.astal.packages.${system}.battery
-        inputs.astal.packages.${system}.notifd
-        inputs.astal.packages.${system}.wireplumber
-        inputs.astal.packages.${system}.bluetooth
-        inputs.astal.packages.${system}.mpris
-        inputs.astal.packages.${system}.powerprofiles
-        inputs.astal.packages.${system}.astal4
-        fzf
-      ];
-    };
-    spicetify = 
+    spicetify =
       let
         spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
       in
       {
-      enable = true;
-      enabledExtensions = with spicePkgs.extensions; [
+        enable = true;
+        enabledExtensions = with spicePkgs.extensions; [
           adblock
           hidePodcasts
           shuffle # shuffle+ (special characters are sanitized out of extension names)
-      ];
-      theme = spicePkgs.themes.comfy;
-      colorScheme = "rose-pine-dawn";
-    };
+        ];
+        theme = spicePkgs.themes.comfy;
+        colorScheme = "rose-pine-dawn";
+      };
   };
-  
+
   wayland.windowManager.river = {
     extraConfig = ''
-    ${builtins.readFile ../.config/river/init}
-    ${builtins.readFile ../.config/river/disable-gpu.sh}
+      ${builtins.readFile ../.config/river/init}
+      ${builtins.readFile ../.config/river/disable-gpu.sh}
     '';
   };
   xdg.configFile."river/init" = {
     enable = true;
     source = "${../.config/river/init}";
     executable = true;
-    };
+  };
   xdg.configFile."river/disable-gpu" = {
     enable = true;
     source = "${../.config/river/disable-gpu.sh}";
     executable = true;
-    };
+  };
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }

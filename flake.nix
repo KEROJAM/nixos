@@ -13,14 +13,6 @@
     };
     nix-flatpak.url = "github:gmodena/nix-flatpak";
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    astal = {
-        url = "github:aylur/astal";
-        inputs.nixpkgs.follows = "nixpkgs";
-    };
-    ags = { 
-      url = "github:aylur/ags";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     quickshell = {
       url = "github:quickshell-mirror/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -36,19 +28,30 @@
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
-      };
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, nur, nix-flatpak, chaotic , spicetify-nix, quickshell, ... }@inputs:
-  let
-    system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.system;
-  in
+  outputs =
     {
-    nixosConfigurations = { 
-      YuriPC = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
-        modules = [
+      self,
+      nixpkgs,
+      home-manager,
+      nur,
+      nix-flatpak,
+      chaotic,
+      spicetify-nix,
+      quickshell,
+      ...
+    }@inputs:
+    let
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.system;
+    in
+    {
+      nixosConfigurations = {
+        YuriPC = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
+          modules = [
             nur.modules.nixos.default
             nix-flatpak.nixosModules.nix-flatpak
             chaotic.nixosModules.default
@@ -63,11 +66,11 @@
               home-manager.useGlobalPkgs = true;
               home-manager.users."kerojam" = import ./home-manager/home.nix;
             }
-        ];
-      };
-      lily = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
-        modules = [
+          ];
+        };
+        lily = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
+          modules = [
             nur.modules.nixos.default
             nix-flatpak.nixosModules.nix-flatpak
             chaotic.nixosModules.default
@@ -82,8 +85,8 @@
               home-manager.useGlobalPkgs = true;
               home-manager.users."kerojam" = import ./home-manager/home.nix;
             }
-        ];
+          ];
+        };
       };
     };
-  };
 }
