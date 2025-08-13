@@ -30,6 +30,8 @@
     # Terminal
     fzf
     wezterm
+    github-desktop
+    lazygit
 
     # Notifications
     libnotify
@@ -125,6 +127,7 @@
     osu-lazer-bin
 
     # Misc
+    gnupg
     gnome-decoder
     networkmanagerapplet
     wineWowPackages.stable

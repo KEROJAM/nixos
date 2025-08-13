@@ -18,7 +18,6 @@
       enable = true;
       nix-direnv.enable = true;
     };
-    lazygit.enable = true;
     starship = {
       enable = true;
       settings = {
