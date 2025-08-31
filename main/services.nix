@@ -23,6 +23,7 @@
     };
     dbus.enable = true;
     udisks2.enable = true;
+    upower.enable = true;
     tailscale.enable = true;
     gvfs.enable = true;
     libinput = {
@@ -45,7 +46,7 @@
       };
     };
     redshift = {
-      enable = false;
+      enable = true;
       brightness = {
         day = "1";
         night = "1";
@@ -70,9 +71,9 @@
       enable = true;
     };
     pulseaudio.enable = false;
-    #system76-scheduler = {
-    #    enable = false;
-    #    settings.cfsProfiles.enable = true;
-    #  };
+    system76-scheduler = {
+      enable = false;
+      settings.cfsProfiles.enable = true;
+    };
   };
 }

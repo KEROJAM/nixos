@@ -26,7 +26,10 @@
       };
     };
     kernelParams = [
-      "i915.force_probe=7d55"
+      "intel_iommu=on"
+      #"i915.enable_guc=3"
+      #"i915.max_vfs=7"
+      "xe.force_probe=7d55"
       #"quiet"
       #"loglevel=3"
       "pcie_aspm=off"
@@ -35,7 +38,7 @@
       "ahci.mobile_lpm_policy=1"
     ];
     kernelPackages = pkgs.linuxKernel.packages.linux_6_16;
-    #kernelPackages = pkgs.linuxPackages_cachyos;
+    #kernelPackages = pkgs.linuxPackages.packages.linux_zen;
     initrd.availableKernelModules = [
       "xhci_pci"
       "ahci"
@@ -48,7 +51,7 @@
       "thunderbolt"
       "sdhci_pci"
     ];
-    initrd.kernelModules = [ "i915" ];
+    initrd.kernelModules = [ "xe" ];
     kernelModules = [ "kvm-intel" ];
     tmp.cleanOnBoot = true;
   };
@@ -58,6 +61,7 @@
       enable32Bit = true;
       extraPackages = with pkgs; [
         intel-media-driver
+        intel-compute-runtime
         vpl-gpu-rt
       ];
       extraPackages32 = with pkgs.pkgsi686Linux; [ intel-vaapi-driver ];
@@ -66,7 +70,7 @@
       modesetting.enable = true;
       open = true;
       powerManagement = {
-        enable = true;
+        #enable = true;
         finegrained = true;
       };
       #dynamicBoost.enable = true;
@@ -87,7 +91,23 @@
     "modesetting"
     "nvidia"
   ];
+  powerManagement.enable = true;
   services.thermald.enable = true;
+  services.auto-cpufreq = {
+    enable = true;
+    settings = {
+      charger = {
+        governor = "performance";
+        energy_performance_preference = "performance";
+        turbo = "auto";
+      };
+      battery = {
+        governor = "powersave";
+        energy_performance_preference = "power";
+        turbo = "auto";
+      };
+    };
+  };
   services.tlp = {
     enable = false;
     settings = {

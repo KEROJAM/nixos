@@ -63,7 +63,6 @@
         colorScheme = "rose-pine-dawn";
       };
   };
-
   wayland.windowManager.river = {
     extraConfig = ''
       ${builtins.readFile ../.config/river/init}
@@ -80,6 +79,14 @@
     source = "${../.config/river/disable-gpu.sh}";
     executable = true;
   };
+  xdg.desktopEntries.nemo = {
+    name = "Nemo";
+    exec = "${pkgs.nemo-with-extensions}/bin/nemo";
+  };
+  xdg.mime.enable = true;
+  #xdg.mime.defaultApplications = {
+  #  "inode/directory" = [ "nemo.desktop" ];
+  #};
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }

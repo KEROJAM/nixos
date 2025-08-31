@@ -12,18 +12,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-flatpak.url = "github:gmodena/nix-flatpak";
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    quickshell = {
-      url = "github:quickshell-mirror/quickshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     dwm = {
       url = "github:KEROJAM/dwm";
       flake = false;
     };
-    awesome-git = {
-      url = "github:awesomeWM/awesome";
-      flake = false;
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
@@ -38,9 +33,8 @@
       home-manager,
       nur,
       nix-flatpak,
-      chaotic,
-      spicetify-nix,
       quickshell,
+      spicetify-nix,
       ...
     }@inputs:
     let
@@ -54,7 +48,6 @@
           modules = [
             nur.modules.nixos.default
             nix-flatpak.nixosModules.nix-flatpak
-            chaotic.nixosModules.default
             ./main/configuration.nix
             ./main/hardware/hardware-configuration-main.nix
             home-manager.nixosModules.home-manager
@@ -73,7 +66,6 @@
           modules = [
             nur.modules.nixos.default
             nix-flatpak.nixosModules.nix-flatpak
-            chaotic.nixosModules.default
             ./main/configuration.nix
             ./main/hardware/hardware-configuration-Lap.nix
             home-manager.nixosModules.home-manager
@@ -85,6 +77,23 @@
               home-manager.useGlobalPkgs = true;
               home-manager.users."kerojam" = import ./home-manager/home.nix;
             }
+            (
+              { pkgs, ... }:
+              {
+                environment.systemPackages = [
+                  (quickshell.packages.${pkgs.system}.default.override {
+                    withJemalloc = true;
+                    withQtSvg = true;
+                    withWayland = true;
+                    withX11 = false;
+                    withPipewire = true;
+                    withPam = true;
+                    withHyprland = true;
+                    withI3 = false;
+                  })
+                ];
+              }
+            )
           ];
         };
       };

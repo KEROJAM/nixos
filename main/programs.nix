@@ -1,4 +1,12 @@
 {
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
+
+{
   programs = {
     zsh = {
       enable = false;
@@ -14,6 +22,7 @@
     adb.enable = true;
     java = {
       enable = true;
+      package = pkgs.jdk24;
     };
     nix-ld = {
       enable = true;

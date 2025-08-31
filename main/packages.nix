@@ -23,36 +23,39 @@
     obsidian
 
     # IDE
-    zed-editor
     vscode
     jetbrains.idea-community-bin
 
     # Terminal
     fzf
-    wezterm
-    github-desktop
+    alacritty
+    ghostty
     lazygit
+    tmux
+    fishPlugins.fzf-fish
 
     # Notifications
     libnotify
-    mako
-    dunst
+    #mako
 
     # Web browser
     firefox
     librewolf
-    chromium
     vivaldi
     vimb
 
     # Wallpapers/windowmanagers
     swww
     matugen
-    inputs.quickshell.packages.x86_64-linux.default
+    #inputs.quickshell.packages.x86_64-linux.default
+    quickshell
+    qt6Packages.qt5compat
+    libsForQt5.qt5.qtgraphicaleffects
+    kdePackages.qtbase
+    kdePackages.qtdeclarative
     hyprlock
-    hyprsunset
     hyprpicker
-    hyprcursor
+    hyprsunset
     wlinhibit
     betterlockscreen
     waybar
@@ -77,6 +80,8 @@
     reaper
     ncmpcpp
     alsa-utils
+    cava
+    qpwgraph
 
     # Video Playback
     mpv
@@ -114,6 +119,7 @@
     parsec-bin
     tailscale
     trayscale
+    rquickshare
 
     # File Managers
     nemo-with-extensions
