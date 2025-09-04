@@ -24,7 +24,10 @@
     dbus.enable = true;
     udisks2.enable = true;
     upower.enable = true;
-    tailscale.enable = true;
+    tailscale = {
+      enable = true;
+      openFirewall = true;
+    };
     gvfs.enable = true;
     libinput = {
       enable = true;

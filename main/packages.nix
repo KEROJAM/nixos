@@ -40,6 +40,7 @@
 
     # Web browser
     firefox
+    floorp
     librewolf
     vivaldi
     vimb
