@@ -19,6 +19,10 @@
         	${builtins.readFile ../.config/fish/config.fish}
       '';
     };
+    tmux = {
+      enable = true;
+      plugins = [ pkgs.tmuxPlugins.rose-pine ];
+    };
     adb.enable = true;
     java = {
       enable = true;
@@ -27,11 +31,12 @@
     nix-ld = {
       enable = true;
     };
-    river = {
-      enable = false;
+    river-classic = {
+      enable = true;
     };
     hyprland = {
       enable = true;
+      xwayland.enable = true;
     };
     niri = {
       enable = true;

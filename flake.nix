@@ -16,10 +16,6 @@
       url = "github:KEROJAM/dwm";
       flake = false;
     };
-    quickshell = {
-      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -33,7 +29,6 @@
       home-manager,
       nur,
       nix-flatpak,
-      quickshell,
       spicetify-nix,
       ...
     }@inputs:
@@ -77,23 +72,6 @@
               home-manager.useGlobalPkgs = true;
               home-manager.users."kerojam" = import ./home-manager/home.nix;
             }
-            (
-              { pkgs, ... }:
-              {
-                environment.systemPackages = [
-                  (quickshell.packages.${pkgs.system}.default.override {
-                    withJemalloc = true;
-                    withQtSvg = true;
-                    withWayland = true;
-                    withX11 = false;
-                    withPipewire = true;
-                    withPam = true;
-                    withHyprland = true;
-                    withI3 = false;
-                  })
-                ];
-              }
-            )
           ];
         };
       };

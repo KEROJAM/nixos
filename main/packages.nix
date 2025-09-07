@@ -23,32 +23,29 @@
     obsidian
 
     # IDE
-    vscode
     jetbrains.idea-community-bin
 
     # Terminal
     fzf
     alacritty
     ghostty
+    wezterm
     lazygit
-    tmux
     fishPlugins.fzf-fish
 
     # Notifications
     libnotify
-    #mako
+    mako
 
     # Web browser
     firefox
     floorp
     librewolf
     vivaldi
-    vimb
 
     # Wallpapers/windowmanagers
     swww
     matugen
-    #inputs.quickshell.packages.x86_64-linux.default
     quickshell
     qt6Packages.qt5compat
     libsForQt5.qt5.qtgraphicaleffects
@@ -118,7 +115,6 @@
     qbittorrent
     vesktop
     parsec-bin
-    tailscale
     trayscale
     rquickshare
 
@@ -131,11 +127,9 @@
     steam-run
     prismlauncher
     melonDS
-    osu-lazer-bin
 
     # Misc
     gnupg
-    gnome-decoder
     networkmanagerapplet
     wineWowPackages.stable
     findutils
@@ -146,7 +140,6 @@
     pavucontrol
     brightnessctl
     fastfetch
-    cbonsai
     wget
     ripgrep
     fd
@@ -196,7 +189,6 @@
       noto-fonts-cjk-sans
       noto-fonts-color-emoji
       nerd-fonts.mononoki
-      #google-fonts
       material-symbols
       monocraft
     ];

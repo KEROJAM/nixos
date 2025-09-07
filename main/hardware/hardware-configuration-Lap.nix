@@ -70,7 +70,7 @@
       modesetting.enable = true;
       open = true;
       powerManagement = {
-        #enable = true;
+        enable = true;
         finegrained = true;
       };
       #dynamicBoost.enable = true;
@@ -91,10 +91,9 @@
     "modesetting"
     "nvidia"
   ];
-  powerManagement.enable = true;
   services.thermald.enable = true;
   services.auto-cpufreq = {
-    enable = true;
+    enable = false;
     settings = {
       charger = {
         governor = "performance";
