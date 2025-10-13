@@ -104,10 +104,6 @@
       enable = true;
       qemu = {
         package = pkgs.qemu;
-        ovmf = {
-          enable = true;
-          packages = [ pkgs.OVMFFull.fd ];
-        };
         swtpm.enable = true;
         runAsRoot = false;
       };
@@ -159,10 +155,6 @@
         };
       };
     };
-    desktopManager.cosmic = {
-      enable = false;
-      xwayland.enable = true;
-    };
     displayManager = {
       sddm = {
         enable = false;
@@ -174,7 +166,8 @@
           kdePackages.qtvirtualkeyboard
         ];
       };
-      cosmic-greeter.enable = true;
+      cosmic-greeter.enable = false;
+      ly.enable = true;
     };
   };
   # Nix Overlays

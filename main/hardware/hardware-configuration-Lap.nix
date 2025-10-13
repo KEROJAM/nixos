@@ -30,14 +30,14 @@
       #"i915.enable_guc=3"
       #"i915.max_vfs=7"
       "xe.force_probe=7d55"
-      #"quiet"
-      #"loglevel=3"
+      "quiet"
+      "loglevel=3"
       "pcie_aspm=off"
       "intel_idle.max_cstate=1"
       "xe.enable_dc=0"
       "ahci.mobile_lpm_policy=1"
     ];
-    kernelPackages = pkgs.linuxKernel.packages.linux_6_16;
+    kernelPackages = pkgs.linuxKernel.packages.linux_6_17;
     #kernelPackages = pkgs.linuxPackages.packages.linux_zen;
     initrd.availableKernelModules = [
       "xhci_pci"
@@ -61,7 +61,6 @@
       enable32Bit = true;
       extraPackages = with pkgs; [
         intel-media-driver
-        intel-compute-runtime
         vpl-gpu-rt
       ];
       extraPackages32 = with pkgs.pkgsi686Linux; [ intel-vaapi-driver ];
@@ -142,28 +141,26 @@
 
   networking.hostName = "lily"; # Define your hostname.
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/118486f6-39d7-426f-97df-e81ded522928";
+    device = "/dev/disk/by-uuid/21e8d77e-b7b5-4239-adc3-92c27745a1ad";
+    fsType = "ext4";
+  };
+
+  fileSystems."/home/kerojam" = {
+    device = "/dev/disk/by-uuid/422fe9d3-f2e6-4144-8e10-249967febc93";
     fsType = "ext4";
   };
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/71C9-1219";
+    device = "/dev/disk/by-uuid/3BDC-5216";
     fsType = "vfat";
     options = [
       "fmask=0077"
       "dmask=0077"
     ];
   };
-  #  fileSystems."/mnt/Windows"=
-  #    { device = "/dev/disk/by-uuid/C64A1CD24A1CC0DB";
-  #      fsType = "ntfs";
-  #    };
-
-  swapDevices = [
-    {
-      device = "/var/lib/swapfile";
-      size = 16 * 1024;
-    }
-  ];
+  fileSystems."/home/kerojam/Windows" = {
+    device = "/dev/disk/by-uuid/B616C4F716C4B99F";
+    fsType = "ntfs";
+  };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

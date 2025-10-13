@@ -300,11 +300,11 @@ require('lazy').setup({
         },
       }
       local lspconfig = require 'lspconfig'
-      require('lspconfig').pyright.setup {}
-      require('lspconfig').nil_ls.setup {}
-      require('lspconfig').rust_analyzer.setup {}
-      require('lspconfig').clangd.setup {}
-      require('lspconfig').jdtls.setup {}
+      vim.lsp.enable 'pyright'
+      vim.lsp.enable 'nil_ls'
+      vim.lsp.enable 'rust_analyzer'
+      vim.lsp.enable 'clangd'
+      vim.lsp.enable 'jdtls'
       require('mason').setup()
 
       local ensure_installed = vim.tbl_keys(servers or {})
@@ -481,9 +481,7 @@ require('lazy').setup({
   },
 
   {
-    --'AmberLehmann/candyland.nvim',
     'rose-pine/neovim',
-    --'nyoom-engineering/oxocarbon.nvim',
     --'rayes0/blossom.vim',
     priority = 1000, -- Make sure to load this before all the other start plugins.
     init = function()

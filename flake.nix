@@ -20,6 +20,10 @@
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    fsel = {
+      url = "github:Mjoyufull/fsel";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -30,6 +34,7 @@
       nur,
       nix-flatpak,
       spicetify-nix,
+      fsel,
       ...
     }@inputs:
     let

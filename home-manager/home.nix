@@ -63,22 +63,6 @@
         colorScheme = "rose-pine-dawn";
       };
   };
-  wayland.windowManager.river = {
-    extraConfig = ''
-      ${builtins.readFile ../.config/river/init}
-      ${builtins.readFile ../.config/river/disable-gpu.sh}
-    '';
-  };
-  xdg.configFile."river/init" = {
-    enable = true;
-    source = "${../.config/river/init}";
-    executable = true;
-  };
-  xdg.configFile."river/disable-gpu" = {
-    enable = true;
-    source = "${../.config/river/disable-gpu.sh}";
-    executable = true;
-  };
   xdg.desktopEntries.nemo = {
     name = "Nemo";
     exec = "${pkgs.nemo-with-extensions}/bin/nemo";

@@ -24,14 +24,15 @@
 
     # IDE
     jetbrains.idea-community-bin
+    vscode-fhs
+    mysql-workbench
 
     # Terminal
     fzf
     alacritty
-    ghostty
-    wezterm
     lazygit
     fishPlugins.fzf-fish
+    krabby
 
     # Notifications
     libnotify
@@ -39,46 +40,26 @@
 
     # Web browser
     firefox
-    floorp
+    floorp-bin
     librewolf
     vivaldi
 
     # Wallpapers/windowmanagers
     swww
     matugen
-    quickshell
-    qt6Packages.qt5compat
-    libsForQt5.qt5.qtgraphicaleffects
-    kdePackages.qtbase
-    kdePackages.qtdeclarative
     hyprlock
-    hyprpicker
-    hyprsunset
     wlinhibit
-    betterlockscreen
     waybar
     feh
-    slstatus
     xorg.libxcb
-    (pkgs.callPackage ./sddm-astronaut-theme.nix {
-      theme = "pixel_sakura";
-      themeConfig = {
-        General = {
-          #  HeaderText = "Yuri In Here";
-          #  Background="";
-          FontSize = "10";
-        };
-      };
-    })
     playerctl
-    xwayland-satellite
+    inputs.fsel.packages.x86_64-linux.default
 
     # Audio
-    #ardour
-    reaper
+    ardour
+    #reaper
     ncmpcpp
     alsa-utils
-    cava
     qpwgraph
 
     # Video Playback
@@ -94,18 +75,17 @@
     #maim
     slop
     flameshot
-    tesseract
     xnviewmp
 
     # Education
     jq
     anki-bin
     gnome-calculator
-    foliate
-    hugo
+    tesseract
+    zathura
 
     # Launcher
-    rofi-wayland
+    rofi
 
     # Office
     onlyoffice-bin
@@ -116,7 +96,6 @@
     vesktop
     parsec-bin
     trayscale
-    rquickshare
 
     # File Managers
     nemo-with-extensions
@@ -124,9 +103,12 @@
 
     # Games
     protonup-qt
-    steam-run
+    #steam-run
     prismlauncher
     melonDS
+    azahar
+    ryubing
+    mesen
 
     # Misc
     gnupg
@@ -159,11 +141,9 @@
     unzip
     xorg.xf86inputlibinput
     nwg-look
-    darkman
     papirus-icon-theme
     rose-pine-gtk-theme
     acpi
-    pamixer
 
     # Virtualisation
     virt-manager
@@ -188,9 +168,12 @@
       noto-fonts
       noto-fonts-cjk-sans
       noto-fonts-color-emoji
+      ark-pixel-font
+      monaspace
       nerd-fonts.mononoki
       material-symbols
       monocraft
+      miracode
     ];
     fontDir.enable = true;
     fontconfig = {

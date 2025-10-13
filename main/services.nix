@@ -1,4 +1,10 @@
 {
+  inputs,
+  config,
+  pkgs,
+  ...
+}:
+{
   services = {
     picom = {
       enable = true;
@@ -28,7 +34,9 @@
       enable = true;
       openFirewall = true;
     };
+    blueman.enable = true;
     gvfs.enable = true;
+    gnome.gnome-keyring.enable = true;
     libinput = {
       enable = true;
       mouse = {
@@ -58,6 +66,10 @@
         day = 8500;
         night = 3700;
       };
+    };
+    mysql = {
+      enable = true;
+      package = pkgs.mysql84;
     };
     geoclue2.enable = true;
     syncthing = {
