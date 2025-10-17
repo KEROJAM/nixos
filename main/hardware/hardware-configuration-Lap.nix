@@ -26,7 +26,7 @@
       };
     };
     kernelParams = [
-      "intel_iommu=on"
+      #"intel_iommu=on"
       #"i915.enable_guc=3"
       #"i915.max_vfs=7"
       "xe.force_probe=7d55"
@@ -60,7 +60,6 @@
       enable = true;
       enable32Bit = true;
       extraPackages = with pkgs; [
-        intel-media-driver
         vpl-gpu-rt
       ];
       extraPackages32 = with pkgs.pkgsi686Linux; [ intel-vaapi-driver ];
@@ -87,27 +86,12 @@
     bluetooth.enable = true;
   };
   services.xserver.videoDrivers = [
-    "modesetting"
+    "xe"
     "nvidia"
   ];
   services.thermald.enable = true;
-  services.auto-cpufreq = {
-    enable = false;
-    settings = {
-      charger = {
-        governor = "performance";
-        energy_performance_preference = "performance";
-        turbo = "auto";
-      };
-      battery = {
-        governor = "powersave";
-        energy_performance_preference = "power";
-        turbo = "auto";
-      };
-    };
-  };
   services.tlp = {
-    enable = false;
+    enable = true;
     settings = {
       CPU_SCALING_GOVERNOR_ON_AC = "performance";
       CPU_SCALING_GOVERNOR_ON_BAT = "powersave";

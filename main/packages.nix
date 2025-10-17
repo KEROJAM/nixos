@@ -32,7 +32,8 @@
     alacritty
     lazygit
     fishPlugins.fzf-fish
-    krabby
+    doxx
+    termshark
 
     # Notifications
     libnotify
@@ -53,7 +54,6 @@
     feh
     xorg.libxcb
     playerctl
-    inputs.fsel.packages.x86_64-linux.default
 
     # Audio
     ardour
@@ -100,7 +100,7 @@
     # File Managers
     nemo-with-extensions
     yazi
-
+    superfile
     # Games
     protonup-qt
     #steam-run
@@ -109,6 +109,7 @@
     azahar
     ryubing
     mesen
+    osu-lazer-bin
 
     # Misc
     gnupg
@@ -152,6 +153,7 @@
     # Languages
     ispell
     python3
+    go
 
     # Important
     keepassxc
