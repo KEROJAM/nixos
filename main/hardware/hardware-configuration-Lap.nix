@@ -37,8 +37,8 @@
       "xe.enable_dc=0"
       "ahci.mobile_lpm_policy=1"
     ];
-    #kernelPackages = pkgs.linuxKernel.packages.linux_testing;
-    kernelPackages = pkgs.linuxKernel.packages.linux_6_17;
+    kernelPackages = pkgs.linuxKernel.packages.linux_testing;
+    #kernelPackages = pkgs.linuxKernel.packages.linux_6_17;
     initrd.availableKernelModules = [
       "xhci_pci"
       "ahci"
@@ -66,9 +66,9 @@
     };
     nvidia = {
       modesetting.enable = true;
-      open = true;
+      open = false;
       powerManagement = {
-        enable = true;
+        enable = false;
         finegrained = true;
       };
       #dynamicBoost.enable = true;

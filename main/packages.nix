@@ -5,7 +5,9 @@
   inputs,
   ...
 }:
-
+let
+  ciscoPacketTracer9 = import ./ciscoPacketTracer9.nix { inherit pkgs; };
+in
 {
 
   nixpkgs.config = {
@@ -20,7 +22,6 @@
     # Text Editors
     emacs
     vim
-    obsidian
     glow
 
     # IDE
@@ -43,7 +44,6 @@
 
     # Web browser
     firefox
-    floorp-bin
     librewolf
     vivaldi
 
@@ -53,7 +53,6 @@
     hyprlock
     wlinhibit
     waybar
-    feh
     xorg.libxcb
     playerctl
 
@@ -85,6 +84,7 @@
     gnome-calculator
     tesseract
     zathura
+    ciscoPacketTracer9
 
     # Launcher
     rofi
