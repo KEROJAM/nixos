@@ -21,6 +21,7 @@
     emacs
     vim
     obsidian
+    glow
 
     # IDE
     jetbrains.idea-community-bin
@@ -30,6 +31,7 @@
     # Terminal
     fzf
     alacritty
+    wezterm
     lazygit
     fishPlugins.fzf-fish
     doxx
@@ -88,7 +90,7 @@
     rofi
 
     # Office
-    onlyoffice-bin
+    onlyoffice-desktopeditors
 
     # Comunication
     signal-desktop-bin
@@ -122,6 +124,7 @@
     wireplumber
     pavucontrol
     brightnessctl
+    krabby
     fastfetch
     wget
     ripgrep

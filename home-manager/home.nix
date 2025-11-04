@@ -45,8 +45,10 @@
   programs = {
     git = {
       enable = true;
-      userName = "KEROJAM";
-      userEmail = "majorekcs@hotmail.com";
+      settings.user = {
+        name = "KEROJAM";
+        email = "majorekcs@hotmail.com";
+      };
     };
     spicetify =
       let

@@ -85,6 +85,15 @@
     emacs = {
       enable = true;
     };
+    printing = {
+      enable = true;
+      drivers = [ pkgs.hplip ];
+    };
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+    };
     pulseaudio.enable = false;
     system76-scheduler = {
       enable = false;

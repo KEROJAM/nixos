@@ -7,9 +7,6 @@
 
 {
   programs = {
-    kitty = {
-      enable = true;
-    };
     zoxide = {
       enable = true;
     };

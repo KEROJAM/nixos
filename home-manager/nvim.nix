@@ -35,8 +35,5 @@
       render-markdown-nvim
       yazi-nvim
     ];
-    extraLuaConfig = ''
-      ${builtins.readFile ../.config/nvim/init.lua}
-    '';
   };
 }

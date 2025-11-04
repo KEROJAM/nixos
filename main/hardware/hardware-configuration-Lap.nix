@@ -37,8 +37,8 @@
       "xe.enable_dc=0"
       "ahci.mobile_lpm_policy=1"
     ];
+    #kernelPackages = pkgs.linuxKernel.packages.linux_testing;
     kernelPackages = pkgs.linuxKernel.packages.linux_6_17;
-    #kernelPackages = pkgs.linuxPackages.packages.linux_zen;
     initrd.availableKernelModules = [
       "xhci_pci"
       "ahci"
@@ -80,7 +80,7 @@
         intelBusId = "PCI:0:2:0";
         nvidiaBusId = "PCI:1:0:0";
       };
-      package = config.boot.kernelPackages.nvidiaPackages.latest;
+      package = config.boot.kernelPackages.nvidiaPackages.beta;
     };
     i2c.enable = true;
     bluetooth.enable = true;
