@@ -15,6 +15,7 @@
     ./services.nix
     ./programs.nix
     ./input.nix
+    ./suspend.nix
   ];
   networking = {
     networkmanager = {
@@ -99,25 +100,25 @@
   # Virtualisation
 
   virtualisation = {
-    waydroid.enable = true;
+    waydroid.enable = false;
     libvirtd = {
-      enable = true;
+      enable = false;
       qemu = {
         package = pkgs.qemu;
-        swtpm.enable = true;
+        swtpm.enable = false;
         runAsRoot = false;
       };
     };
   };
-  environment.etc = {
-    "ovmf/edk2-x86_64-secure-code.fd" = {
-      source = config.virtualisation.libvirtd.qemu.package + "/share/qemu/edk2-x86_64-secure-code.fd";
-    };
+  #environment.etc = {
+  #  "ovmf/edk2-x86_64-secure-code.fd" = {
+  #    source = config.virtualisation.libvirtd.qemu.package + "/share/qemu/edk2-x86_64-secure-code.fd";
+  #  };
 
-    "ovmf/edk2-i386-vars.fd" = {
-      source = config.virtualisation.libvirtd.qemu.package + "/share/qemu/edk2-i386-vars.fd";
-    };
-  };
+  #  "ovmf/edk2-i386-vars.fd" = {
+  #    source = config.virtualisation.libvirtd.qemu.package + "/share/qemu/edk2-i386-vars.fd";
+  #  };
+  #};
   xdg.portal = {
     enable = true;
     extraPortals = [
@@ -156,17 +157,6 @@
       };
     };
     displayManager = {
-      sddm = {
-        enable = false;
-        package = pkgs.kdePackages.sddm;
-        #theme = "sddm-astronaut-theme";
-        extraPackages = with pkgs; [
-          kdePackages.qtmultimedia
-          kdePackages.qtsvg
-          kdePackages.qtvirtualkeyboard
-        ];
-      };
-      cosmic-greeter.enable = false;
       ly.enable = true;
     };
   };
@@ -177,7 +167,6 @@
       mpv = super.mpv.override {
         scripts = [ self.mpvScripts.mpvacious ];
       };
-
       dwmblocks = super.dwmblocks.overrideAttrs (oldAttrs: {
         src = inputs.dwmblocks;
       });

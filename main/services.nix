@@ -21,7 +21,6 @@
       packages = [
         "com.obsproject.Studio"
         "com.github.tchx84.Flatseal"
-        "com.ktechpit.torrhunt"
         "org.vinegarhq.Sober"
       ];
       update.onActivation = true;
@@ -34,20 +33,14 @@
       enable = true;
       openFirewall = true;
     };
+    sunshine = {
+      enable = true;
+      autoStart = true;
+      openFirewall = true;
+    };
     blueman.enable = true;
     gvfs.enable = true;
     gnome.gnome-keyring.enable = true;
-    libinput = {
-      enable = true;
-      mouse = {
-        accelProfile = "flat";
-        middleEmulation = false;
-      };
-      touchpad = {
-        naturalScrolling = true;
-        disableWhileTyping = true;
-      };
-    };
     # Enable the OpenSSH daemon.
     openssh = {
       enable = true;
@@ -56,22 +49,10 @@
         PasswordAuthentication = false;
       };
     };
-    redshift = {
-      enable = true;
-      brightness = {
-        day = "1";
-        night = "1";
-      };
-      temperature = {
-        day = 8500;
-        night = 3700;
-      };
-    };
     mysql = {
       enable = true;
       package = pkgs.mysql84;
     };
-    geoclue2.enable = true;
     syncthing = {
       enable = true;
       user = "kerojam";
@@ -82,21 +63,9 @@
         "--no-browser"
       ];
     };
-    emacs = {
-      enable = true;
-    };
-    printing = {
-      enable = true;
-      drivers = [ pkgs.hplip ];
-    };
-    avahi = {
-      enable = true;
-      nssmdns4 = true;
-      openFirewall = true;
-    };
     pulseaudio.enable = false;
     system76-scheduler = {
-      enable = false;
+      enable = true;
       settings.cfsProfiles.enable = true;
     };
   };

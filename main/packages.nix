@@ -5,9 +5,9 @@
   inputs,
   ...
 }:
-let
-  ciscoPacketTracer9 = import ./ciscoPacketTracer9.nix { inherit pkgs; };
-in
+#let
+#  ciscoPacketTracer9 = pkgs.callPackage (import ./ciscoPacketTracer9.nix) { };
+#in
 {
 
   nixpkgs.config = {
@@ -22,42 +22,38 @@ in
     # Text Editors
     emacs
     vim
-    glow
+    obsidian
 
     # IDE
-    jetbrains.idea-community-bin
     vscode-fhs
     mysql-workbench
 
     # Terminal
     fzf
-    alacritty
-    wezterm
+    ghostty
     lazygit
     fishPlugins.fzf-fish
-    doxx
-    termshark
 
     # Notifications
     libnotify
     mako
 
     # Web browser
-    firefox
-    librewolf
+    inputs.zen-browser.packages."${system}".default
     vivaldi
 
     # Wallpapers/windowmanagers
     swww
     matugen
     hyprlock
+    hyprpicker
+    wlsunset
     wlinhibit
-    waybar
+    quickshell
     xorg.libxcb
-    playerctl
 
     # Audio
-    ardour
+    #ardour
     #reaper
     ncmpcpp
     alsa-utils
@@ -67,27 +63,27 @@ in
     mpv
     ffmpeg_6-full
     aegisub
-    #davinci-resolve
+    davinci-resolve
 
     # Image Editing
     krita
-    grim
-    slurp
-    #maim
-    slop
     flameshot
     xnviewmp
+    blender
 
     # Education
     jq
-    anki-bin
+    anki
+    grim
+    slurp
     gnome-calculator
     tesseract
     zathura
-    ciscoPacketTracer9
+    #ciscoPacketTracer9
 
     # Launcher
     rofi
+    rofimoji
 
     # Office
     onlyoffice-desktopeditors
@@ -96,35 +92,36 @@ in
     signal-desktop-bin
     qbittorrent
     vesktop
-    parsec-bin
     trayscale
+    moonlight-qt
+    thunderbird
 
     # File Managers
     nemo-with-extensions
     yazi
-    superfile
+    dragon-drop
+
     # Games
     protonup-qt
-    #steam-run
+    steam-run
+    heroic
     prismlauncher
-    melonDS
-    azahar
-    ryubing
     mesen
-    osu-lazer-bin
+
+    # Coding
+    caddy
 
     # Misc
     gnupg
+    cudaPackages.cudatoolkit
     networkmanagerapplet
     wineWowPackages.stable
     findutils
-    libsForQt5.qt5.qtgraphicaleffects
     trash-cli
     udiskie
     wireplumber
     pavucontrol
     brightnessctl
-    krabby
     fastfetch
     wget
     ripgrep
@@ -134,6 +131,7 @@ in
     gtk3
     xclip
     xdotool
+    wtype
     xorg.xcbutilwm
     lsd
     bat
@@ -155,8 +153,12 @@ in
 
     # Languages
     ispell
+    hunspell
+    hunspellDicts.es_MX
+    hunspellDicts.en_US
     python3
     go
+    multimarkdown
 
     # Important
     keepassxc
@@ -177,6 +179,9 @@ in
       monaspace
       nerd-fonts.mononoki
       material-symbols
+      hachimarupop
+      rounded-mgenplus
+      google-fonts
       monocraft
       miracode
     ];

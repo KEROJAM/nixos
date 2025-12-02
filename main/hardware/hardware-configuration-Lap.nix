@@ -29,6 +29,7 @@
       #"intel_iommu=on"
       #"i915.enable_guc=3"
       #"i915.max_vfs=7"
+      "i915.force_probe=!7d55"
       "xe.force_probe=7d55"
       "quiet"
       "loglevel=3"
@@ -37,8 +38,8 @@
       "xe.enable_dc=0"
       "ahci.mobile_lpm_policy=1"
     ];
-    kernelPackages = pkgs.linuxKernel.packages.linux_testing;
-    #kernelPackages = pkgs.linuxKernel.packages.linux_6_17;
+    #kernelPackages = pkgs.linuxKernel.packages.linux_testing;
+    kernelPackages = pkgs.linuxKernel.packages.linux_6_17;
     initrd.availableKernelModules = [
       "xhci_pci"
       "ahci"
@@ -53,6 +54,9 @@
     ];
     initrd.kernelModules = [ "xe" ];
     kernelModules = [ "kvm-intel" ];
+    extraModprobeConfig = ''
+      options nvidia_modeset vblank_sem_control=0
+    '';
     tmp.cleanOnBoot = true;
   };
   hardware = {
@@ -61,14 +65,15 @@
       enable32Bit = true;
       extraPackages = with pkgs; [
         vpl-gpu-rt
+        intel-media-driver
       ];
       extraPackages32 = with pkgs.pkgsi686Linux; [ intel-vaapi-driver ];
     };
     nvidia = {
       modesetting.enable = true;
-      open = false;
+      open = true;
       powerManagement = {
-        enable = false;
+        enable = true;
         finegrained = true;
       };
       #dynamicBoost.enable = true;
@@ -80,7 +85,7 @@
         intelBusId = "PCI:0:2:0";
         nvidiaBusId = "PCI:1:0:0";
       };
-      package = config.boot.kernelPackages.nvidiaPackages.beta;
+      package = config.boot.kernelPackages.nvidiaPackages.latest;
     };
     i2c.enable = true;
     bluetooth.enable = true;
@@ -122,25 +127,50 @@
       };
     };
   };
-
+  services.btrfs.autoScrub = {
+    enable = true;
+    interval = "weekly";
+  };
   networking.hostName = "lily"; # Define your hostname.
+
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/21e8d77e-b7b5-4239-adc3-92c27745a1ad";
-    fsType = "ext4";
+    device = "/dev/disk/by-uuid/5f244270-0d6a-429a-b143-2c3a5a9241ab";
+    fsType = "btrfs";
+    options = [
+      "subvol=@"
+      "compress=zstd"
+    ];
   };
 
-  fileSystems."/home/kerojam" = {
-    device = "/dev/disk/by-uuid/422fe9d3-f2e6-4144-8e10-249967febc93";
-    fsType = "ext4";
-  };
+  boot.initrd.luks.devices."luks-260d9060-150c-40e3-9e8c-46f26a74461e".device =
+    "/dev/disk/by-uuid/260d9060-150c-40e3-9e8c-46f26a74461e";
+
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/3BDC-5216";
+    device = "/dev/disk/by-uuid/DE0C-3221";
     fsType = "vfat";
     options = [
       "fmask=0077"
       "dmask=0077"
     ];
   };
+
+  fileSystems."/home" = {
+    device = "/dev/disk/by-uuid/dffca74a-cd48-40be-beb3-f48f1dafe776";
+    fsType = "btrfs";
+    options = [ "compress=zstd" ];
+
+  };
+
+  boot.initrd.luks.devices."luks-1868ff39-f1b7-4cc5-9624-58872c6e7d4f".device =
+    "/dev/disk/by-uuid/1868ff39-f1b7-4cc5-9624-58872c6e7d4f";
+
+  swapDevices = [
+    {
+      device = "/swapfile";
+      size = 10000;
+    }
+  ];
+
   fileSystems."/home/kerojam/Windows" = {
     device = "/dev/disk/by-uuid/B616C4F716C4B99F";
     fsType = "ntfs";

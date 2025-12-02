@@ -1,5 +1,7 @@
 if status is-interactive
     set -g fish_greeting
+    set -Ux EDITOR 'nvim'
+    set -Ux TERMINAL 'ghostty'
     # Commands to run in interactive sessions can go here
     #if not set -q TMUX
     #    set -g TMUX tmux new-session

@@ -23,7 +23,14 @@
       enable = true;
     };
     river-classic = {
-      enable = true;
+      enable = false;
+      xwayland.enable = true;
+    };
+    dwl = {
+      enable = false;
+      package = pkgs.dwl.overrideAttrs {
+        src = /home/kerojam/dwl;
+      };
     };
     hyprland = {
       enable = true;

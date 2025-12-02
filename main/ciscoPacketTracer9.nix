@@ -30,7 +30,7 @@
 
 let
   hashes = {
-    "9.0.0" = "sha256-3ZrA1Mf8N9y2j2J/18fm+m1CAMFEklJuVhi5vRcu2SA=";
+    "9.0.0" = "sha256-xn87ukVBWyQnH8R1+E89QdHH9Nnwp5D476+fHvcdb4A=";
   };
   names = {
     "9.0.0" = "CiscoPacketTracer_900_Ubuntu_64bit.deb";
@@ -106,7 +106,7 @@ let
     installPhase = ''
       runHook preInstall
 
-      makeWrapper "$out/opt/pt/bin/PacketTracer" "$out/bin/packettracer9" \
+      makeWrapper "$out/opt/pt/bin/PacketTracer9" "$out/bin/packettracer9" \
         --prefix LD_LIBRARY_PATH : "$out/opt/pt/bin"
 
       runHook postInstall
