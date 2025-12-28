@@ -11,27 +11,11 @@
     fish = {
       enable = true;
     };
-    tmux = {
-      enable = true;
-      plugins = [ pkgs.tmuxPlugins.rose-pine ];
-    };
     adb.enable = true;
-    java = {
-      enable = true;
-    };
     nix-ld = {
       enable = true;
     };
-    river-classic = {
-      enable = false;
-      xwayland.enable = true;
-    };
-    dwl = {
-      enable = false;
-      package = pkgs.dwl.overrideAttrs {
-        src = /home/kerojam/dwl;
-      };
-    };
+    mango.enable = true;
     hyprland = {
       enable = true;
       xwayland.enable = true;

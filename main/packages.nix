@@ -24,15 +24,12 @@
     vim
     obsidian
 
-    # IDE
-    vscode-fhs
-    mysql-workbench
-
     # Terminal
     fzf
     ghostty
     lazygit
     fishPlugins.fzf-fish
+    tmux
 
     # Notifications
     libnotify
@@ -40,6 +37,7 @@
 
     # Web browser
     inputs.zen-browser.packages."${system}".default
+    inputs.helium.packages."${system}".default
     vivaldi
 
     # Wallpapers/windowmanagers
@@ -49,13 +47,11 @@
     hyprpicker
     wlsunset
     wlinhibit
-    quickshell
+    waybar
     xorg.libxcb
 
     # Audio
-    #ardour
     #reaper
-    ncmpcpp
     alsa-utils
     qpwgraph
 
@@ -69,7 +65,7 @@
     krita
     flameshot
     xnviewmp
-    blender
+    (blender.override { cudaSupport = true; })
 
     # Education
     jq
@@ -78,7 +74,6 @@
     slurp
     gnome-calculator
     tesseract
-    zathura
     #ciscoPacketTracer9
 
     # Launcher
@@ -90,11 +85,11 @@
 
     # Comunication
     signal-desktop-bin
-    qbittorrent
     vesktop
     trayscale
     moonlight-qt
     thunderbird
+    nheko
 
     # File Managers
     nemo-with-extensions
@@ -137,6 +132,7 @@
     bat
     tldr
     gparted
+    glib
     btop
     xdg-utils
     lzip
@@ -144,7 +140,7 @@
     xorg.xf86inputlibinput
     nwg-look
     papirus-icon-theme
-    rose-pine-gtk-theme
+    everforest-gtk-theme
     acpi
 
     # Virtualisation
@@ -176,7 +172,10 @@
       noto-fonts-cjk-sans
       noto-fonts-color-emoji
       ark-pixel-font
+      undefined-medium
+      pixel-code
       monaspace
+      cozette
       nerd-fonts.mononoki
       material-symbols
       hachimarupop

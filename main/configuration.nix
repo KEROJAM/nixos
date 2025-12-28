@@ -15,7 +15,6 @@
     ./services.nix
     ./programs.nix
     ./input.nix
-    ./suspend.nix
   ];
   networking = {
     networkmanager = {
@@ -122,7 +121,7 @@
   xdg.portal = {
     enable = true;
     extraPortals = [
-      pkgs.xdg-desktop-portal-hyprland
+      pkgs.xdg-desktop-portal-wlr
       pkgs.xdg-desktop-portal-gtk
     ]; # Polkit
   };
@@ -144,18 +143,6 @@
   };
   # Services and Window Managers
   services = {
-    xserver = {
-      enable = true;
-      xkb.layout = "us";
-      windowManager = {
-        dwm = {
-          enable = false;
-          package = pkgs.dwm.overrideAttrs {
-            src = inputs.dwm;
-          };
-        };
-      };
-    };
     displayManager = {
       ly.enable = true;
     };
@@ -167,9 +154,6 @@
       mpv = super.mpv.override {
         scripts = [ self.mpvScripts.mpvacious ];
       };
-      dwmblocks = super.dwmblocks.overrideAttrs (oldAttrs: {
-        src = inputs.dwmblocks;
-      });
     })
   ];
 

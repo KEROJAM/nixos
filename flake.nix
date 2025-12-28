@@ -20,6 +20,14 @@
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    helium = {
+      url = "github:vikingnope/helium-browser-nix-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    mango = {
+      url = "github:DreamMaoMao/mango";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -31,6 +39,8 @@
       nix-flatpak,
       spicetify-nix,
       zen-browser,
+      helium,
+      mango,
       ...
     }@inputs:
     let
@@ -65,6 +75,7 @@
             ./main/configuration.nix
             ./main/hardware/hardware-configuration-Lap.nix
             home-manager.nixosModules.home-manager
+            mango.nixosModules.mango
             {
               home-manager.extraSpecialArgs = {
                 inherit inputs;

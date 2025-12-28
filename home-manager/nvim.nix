@@ -22,7 +22,7 @@
       nil
       luajitPackages.lua-lsp
       kotlin-language-server
-      markdown-oxide
+      marksman
       hyprls
     ];
     plugins = with pkgs.vimPlugins; [

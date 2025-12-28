@@ -38,8 +38,7 @@
       "xe.enable_dc=0"
       "ahci.mobile_lpm_policy=1"
     ];
-    #kernelPackages = pkgs.linuxKernel.packages.linux_testing;
-    kernelPackages = pkgs.linuxKernel.packages.linux_6_17;
+    kernelPackages = pkgs.linuxKernel.packages.linux_6_18;
     initrd.availableKernelModules = [
       "xhci_pci"
       "ahci"
@@ -59,6 +58,7 @@
     '';
     tmp.cleanOnBoot = true;
   };
+  systemd.services.systemd-suspend.environment.SYSTEMD_SLEEP_FREEZE_USER_SESSIONS = "false";
   hardware = {
     graphics = {
       enable = true;
@@ -71,7 +71,7 @@
     };
     nvidia = {
       modesetting.enable = true;
-      open = true;
+      open = false;
       powerManagement = {
         enable = true;
         finegrained = true;
