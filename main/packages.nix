@@ -5,28 +5,25 @@
   inputs,
   ...
 }:
-#let
-#  ciscoPacketTracer9 = pkgs.callPackage (import ./ciscoPacketTracer9.nix) { };
-#in
 {
 
   nixpkgs.config = {
 
     allowUnfree = true;
-
     permittedInsecurePackages = [
-      "olm-3.2.16"
+       "olm-3.2.16"
     ];
   };
   environment.systemPackages = with pkgs; [
     # Text Editors
-    emacs
     vim
+    jetbrains.idea
     obsidian
+    slidev-cli
 
     # Terminal
     fzf
-    ghostty
+    kitty
     lazygit
     fishPlugins.fzf-fish
     tmux
@@ -36,19 +33,17 @@
     mako
 
     # Web browser
-    inputs.zen-browser.packages."${system}".default
-    inputs.helium.packages."${system}".default
+    firefox
     vivaldi
 
     # Wallpapers/windowmanagers
     swww
-    matugen
     hyprlock
-    hyprpicker
     wlsunset
     wlinhibit
     waybar
-    xorg.libxcb
+    libxcb
+    xrdb
 
     # Audio
     #reaper
@@ -65,28 +60,24 @@
     krita
     flameshot
     xnviewmp
-    (blender.override { cudaSupport = true; })
 
     # Education
     jq
     anki
-    grim
-    slurp
     gnome-calculator
     tesseract
-    #ciscoPacketTracer9
+    pandoc
 
     # Launcher
     rofi
-    rofimoji
 
     # Office
+    wpsoffice-cn
     onlyoffice-desktopeditors
 
     # Comunication
-    signal-desktop-bin
+    signal-desktop
     vesktop
-    trayscale
     moonlight-qt
     thunderbird
     nheko
@@ -99,18 +90,19 @@
     # Games
     protonup-qt
     steam-run
-    heroic
+    #heroic
     prismlauncher
     mesen
-
-    # Coding
-    caddy
+    shadps4
 
     # Misc
+    supergfxctl
+    gearlever
+    appimage-run
+    android-tools
     gnupg
-    cudaPackages.cudatoolkit
     networkmanagerapplet
-    wineWowPackages.stable
+    wineWow64Packages.stable
     findutils
     trash-cli
     udiskie
@@ -127,7 +119,7 @@
     xclip
     xdotool
     wtype
-    xorg.xcbutilwm
+    xcbutilwm
     lsd
     bat
     tldr
@@ -137,10 +129,8 @@
     xdg-utils
     lzip
     unzip
-    xorg.xf86inputlibinput
+    xf86inputlibinput
     nwg-look
-    papirus-icon-theme
-    everforest-gtk-theme
     acpi
 
     # Virtualisation
@@ -149,9 +139,6 @@
 
     # Languages
     ispell
-    hunspell
-    hunspellDicts.es_MX
-    hunspellDicts.en_US
     python3
     go
     multimarkdown
@@ -171,7 +158,6 @@
       noto-fonts
       noto-fonts-cjk-sans
       noto-fonts-color-emoji
-      ark-pixel-font
       undefined-medium
       pixel-code
       monaspace
@@ -181,6 +167,7 @@
       hachimarupop
       rounded-mgenplus
       google-fonts
+      corefonts
       monocraft
       miracode
     ];

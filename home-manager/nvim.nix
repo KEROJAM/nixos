@@ -22,6 +22,8 @@
       nil
       luajitPackages.lua-lsp
       kotlin-language-server
+      typescript-language-server
+      vue-language-server
       marksman
       hyprls
     ];

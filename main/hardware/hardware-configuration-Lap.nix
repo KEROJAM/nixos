@@ -13,7 +13,6 @@
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    ./battery.nix
   ];
   boot = {
     loader = {
@@ -26,19 +25,20 @@
       };
     };
     kernelParams = [
-      #"intel_iommu=on"
-      #"i915.enable_guc=3"
-      #"i915.max_vfs=7"
-      "i915.force_probe=!7d55"
+      "intel_iommu=on"
+      "xe.enable_dc=0"
+      "xe.enable_fbc=0"
+      "xe.max_vfs=7"
       "xe.force_probe=7d55"
+      "i915.force_probe=!7d55"
       "quiet"
       "loglevel=3"
       "pcie_aspm=off"
-      "intel_idle.max_cstate=1"
-      "xe.enable_dc=0"
+      "intel_idle.max_cstate=2"
       "ahci.mobile_lpm_policy=1"
+      "resume_offset=823838"
     ];
-    kernelPackages = pkgs.linuxKernel.packages.linux_6_18;
+    kernelPackages = pkgs.linuxKernel.packages.linux_6_19;
     initrd.availableKernelModules = [
       "xhci_pci"
       "ahci"
@@ -54,17 +54,26 @@
     initrd.kernelModules = [ "xe" ];
     kernelModules = [ "kvm-intel" ];
     extraModprobeConfig = ''
-      options nvidia_modeset vblank_sem_control=0
+      options iwlwifi disable_1ax=Y
+      options iwlmvm power_scheme=1
     '';
     tmp.cleanOnBoot = true;
+    resumeDevice = "/dev/disk/by-uuid/260d9060-150c-40e3-9e8c-46f26a74461e";
   };
-  systemd.services.systemd-suspend.environment.SYSTEMD_SLEEP_FREEZE_USER_SESSIONS = "false";
+  powerManagement = {
+    enable = true;
+    resumeCommands = ''
+      rmmod iwlwifi
+      modprove iwlwifi
+    '';
+  };
+
   hardware = {
     graphics = {
       enable = true;
       enable32Bit = true;
       extraPackages = with pkgs; [
-        vpl-gpu-rt
+        #vpl-gpu-rt
         intel-media-driver
       ];
       extraPackages32 = with pkgs.pkgsi686Linux; [ intel-vaapi-driver ];
@@ -101,7 +110,7 @@
       CPU_SCALING_GOVERNOR_ON_AC = "performance";
       CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
 
-      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+      CPU_ENERGY_PERF_POLICY_ON_BAT = "powersave";
       CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
 
       START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
@@ -166,8 +175,8 @@
 
   swapDevices = [
     {
-      device = "/swapfile";
-      size = 10000;
+      device = "/var/lib/swapfile";
+      size = 16 * 1024;
     }
   ];
 

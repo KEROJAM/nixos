@@ -1,173 +1,82 @@
 {
-  lib,
-  stdenvNoCC,
-  requireFile,
-  autoPatchelfHook,
+  appimageTools,
   dpkg,
-  makeWrapper,
-  alsa-lib,
-  dbus,
-  expat,
-  fontconfig,
-  glib,
-  libdrm,
-  libglvnd,
-  libpulseaudio,
-  libudev0-shim,
-  libxkbcommon,
-  libxml2_13,
-  libxslt,
-  nspr,
-  nss,
-  wayland,
-  xorg,
-  buildFHSEnv,
-  copyDesktopItems,
-  makeDesktopItem,
+  lib,
+  libpng,
+  libxkbfile,
+  requireFile,
+  stdenvNoCC,
   version ? "9.0.0",
-  packetTracerSource ? null,
 }:
 
 let
-  hashes = {
-    "9.0.0" = "sha256-xn87ukVBWyQnH8R1+E89QdHH9Nnwp5D476+fHvcdb4A=";
-  };
-  names = {
-    "9.0.0" = "CiscoPacketTracer_900_Ubuntu_64bit.deb";
-  };
+  pname = "ciscoPacketTracer9";
 
-  unwrapped = stdenvNoCC.mkDerivation {
-    name = "ciscoPacketTracer9-unwrapped";
+  appimage = stdenvNoCC.mkDerivation {
+    pname = "ciscoPacketTracer9-appimage";
     inherit version;
 
     src =
-      if (packetTracerSource != null) then
-        packetTracerSource
-      else
-        requireFile {
-          name = names.${version};
-          hash = hashes.${version};
-          url = "https://www.netacad.com";
-        };
+      let
+        source =
+          {
+            "9.0.0" = {
+              name = "CiscoPacketTracer_900_Ubuntu_64bit.deb";
+              hash = "sha256-3ZrA1Mf8N9y2j2J/18fm+m1CAMFEklJuVhi5vRcu2SA=";
+            };
+          }
+          .${version};
+      in
+      requireFile {
+        inherit (source) name hash;
+        url = "https://www.netacad.com/resources/lab-downloads";
+      };
 
     nativeBuildInputs = [
-      autoPatchelfHook
       dpkg
-      makeWrapper
     ];
-
-    buildInputs = [
-      alsa-lib
-      dbus
-      expat
-      fontconfig
-      glib
-      libdrm
-      libglvnd
-      libpulseaudio
-      libudev0-shim
-      libxkbcommon
-      libxml2_13
-      libxslt
-      nspr
-      nss
-      wayland
-    ]
-    ++ (with xorg; [
-      libICE
-      libSM
-      libX11
-      libXScrnSaver
-      libXcomposite
-      libXcursor
-      libXdamage
-      libXext
-      libXfixes
-      libXi
-      libXrandr
-      libXrender
-      libXtst
-      libxcb
-      xcbutilimage
-      xcbutilkeysyms
-      xcbutilrenderutil
-      xcbutilwm
-    ]);
-
-    unpackPhase = ''
-      runHook preUnpack
-
-      dpkg-deb -x $src $out
-      chmod 755 "$out"
-
-      runHook postUnpack
-    '';
 
     installPhase = ''
       runHook preInstall
-
-      makeWrapper "$out/opt/pt/bin/PacketTracer9" "$out/bin/packettracer9" \
-        --prefix LD_LIBRARY_PATH : "$out/opt/pt/bin"
-
+      cp opt/pt/packettracer.AppImage $out
       runHook postInstall
     '';
   };
 
-  fhs-env = buildFHSEnv {
-    name = "ciscoPacketTracer9-fhs-env";
-    runScript = lib.getExe' unwrapped "packettracer9";
-    targetPkgs = _: [ libudev0-shim ];
-  };
 in
+appimageTools.wrapType2 rec {
+  inherit pname version;
+  src = appimage;
 
-stdenvNoCC.mkDerivation {
-  pname = "ciscoPacketTracer9";
-  inherit version;
-
-  dontUnpack = true;
-
-  nativeBuildInputs = [
-    copyDesktopItems
+  extraPkgs = _: [
+    libpng
+    libxkbfile
   ];
 
-  installPhase = ''
-    runHook preInstall
-
-    mkdir -p $out/bin
-    ln -s ${fhs-env}/bin/${fhs-env.name} $out/bin/packettracer9
-
-    mkdir -p $out/share/icons/hicolor/48x48/apps
-    ln -s ${unwrapped}/opt/pt/art/app.png $out/share/icons/hicolor/48x48/apps/cisco-packet-tracer-9.png
-    ln -s ${unwrapped}/usr/share/icons/gnome/48x48/mimetypes $out/share/icons/hicolor/48x48/mimetypes
-    ln -s ${unwrapped}/usr/share/mime $out/share/mime
-
-    runHook postInstall
-  '';
-
-  desktopItems = [
-    (makeDesktopItem {
-      name = "cisco-pt9.desktop";
-      desktopName = "Cisco Packet Tracer 9";
-      icon = "cisco-packet-tracer-9";
-      exec = "packettracer9 %f";
-      mimeTypes = [
-        "application/x-pkt"
-        "application/x-pka"
-        "application/x-pkz"
-        "application/x-pksz"
-        "application/x-pks"
-      ];
-    })
-  ];
+  extraInstallCommands =
+    let
+      contents = appimageTools.extract { inherit pname version src; };
+    in
+    ''
+      mv -v $out/bin/${pname} $out/bin/packettracer9
+      install -Dm444 ${contents}/CiscoPacketTracer-9.0.0.desktop $out/share/applications/cisco-packet-tracer-9.desktop
+      install -Dm444 ${contents}/CiscoPacketTracerPtsa-9.0.0.desktop $out/share/applications/cisco-packet-tracer-ptsa-9.desktop
+      substituteInPlace $out/share/applications/* \
+        --replace-fail "Exec=@EXEC_PATH@" "Exec=packettracer9" \
+        --replace-fail "Icon=app" "Icon=cisco-packet-tracer-9"
+      install -Dm444 ${contents}/usr/share/icons/hicolor/48x48/apps/app.png $out/share/icons/hicolor/48x48/apps/cisco-packet-tracer-9.png
+      mkdir -p $out/share/icons/hicolor/48x48
+      cp -r ${contents}/usr/share/icons/gnome/48x48/mimetypes $out/share/icons/hicolor/48x48/
+    '';
 
   meta = {
     description = "Network simulation tool from Cisco";
     homepage = "https://www.netacad.com/courses/packet-tracer";
     license = lib.licenses.unfree;
-    mainProgram = "packettracer9";
     maintainers = with lib.maintainers; [
       gepbird
     ];
+    mainProgram = "packettracer9";
     platforms = [ "x86_64-linux" ];
     sourceProvenance = with lib.sourceTypes; [ binaryNativeCode ];
   };

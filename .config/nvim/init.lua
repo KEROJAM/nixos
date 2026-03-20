@@ -305,6 +305,8 @@ require('lazy').setup({
       vim.lsp.enable 'rust_analyzer'
       vim.lsp.enable 'clangd'
       vim.lsp.enable 'jdtls'
+      vim.lsp.enable 'ts_ls'
+      vim.lsp.enable 'vue_ls'
       require('mason').setup()
 
       local ensure_installed = vim.tbl_keys(servers or {})

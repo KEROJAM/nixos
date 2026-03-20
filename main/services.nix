@@ -12,19 +12,6 @@
     # Flatpak/dbus
     flatpak = {
       enable = true;
-      remotes = [
-        {
-          name = "flathub";
-          location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
-        }
-      ];
-      packages = [
-        "com.obsproject.Studio"
-        "com.github.tchx84.Flatseal"
-        "org.vinegarhq.Sober"
-      ];
-      update.onActivation = true;
-      uninstallUnmanaged = true;
     };
     dbus.enable = true;
     udisks2.enable = true;
@@ -49,9 +36,11 @@
         PasswordAuthentication = false;
       };
     };
-    mysql = {
+    hypridle = {
       enable = true;
-      package = pkgs.mysql84;
+    };
+    supergfxd = {
+      enable = true;
     };
     syncthing = {
       enable = true;
@@ -64,9 +53,5 @@
       ];
     };
     pulseaudio.enable = false;
-    system76-scheduler = {
-      enable = true;
-      settings.cfsProfiles.enable = true;
-    };
   };
 }

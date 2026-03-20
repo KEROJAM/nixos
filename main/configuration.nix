@@ -19,7 +19,7 @@
   networking = {
     networkmanager = {
       enable = true;
-      wifi.powersave = true;
+      wifi.powersave = false;
     };
     firewall = {
       enable = true;
@@ -67,6 +67,7 @@
       "networkmanager"
       "wheel"
       "libvirtd"
+      "docker"
     ];
     packages = with pkgs; [ ];
   };
@@ -100,6 +101,9 @@
 
   virtualisation = {
     waydroid.enable = false;
+    docker = {
+      enable = true;
+    };
     libvirtd = {
       enable = false;
       qemu = {
@@ -121,7 +125,7 @@
   xdg.portal = {
     enable = true;
     extraPortals = [
-      pkgs.xdg-desktop-portal-wlr
+      pkgs.xdg-desktop-portal-hyprland
       pkgs.xdg-desktop-portal-gtk
     ]; # Polkit
   };
@@ -144,8 +148,13 @@
   # Services and Window Managers
   services = {
     displayManager = {
-      ly.enable = true;
+      ly.enable = false;
+      sddm.wayland.enable = true;
     };
+  };
+  services.sysc-greet = {
+    enable = true;
+    compositor = "hyprland";
   };
   # Nix Overlays
   environment.sessionVariables.NIXOS_OZONE_WL = "1";

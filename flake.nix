@@ -11,21 +11,16 @@
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-flatpak.url = "github:gmodena/nix-flatpak";
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    zen-browser = {
-      url = "github:0xc000022070/zen-browser-flake";
+    mangowc = {
+      url = "github:mangowm/mango";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    helium = {
-      url = "github:vikingnope/helium-browser-nix-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    mango = {
-      url = "github:DreamMaoMao/mango";
+    sysc-greet = {
+      url = "github:Nomadcxx/sysc-greet";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -36,11 +31,9 @@
       nixpkgs,
       home-manager,
       nur,
-      nix-flatpak,
       spicetify-nix,
-      zen-browser,
-      helium,
-      mango,
+      sysc-greet,
+      mangowc,
       ...
     }@inputs:
     let
@@ -53,7 +46,6 @@
           specialArgs = { inherit inputs; };
           modules = [
             nur.modules.nixos.default
-            nix-flatpak.nixosModules.nix-flatpak
             ./main/configuration.nix
             ./main/hardware/hardware-configuration-main.nix
             home-manager.nixosModules.home-manager
@@ -71,11 +63,11 @@
           specialArgs = { inherit inputs; };
           modules = [
             nur.modules.nixos.default
-            nix-flatpak.nixosModules.nix-flatpak
             ./main/configuration.nix
             ./main/hardware/hardware-configuration-Lap.nix
             home-manager.nixosModules.home-manager
-            mango.nixosModules.mango
+            sysc-greet.nixosModules.default
+            mangowc.nixosModules.mango
             {
               home-manager.extraSpecialArgs = {
                 inherit inputs;
