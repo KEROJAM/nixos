@@ -65,14 +65,6 @@
         colorScheme = "rose-pine-dawn";
       };
   };
-  xdg.desktopEntries.nemo = {
-    name = "Nemo";
-    exec = "${pkgs.nemo-with-extensions}/bin/nemo";
-  };
-  xdg.mime.enable = true;
-  #xdg.mime.defaultApplications = {
-  #  "inode/directory" = [ "nemo.desktop" ];
-  #};
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }

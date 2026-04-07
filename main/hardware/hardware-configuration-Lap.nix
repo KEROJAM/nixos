@@ -26,11 +26,11 @@
     };
     kernelParams = [
       "intel_iommu=on"
-      "xe.enable_dc=0"
-      "xe.enable_fbc=0"
-      "xe.max_vfs=7"
-      "xe.force_probe=7d55"
-      "i915.force_probe=!7d55"
+      #"xe.enable_dc=0"
+      #"xe.enable_fbc=0"
+      #"xe.max_vfs=7"
+      #"xe.force_probe=7d55"
+      "i915.force_probe=7d55"
       "quiet"
       "loglevel=3"
       "pcie_aspm=off"
@@ -51,7 +51,7 @@
       "thunderbolt"
       "sdhci_pci"
     ];
-    initrd.kernelModules = [ "xe" ];
+    initrd.kernelModules = [ "i915" ];
     kernelModules = [ "kvm-intel" ];
     extraModprobeConfig = ''
       options iwlwifi disable_1ax=Y
@@ -100,7 +100,6 @@
     bluetooth.enable = true;
   };
   services.xserver.videoDrivers = [
-    "xe"
     "nvidia"
   ];
   services.thermald.enable = true;

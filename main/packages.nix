@@ -37,7 +37,7 @@
     vivaldi
 
     # Wallpapers/windowmanagers
-    swww
+    awww
     hyprlock
     wlsunset
     wlinhibit
@@ -58,8 +58,10 @@
 
     # Image Editing
     krita
-    flameshot
+    grim
+    slurp
     xnviewmp
+    flameshot
 
     # Education
     jq
@@ -73,14 +75,13 @@
 
     # Office
     wpsoffice-cn
-    onlyoffice-desktopeditors
 
     # Comunication
     signal-desktop
     vesktop
     moonlight-qt
     thunderbird
-    nheko
+    cinny-desktop
 
     # File Managers
     nemo-with-extensions
@@ -93,6 +94,7 @@
     #heroic
     prismlauncher
     mesen
+    lutris
     shadps4
 
     # Misc
@@ -102,7 +104,7 @@
     android-tools
     gnupg
     networkmanagerapplet
-    wineWow64Packages.stable
+    wineWow64Packages.waylandFull
     findutils
     trash-cli
     udiskie
@@ -119,7 +121,7 @@
     xclip
     xdotool
     wtype
-    xcbutilwm
+    libxcb-wm
     lsd
     bat
     tldr

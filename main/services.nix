@@ -9,6 +9,8 @@
     picom = {
       enable = true;
     };
+    xserver.enable = true;
+    xserver.windowManager.bspwm.enable = true;
     # Flatpak/dbus
     flatpak = {
       enable = true;

@@ -18,6 +18,9 @@
       enable = true;
       xwayland.enable = true;
     };
+    river-classic = {
+      enable = true;
+    };
     mango.enable = true;
     dconf.enable = true;
     appimage = {

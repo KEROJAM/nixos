@@ -124,9 +124,9 @@
   #};
   xdg.portal = {
     enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal-hyprland
-      pkgs.xdg-desktop-portal-gtk
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-wlr
+      xdg-desktop-portal-gtk
     ]; # Polkit
   };
   security.polkit.enable = true;
@@ -148,13 +148,8 @@
   # Services and Window Managers
   services = {
     displayManager = {
-      ly.enable = false;
-      sddm.wayland.enable = true;
+      ly.enable = true;
     };
-  };
-  services.sysc-greet = {
-    enable = true;
-    compositor = "hyprland";
   };
   # Nix Overlays
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
