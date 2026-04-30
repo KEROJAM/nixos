@@ -26,11 +26,11 @@
     };
     kernelParams = [
       "intel_iommu=on"
-      #"xe.enable_dc=0"
-      #"xe.enable_fbc=0"
-      #"xe.max_vfs=7"
-      #"xe.force_probe=7d55"
-      "i915.force_probe=7d55"
+      "xe.enable_dc=0"
+      "xe.enable_fbc=0"
+      "xe.max_vfs=7"
+      "xe.force_probe=7d55"
+      "i915.force_probe=!7d55"
       "quiet"
       "loglevel=3"
       "pcie_aspm=off"
@@ -38,7 +38,7 @@
       "ahci.mobile_lpm_policy=1"
       "resume_offset=823838"
     ];
-    kernelPackages = pkgs.linuxKernel.packages.linux_6_19;
+    kernelPackages = pkgs.linuxKernel.packages.linux_7_0;
     initrd.availableKernelModules = [
       "xhci_pci"
       "ahci"
@@ -51,23 +51,15 @@
       "thunderbolt"
       "sdhci_pci"
     ];
-    initrd.kernelModules = [ "i915" ];
+    initrd.kernelModules = [ "xe" ];
     kernelModules = [ "kvm-intel" ];
-    extraModprobeConfig = ''
-      options iwlwifi disable_1ax=Y
-      options iwlmvm power_scheme=1
-    '';
     tmp.cleanOnBoot = true;
     resumeDevice = "/dev/disk/by-uuid/260d9060-150c-40e3-9e8c-46f26a74461e";
   };
   powerManagement = {
     enable = true;
-    resumeCommands = ''
-      rmmod iwlwifi
-      modprove iwlwifi
-    '';
   };
-
+  services.logind.settings.Login.HandleLidSwitch = "ignore";
   hardware = {
     graphics = {
       enable = true;
@@ -80,7 +72,7 @@
     };
     nvidia = {
       modesetting.enable = true;
-      open = false;
+      open = true;
       powerManagement = {
         enable = true;
         finegrained = true;
@@ -96,7 +88,7 @@
       };
       package = config.boot.kernelPackages.nvidiaPackages.latest;
     };
-    i2c.enable = true;
+    i2c.enable = false;
     bluetooth.enable = true;
   };
   services.xserver.videoDrivers = [

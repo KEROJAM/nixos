@@ -14,14 +14,12 @@
     nix-ld = {
       enable = true;
     };
+    mango = {
+      enable = true;
+    };
     hyprland = {
       enable = true;
-      xwayland.enable = true;
     };
-    river-classic = {
-      enable = true;
-    };
-    mango.enable = true;
     dconf.enable = true;
     appimage = {
       enable = true;
@@ -30,6 +28,7 @@
          pkgs.fuse 
       ];};
     };
+    java.enable = true;
     steam = {
       enable = true;
       remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play

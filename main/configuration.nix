@@ -124,10 +124,12 @@
   #};
   xdg.portal = {
     enable = true;
+    wlr.enable = false;
+    xdgOpenUsePortal = true;
     extraPortals = with pkgs; [
-      xdg-desktop-portal-wlr
+      xdg-desktop-portal-hyprland
       xdg-desktop-portal-gtk
-    ]; # Polkit
+    ];
   };
   security.polkit.enable = true;
   systemd = {

@@ -6,7 +6,9 @@
   ...
 }:
 {
-
+   imports = [
+    ./package.nix
+  ];
   nixpkgs.config = {
 
     allowUnfree = true;
@@ -17,13 +19,15 @@
   environment.systemPackages = with pkgs; [
     # Text Editors
     vim
+    neovim
+    emacs
     jetbrains.idea
     obsidian
     slidev-cli
 
     # Terminal
     fzf
-    kitty
+    wezterm 
     lazygit
     fishPlugins.fzf-fish
     tmux
@@ -34,7 +38,7 @@
 
     # Web browser
     firefox
-    vivaldi
+    inputs.helium.packages.${system}.default
 
     # Wallpapers/windowmanagers
     awww
@@ -44,6 +48,7 @@
     waybar
     libxcb
     xrdb
+    rose-pine-gtk-theme
 
     # Audio
     #reaper
@@ -61,7 +66,6 @@
     grim
     slurp
     xnviewmp
-    flameshot
 
     # Education
     jq
@@ -91,13 +95,14 @@
     # Games
     protonup-qt
     steam-run
-    #heroic
     prismlauncher
     mesen
-    lutris
+    ryujinx-canary
+    #lutris
     shadps4
 
     # Misc
+    icu
     supergfxctl
     gearlever
     appimage-run
@@ -117,6 +122,7 @@
     fd
     wl-clipboard
     wf-recorder
+    wtype
     gtk3
     xclip
     xdotool
@@ -134,6 +140,7 @@
     xf86inputlibinput
     nwg-look
     acpi
+    scrot
 
     # Virtualisation
     virt-manager
@@ -147,9 +154,11 @@
 
     # Important
     keepassxc
+    keepmenu
     polkit_gnome
 
     # NUR
+    nur.repos.vieb-nix.vieb
     #nur.repos.ataraxiasjel.waydroid-script
 
   ];

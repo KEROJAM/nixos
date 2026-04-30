@@ -7,8 +7,10 @@
 
 {
   programs.neovim = {
-    enable = true;
+    #enable = true;
     withNodeJs = true;
+    withRuby = true;
+    withPython3 = true;
     extraPackages = with pkgs; [
       lua-language-server
       pyright
@@ -28,14 +30,13 @@
       hyprls
     ];
     plugins = with pkgs.vimPlugins; [
-      nvim-treesitter.withAllGrammars
-      nvim-autopairs
-      telescope-nvim
-      telescope-fzf-native-nvim
-      luasnip
-      nvim-jdtls
-      render-markdown-nvim
-      yazi-nvim
+       nvim-treesitter.withAllGrammars
+       nvim-autopairs
+       telescope-nvim
+       telescope-fzf-native-nvim
+       luasnip
+       nvim-jdtls
+       render-markdown-nvim
     ];
   };
 }
