@@ -6,17 +6,14 @@
   ...
 }:
 {
-   imports = [
-    ./package.nix
-  ];
   nixpkgs.config = {
-
     allowUnfree = true;
     permittedInsecurePackages = [
        "olm-3.2.16"
     ];
   };
   environment.systemPackages = with pkgs; [
+    (pkgs.callPackage ./package.nix { })
     # Text Editors
     vim
     neovim
@@ -97,7 +94,6 @@
     steam-run
     prismlauncher
     mesen
-    ryujinx-canary
     #lutris
     shadps4
 

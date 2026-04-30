@@ -23,8 +23,7 @@
   SDL2,
   SDL2_mixer,
   gtk3,
-  wrapGAppsHook3,
-  autoPatchelfHook,
+  makeWrapper,
   libusb1,
   jack2,
   pipewire,
@@ -45,11 +44,8 @@ stdenv.mkDerivation rec {
   };
 
   nativeBuildInputs = [
-    autoPatchelfHook
-    wrapGAppsHook3
+    makeWrapper
   ];
-
-  autoPatchelfIgnoreMissingDeps = [ "*" ];
 
   runtimeDeps = [
     libx11
@@ -90,24 +86,27 @@ stdenv.mkDerivation rec {
   installPhase = ''
     runHook preInstall
 
-    mkdir -p $out/bin
+    mkdir -p $out
     cp -r ./* $out/
 
-    chmod +x $out/Ryujinx
-    mv $out/Ryujinx $out/bin/
+    mkdir -p $out/bin
+    ln -s $out/Ryujinx.sh $out/bin/Ryujinx
+    ln -s $out/Ryujinx.sh $out/bin/ryujinx
 
     runHook postInstall
   '';
 
   preFixup = ''
+    patchShebangs $out/Ryujinx.sh
+
     mkdir -p $out/lib/sndio-6
     ln -s ${sndio}/lib/libsndio.so $out/lib/sndio-6/libsndio.so.6
-
-    ln -s $out/bin/Ryujinx $out/bin/ryujinx
   '';
 
   makeWrapperArgs = [
     "--set SDL_VIDEODRIVER x11"
+    "--set DOTNET_BUNDLE_EXTRACT_BASE_DIR /tmp"
+    "--prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath (runtimeDeps ++ [ "$out" ])}"
   ];
 
   meta = {
