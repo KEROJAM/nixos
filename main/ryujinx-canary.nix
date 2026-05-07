@@ -23,7 +23,6 @@
   SDL2,
   SDL2_mixer,
   gtk3,
-  makeWrapper,
   libusb1,
   jack2,
   pipewire,
@@ -32,6 +31,8 @@
   libdrm,
   libdecor,
   libglvnd,
+  icu,
+  fontconfig,
 }:
 
 stdenv.mkDerivation rec {
@@ -43,11 +44,11 @@ stdenv.mkDerivation rec {
     sha256 = "6DO0z/r0oKQOLee+2TAZxq1ykBn8AdKyV3T48Uhf0uI=";
   };
 
-  nativeBuildInputs = [
-    makeWrapper
-  ];
+  nativeBuildInputs = [];
 
   runtimeDeps = [
+    icu
+    fontconfig
     libx11
     libgdiplus
     SDL2_mixer
@@ -90,24 +91,25 @@ stdenv.mkDerivation rec {
     cp -r ./* $out/
 
     mkdir -p $out/bin
-    ln -s $out/Ryujinx.sh $out/bin/Ryujinx
-    ln -s $out/Ryujinx.sh $out/bin/ryujinx
+
+    cat > $out/bin/ryujinx << 'EOF'
+#!/bin/sh
+export SDL_VIDEODRIVER=x11
+export DOTNET_BUNDLE_EXTRACT_BASE_DIR=/tmp
+export LD_LIBRARY_PATH=${lib.makeLibraryPath runtimeDeps}:${placeholder "out"}:$LD_LIBRARY_PATH
+exec ${placeholder "out"}/Ryujinx "$@"
+EOF
+
+    chmod +x $out/bin/ryujinx
+    ln -s $out/bin/ryujinx $out/bin/Ryujinx
 
     runHook postInstall
   '';
 
   preFixup = ''
-    patchShebangs $out/Ryujinx.sh
-
     mkdir -p $out/lib/sndio-6
     ln -s ${sndio}/lib/libsndio.so $out/lib/sndio-6/libsndio.so.6
   '';
-
-  makeWrapperArgs = [
-    "--set SDL_VIDEODRIVER x11"
-    "--set DOTNET_BUNDLE_EXTRACT_BASE_DIR /tmp"
-    "--prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath (runtimeDeps ++ [ "$out" ])}"
-  ];
 
   meta = {
     homepage = "https://ryujinx.app";

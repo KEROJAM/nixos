@@ -17,6 +17,7 @@
       enable = true;
       openFirewall = true;
     };
+    emacs.enable = true;
     sunshine = {
       enable = true;
       autoStart = true;

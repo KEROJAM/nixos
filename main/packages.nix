@@ -13,11 +13,11 @@
     ];
   };
   environment.systemPackages = with pkgs; [
-    (pkgs.callPackage ./package.nix { })
+    (pkgs.callPackage ./ryujinx-canary.nix { })
     # Text Editors
     vim
     neovim
-    emacs
+    zed-editor
     jetbrains.idea
     obsidian
     slidev-cli
@@ -50,12 +50,13 @@
     # Audio
     #reaper
     alsa-utils
-    qpwgraph
+    ncpamixer
 
     # Video Playback
     mpv
     ffmpeg_6-full
     aegisub
+    ani-cli
     davinci-resolve
 
     # Image Editing
@@ -75,7 +76,7 @@
     rofi
 
     # Office
-    wpsoffice-cn
+    onlyoffice-desktopeditors
 
     # Comunication
     signal-desktop
@@ -94,6 +95,7 @@
     steam-run
     prismlauncher
     mesen
+    dolphin-emu
     #lutris
     shadps4
 
