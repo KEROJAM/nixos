@@ -164,13 +164,6 @@
   boot.initrd.luks.devices."luks-1868ff39-f1b7-4cc5-9624-58872c6e7d4f".device =
     "/dev/disk/by-uuid/1868ff39-f1b7-4cc5-9624-58872c6e7d4f";
 
-  swapDevices = [
-    {
-      device = "/var/lib/swapfile";
-      size = 16 * 1024;
-    }
-  ];
-
   fileSystems."/home/kerojam/Windows" = {
     device = "/dev/disk/by-uuid/B616C4F716C4B99F";
     fsType = "ntfs";

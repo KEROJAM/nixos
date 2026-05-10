@@ -8,6 +8,11 @@
   pkgs,
   ...
 }:
+let
+  patchedQemu = pkgs.qemu_full.overrideAttrs (old: {
+    patches = (old.patches or [ ]) ++ [ ./qemu-10.2.2.patch ];
+  });
+in
 {
   imports = [
     # Include the results of the hardware scan.
@@ -105,28 +110,33 @@
       enable = true;
     };
     libvirtd = {
-      enable = false;
+      enable = true;
       qemu = {
-        package = pkgs.qemu;
-        swtpm.enable = false;
+        package = patchedQemu;
+        swtpm.enable = true;
         runAsRoot = false;
       };
     };
+    spiceUSBRedirection.enable = true;
   };
-  #environment.etc = {
-  #  "ovmf/edk2-x86_64-secure-code.fd" = {
-  #    source = config.virtualisation.libvirtd.qemu.package + "/share/qemu/edk2-x86_64-secure-code.fd";
-  #  };
 
-  #  "ovmf/edk2-i386-vars.fd" = {
-  #    source = config.virtualisation.libvirtd.qemu.package + "/share/qemu/edk2-i386-vars.fd";
-  #  };
-  #};
+  users.groups.libvirtd.members = ["KEROJAM"];
+  users.groups.kvm.members = ["KEROJAM"];
+
+  environment.etc = {
+    "ovmf/edk2-x86_64-secure-code.fd" = {
+      source = config.virtualisation.libvirtd.qemu.package + "/share/qemu/edk2-x86_64-secure-code.fd";
+    };
+
+    "ovmf/edk2-i386-vars.fd" = {
+      source = config.virtualisation.libvirtd.qemu.package + "/share/qemu/edk2-i386-vars.fd";
+    };
+  };
   xdg.portal = {
     enable = true;
     xdgOpenUsePortal = true;
     extraPortals = with pkgs; [
-      xdg-desktop-portal-wlr
+      xdg-desktop-portal-hyprland
       xdg-desktop-portal-gtk
     ];
   };

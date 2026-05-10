@@ -17,10 +17,8 @@
     # Text Editors
     vim
     neovim
-    zed-editor
     jetbrains.idea
     obsidian
-    slidev-cli
 
     # Terminal
     fzf
@@ -54,8 +52,8 @@
 
     # Video Playback
     mpv
-    ffmpeg_6-full
-    aegisub
+    #ffmpeg_6-full
+    #aegisub
     ani-cli
     davinci-resolve
 
@@ -83,7 +81,6 @@
     vesktop
     moonlight-qt
     thunderbird
-    cinny-desktop
 
     # File Managers
     nemo-with-extensions
@@ -91,7 +88,6 @@
     dragon-drop
 
     # Games
-    protonup-qt
     steam-run
     prismlauncher
     mesen
@@ -103,7 +99,6 @@
     icu
     supergfxctl
     gearlever
-    appimage-run
     android-tools
     gnupg
     networkmanagerapplet
@@ -156,7 +151,6 @@
     polkit_gnome
 
     # NUR
-    nur.repos.vieb-nix.vieb
     #nur.repos.ataraxiasjel.waydroid-script
 
   ];
