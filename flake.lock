@@ -47,11 +47,11 @@
         "scenefx": "scenefx"
       },
       "locked": {
-        "lastModified": 1781527471,
-        "narHash": "sha256-zX9Aaekmh0b4alYSOCWsTlAQPAR4eTX9q98ciO7eKPU=",
+        "lastModified": 1781539609,
+        "narHash": "sha256-dYdCUH3Iql1tC/2vbtbsD+Cp0QpTYTM7xCKs6sVIAys=",
         "owner": "mangowm",
         "repo": "mango",
-        "rev": "55d366daf263d8be43fe1c5fbebf09a3099089e2",
+        "rev": "d81ca73ea1c49e927ee46ec9f25a0e6e9911e0da",
         "type": "github"
       },
       "original": {
@@ -91,11 +91,28 @@
         "type": "github"
       }
     },
+    "nixpkgs-stable": {
+      "locked": {
+        "lastModified": 1781216227,
+        "narHash": "sha256-9mUW6gNwoN2SWc/l0fW4svPNOulXLl8ijqKyeSOGgJE=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "a0374025a863d007d98e3297f6aa46cc3141c2f0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-26.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
         "mangowm": "mangowm",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-stable": "nixpkgs-stable",
         "spicetify-nix": "spicetify-nix"
       }
     },

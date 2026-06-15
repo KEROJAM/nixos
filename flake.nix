@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs?ref=nixos-26.05";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -29,6 +30,7 @@
     {
       self,
       nixpkgs,
+      nixpkgs-stable,
       home-manager,
       #nur,
       spicetify-nix,
@@ -78,6 +80,13 @@
             }
           ];
         };
+	server = nixpkgs-stable.lib.nixosSystem {
+	  specialArgs = { inherit inputs; };
+	  modules = [
+	  ./main/server.nix
+	  ./main/hardware/hardware-configuration-server.nix
+	  ];
+	};
       };
     };
 }
