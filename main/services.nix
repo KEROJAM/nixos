@@ -12,17 +12,20 @@
     };
     dbus.enable = true;
     udisks2.enable = true;
-    upower.enable = true;
     tailscale = {
       enable = true;
       openFirewall = true;
     };
     emacs.enable = true;
-    sunshine = {
-      enable = true;
-      autoStart = true;
-      openFirewall = true;
-    };
+    #sunshine = {
+     # enable = true;
+     # autoStart = true;
+     # openFirewall = true;
+     # package = pkgs.sunshine.override {
+     #    cudaSupport = true;
+     #    cudaPackages = pkgs.cudaPackages;
+     # };
+    #};
     blueman.enable = true;
     gvfs.enable = true;
     gnome.gnome-keyring.enable = true;
@@ -33,9 +36,6 @@
       settings = {
         PasswordAuthentication = false;
       };
-    };
-    hypridle = {
-      enable = true;
     };
     supergfxd = {
       enable = true;

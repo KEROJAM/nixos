@@ -6,12 +6,13 @@
   inputs,
   config,
   pkgs,
+  lib,
   ...
 }:
 let
-  patchedQemu = pkgs.qemu_full.overrideAttrs (old: {
-    patches = (old.patches or [ ]) ++ [ ./qemu-10.2.2.patch ];
-  });
+#  patchedQemu = pkgs.qemu_full.overrideAttrs (old: {
+#    patches = (old.patches or [ ]) ++ [ ./qemu-10.2.2.patch ];
+#  });
 in
 {
   imports = [
@@ -29,6 +30,11 @@ in
     firewall = {
       enable = true;
       allowPing = false;
+      allowedTCPPorts = [ 47984 47989 47990 48010 ];
+      allowedUDPPortRanges = [
+         { from = 47998; to = 48000; }
+         { from = 8000; to = 8010; }
+      ];
     };
   };
 
@@ -72,7 +78,7 @@ in
       "networkmanager"
       "wheel"
       "libvirtd"
-      "docker"
+      "ydotool"
     ];
     packages = with pkgs; [ ];
   };
@@ -106,13 +112,10 @@ in
 
   virtualisation = {
     waydroid.enable = false;
-    docker = {
-      enable = true;
-    };
     libvirtd = {
       enable = true;
       qemu = {
-        package = patchedQemu;
+        package = pkgs.qemu;
         swtpm.enable = true;
         runAsRoot = false;
       };
@@ -134,10 +137,11 @@ in
   };
   xdg.portal = {
     enable = true;
+    wlr.enable = true;
     xdgOpenUsePortal = true;
     extraPortals = with pkgs; [
-      xdg-desktop-portal-hyprland
       xdg-desktop-portal-gtk
+      gsettings-desktop-schemas
     ];
   };
   security.polkit.enable = true;
@@ -164,6 +168,7 @@ in
   };
   # Nix Overlays
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  environment.variables.XDG_DATA_DIRS = lib.mkForce "/usr/local/share:/usr/share:/var/lib/snapd/desktop";
   nixpkgs.overlays = with builtins; [
     (self: super: {
       mpv = super.mpv.override {

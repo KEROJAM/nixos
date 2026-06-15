@@ -11,14 +11,14 @@
       url = "github:mangowm/mango";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    helium = {
-      url = "github:schembriaiden/helium-browser-nix-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nur = {
-     url = "github:nix-community/NUR";
-     inputs.nixpkgs.follows = "nixpkgs";
-    };
+    #mikuPlymouth = {
+    #  url = "github:Thang1191/MikuPlymouth";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
+    #nur = {
+    # url = "github:nix-community/NUR";
+    # inputs.nixpkgs.follows = "nixpkgs";
+    #};
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -30,9 +30,10 @@
       self,
       nixpkgs,
       home-manager,
-      nur,
+      #nur,
       spicetify-nix,
       mangowm,
+     # mikuPlymouth,
       ...
     }@inputs:
     let
@@ -44,7 +45,7 @@
         YuriPC = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs; };
           modules = [
-            nur.modules.nixos.default
+            #nur.modules.nixos.default
             ./main/configuration.nix
             ./main/hardware/hardware-configuration-main.nix
             home-manager.nixosModules.home-manager
@@ -61,10 +62,11 @@
         lily = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs; };
           modules = [
-            nur.modules.nixos.default
+            #nur.modules.nixos.default
             ./main/configuration.nix
             ./main/hardware/hardware-configuration-Lap.nix
             mangowm.nixosModules.mango
+            #mikuPlymouth.nixosModules.default
             home-manager.nixosModules.home-manager
             {
               home-manager.extraSpecialArgs = {

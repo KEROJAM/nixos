@@ -24,6 +24,11 @@
         useOSProber = true;
       };
     };
+    plymouth = {
+      enable = false;
+      themePackages = [ pkgs.mikuPlymouth ];
+      theme = "MikuPlymouth";
+    };
     kernelParams = [
       "intel_iommu=on"
       "xe.enable_dc=0"
@@ -36,7 +41,7 @@
       "pcie_aspm=off"
       "intel_idle.max_cstate=2"
       "ahci.mobile_lpm_policy=1"
-      "resume_offset=823838"
+      "vfio-pci.ids=10de:25ac,10de:2291"
     ];
     kernelPackages = pkgs.linuxKernel.packages.linux_7_0;
     initrd.availableKernelModules = [
@@ -50,6 +55,10 @@
       "vmd"
       "thunderbolt"
       "sdhci_pci"
+      "vfio"
+      "vfio_pci"
+      "vfio_iommu_type1"
+      "xe"
     ];
     initrd.kernelModules = [ "xe" ];
     kernelModules = [ "kvm-intel" ];
@@ -59,7 +68,7 @@
   powerManagement = {
     enable = true;
   };
-  services.logind.settings.Login.HandleLidSwitch = "ignore";
+  #services.logind.settings.Login.HandleLidSwitch = "ignore";
   hardware = {
     graphics = {
       enable = true;
@@ -88,10 +97,11 @@
       };
       package = config.boot.kernelPackages.nvidiaPackages.latest;
     };
-    i2c.enable = false;
+    i2c.enable = true;
     bluetooth.enable = true;
   };
   services.xserver.videoDrivers = [
+    "xe"
     "nvidia"
   ];
   services.thermald.enable = true;
@@ -105,7 +115,7 @@
       CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
 
       START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
-      STOP_CHARGE_THRESH_BAT0 = 90; # 80 and above it stops charging
+      STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
     };
   };
   # Sound

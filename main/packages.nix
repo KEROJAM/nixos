@@ -16,8 +16,8 @@
     (pkgs.callPackage ./ryujinx-canary.nix { })
     # Text Editors
     vim
-    neovim
-    jetbrains.idea
+
+    #jetbrains.idea
     obsidian
 
     # Terminal
@@ -33,12 +33,11 @@
 
     # Web browser
     firefox
-    inputs.helium.packages.${system}.default
-
+    ungoogled-chromium
+    
     # Wallpapers/windowmanagers
     awww
     hyprlock
-    wlsunset
     wlinhibit
     waybar
     libxcb
@@ -47,20 +46,23 @@
 
     # Audio
     #reaper
+    #kew
     alsa-utils
     ncpamixer
+    qpwgraph
 
     # Video Playback
     mpv
-    #ffmpeg_6-full
-    #aegisub
-    ani-cli
+    ffmpeg_6-full
+    aegisub
     davinci-resolve
 
     # Image Editing
     krita
+    flameshot
     grim
     slurp
+    wayfreeze
     xnviewmp
 
     # Education
@@ -69,6 +71,7 @@
     gnome-calculator
     tesseract
     pandoc
+    texliveFull
 
     # Launcher
     rofi
@@ -80,7 +83,6 @@
     signal-desktop
     vesktop
     moonlight-qt
-    thunderbird
 
     # File Managers
     nemo-with-extensions
@@ -91,9 +93,10 @@
     steam-run
     prismlauncher
     mesen
-    dolphin-emu
+    azahar
+    #dolphin-emu
     #lutris
-    shadps4
+    #shadps4
 
     # Misc
     icu
@@ -115,7 +118,7 @@
     fd
     wl-clipboard
     wf-recorder
-    wtype
+    ydotool
     gtk3
     xclip
     xdotool
@@ -144,7 +147,8 @@
     python3
     go
     multimarkdown
-
+    markdownlint-cli
+    
     # Important
     keepassxc
     keepmenu
@@ -166,7 +170,6 @@
       monaspace
       cozette
       nerd-fonts.mononoki
-      material-symbols
       hachimarupop
       rounded-mgenplus
       google-fonts
