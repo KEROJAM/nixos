@@ -21,6 +21,7 @@ in
     ./services.nix
     ./programs.nix
     ./input.nix
+    ./systemd.nix
   ];
   networking = {
     networkmanager = {
@@ -178,11 +179,6 @@ in
   ];
 
   location.provider = "geoclue2";
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
 
   nix.optimise.automatic = true;
   nix.gc = {

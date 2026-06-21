@@ -16,7 +16,8 @@
     (pkgs.callPackage ./ryujinx-canary.nix { })
     # Text Editors
     vim
-
+    qtcreator
+    
     #jetbrains.idea
     obsidian
 

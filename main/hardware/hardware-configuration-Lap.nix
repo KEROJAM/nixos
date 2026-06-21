@@ -43,7 +43,7 @@
       "ahci.mobile_lpm_policy=1"
       "vfio-pci.ids=10de:25ac,10de:2291"
     ];
-    kernelPackages = pkgs.linuxKernel.packages.linux_7_0;
+    kernelPackages = pkgs.linuxKernel.packages.linux_7_1;
     initrd.availableKernelModules = [
       "xhci_pci"
       "ahci"
@@ -69,7 +69,10 @@
     enable = true;
   };
   #services.logind.settings.Login.HandleLidSwitch = "ignore";
+
   hardware = {
+    cpu.intel.updateMicrocode = true;
+    enableRedistributableFirmware = true;
     graphics = {
       enable = true;
       enable32Bit = true;
@@ -187,5 +190,4 @@
   # networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
