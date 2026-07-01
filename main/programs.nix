@@ -17,6 +17,9 @@
     mango = {
       enable = true;
     };
+    localsend = {
+      enable = true;
+    };
     dconf.enable = true;
     appimage = {
       enable = true;

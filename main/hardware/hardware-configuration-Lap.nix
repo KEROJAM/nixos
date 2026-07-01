@@ -32,6 +32,7 @@
     kernelParams = [
       "intel_iommu=on"
       "xe.enable_dc=0"
+      "mem_sleep_default=deep"
       "xe.enable_fbc=0"
       "xe.max_vfs=7"
       "xe.force_probe=7d55"

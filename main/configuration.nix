@@ -21,7 +21,7 @@ in
     ./services.nix
     ./programs.nix
     ./input.nix
-    ./systemd.nix
+    #./systemd.nix
   ];
   networking = {
     networkmanager = {

@@ -9,7 +9,8 @@
   nixpkgs.config = {
     allowUnfree = true;
     permittedInsecurePackages = [
-       "olm-3.2.16"
+      "olm-3.2.16"
+      "pnpm-10.29.2"
     ];
   };
   environment.systemPackages = with pkgs; [
@@ -48,6 +49,7 @@
     # Audio
     #reaper
     #kew
+    audacity
     alsa-utils
     ncpamixer
     qpwgraph
@@ -72,6 +74,7 @@
     gnome-calculator
     tesseract
     pandoc
+    imagemagick
     texliveFull
 
     # Launcher
