@@ -21,13 +21,16 @@ in
     ./services.nix
     ./programs.nix
     ./input.nix
-    #./systemd.nix
+    ./systemd.nix
   ];
   networking = {
+    nameservers = [ "127.0.0.1" "::1" ];
     networkmanager = {
       enable = true;
       wifi.powersave = false;
+      dns = "none";
     };
+    
     firewall = {
       enable = true;
       allowPing = false;

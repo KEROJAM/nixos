@@ -31,13 +31,13 @@
     };
     kernelParams = [
       "intel_iommu=on"
-      "xe.enable_dc=0"
       "mem_sleep_default=deep"
-      "xe.enable_fbc=0"
+      "quiet"
+      "xe.enable_dc=0"
+      "xe.enable_dbc=0"
       "xe.max_vfs=7"
       "xe.force_probe=7d55"
-      "i915.force_probe=!7d55"
-      "quiet"
+      "i915.forece_probe=!7d55"
       "loglevel=3"
       "pcie_aspm=off"
       "intel_idle.max_cstate=2"
@@ -53,13 +53,13 @@
       "sd_mod"
       "rtsx_pci_sdmmc"
       "nvme"
+      "xe"
       "vmd"
       "thunderbolt"
       "sdhci_pci"
       "vfio"
       "vfio_pci"
       "vfio_iommu_type1"
-      "xe"
     ];
     initrd.kernelModules = [ "xe" ];
     kernelModules = [ "kvm-intel" ];
@@ -105,7 +105,6 @@
     bluetooth.enable = true;
   };
   services.xserver.videoDrivers = [
-    "xe"
     "nvidia"
   ];
   services.thermald.enable = true;
@@ -183,6 +182,13 @@
     fsType = "ntfs";
   };
 
+  swapDevices = [{
+    device = "/var/lib/swapfile";
+    size = 16*1024;
+    randomEncryption.enable = true;
+  }];
+
+  
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction

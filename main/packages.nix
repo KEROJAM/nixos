@@ -5,28 +5,35 @@
   inputs,
   ...
 }:
+
+with pkgs; let
+  patchDesktop = pkg: appName: from: to: lib.hiPrio (
+    pkgs.runCommand "$patched-desktop-entry-for-${appName}" {} ''
+    ${coreutils}/bin/mkdir -p $out/share/applications
+    ${gnused}/bin/sed 's#${from}#${to}#g' < ${pkg}/share/applications/${appName}.desktop > $out/share/applications/${appName}.desktop
+  '');
+  GPUOffloadApp = pkg: desktopName: patchDesktop pkg desktopName "^Exec=" "Exec=nvidia-offload ";
+in
+
 {
   nixpkgs.config = {
     allowUnfree = true;
     permittedInsecurePackages = [
       "olm-3.2.16"
       "pnpm-10.29.2"
+      "electron-40.10.5"
     ];
   };
   environment.systemPackages = with pkgs; [
     (pkgs.callPackage ./ryujinx-canary.nix { })
     # Text Editors
     vim
-    qtcreator
-    
     #jetbrains.idea
-    obsidian
 
     # Terminal
     fzf
     wezterm 
     lazygit
-    fishPlugins.fzf-fish
     tmux
 
     # Notifications
@@ -34,7 +41,7 @@
     mako
 
     # Web browser
-    firefox
+    librewolf
     ungoogled-chromium
     
     # Wallpapers/windowmanagers
@@ -44,10 +51,9 @@
     waybar
     libxcb
     xrdb
-    rose-pine-gtk-theme
 
     # Audio
-    #reaper
+    reaper
     #kew
     audacity
     alsa-utils
@@ -70,7 +76,7 @@
 
     # Education
     jq
-    anki
+    #anki
     gnome-calculator
     tesseract
     pandoc
@@ -94,6 +100,7 @@
     dragon-drop
 
     # Games
+    #(GPUOffloadApp steam "steam")
     steam-run
     prismlauncher
     mesen
