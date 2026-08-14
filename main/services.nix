@@ -15,8 +15,12 @@
     tailscale = {
       enable = true;
       openFirewall = true;
+      useRoutingFeatures = "server";
     };
-    emacs.enable = true;
+    emacs = { 
+      enable = true;
+      defaultEditor = true;
+    };
     #sunshine = {
      # enable = true;
      # autoStart = true;
@@ -26,7 +30,7 @@
      #    cudaPackages = pkgs.cudaPackages;
      # };
     #};
-    dnscrypt-proxy2 = {
+    dnscrypt-proxy = {
       enable = true;
       settings = {
         ipv6_servers = true;

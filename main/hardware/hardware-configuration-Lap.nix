@@ -17,11 +17,10 @@
   boot = {
     loader = {
       efi.canTouchEfiVariables = true;
-      grub = {
-        enable = true;
-        devices = [ "nodev" ];
-        efiSupport = true;
-        useOSProber = true;
+	grub = {
+		enable = true;
+		devices = [ "nodev" ];
+		efiSupport = true;
       };
     };
     plymouth = {
@@ -32,6 +31,7 @@
     kernelParams = [
       "intel_iommu=on"
       "mem_sleep_default=deep"
+      "resume_offset=8238546"
       "quiet"
       "xe.enable_dc=0"
       "xe.enable_dbc=0"
@@ -64,7 +64,7 @@
     initrd.kernelModules = [ "xe" ];
     kernelModules = [ "kvm-intel" ];
     tmp.cleanOnBoot = true;
-    resumeDevice = "/dev/disk/by-uuid/260d9060-150c-40e3-9e8c-46f26a74461e";
+    resumeDevice = "/dev/disk/by-uuid/5f244270-0d6a-429a-b143-2c3a5a9241ab";
   };
   powerManagement = {
     enable = true;
@@ -114,7 +114,7 @@
       CPU_SCALING_GOVERNOR_ON_AC = "performance";
       CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
 
-      CPU_ENERGY_PERF_POLICY_ON_BAT = "powersave";
+      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
       CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
 
       START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
@@ -159,7 +159,7 @@
     "/dev/disk/by-uuid/260d9060-150c-40e3-9e8c-46f26a74461e";
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/DE0C-3221";
+    device = "/dev/disk/by-uuid/1363-37DE";
     fsType = "vfat";
     options = [
       "fmask=0077"
@@ -171,16 +171,10 @@
     device = "/dev/disk/by-uuid/dffca74a-cd48-40be-beb3-f48f1dafe776";
     fsType = "btrfs";
     options = [ "compress=zstd" ];
-
   };
 
   boot.initrd.luks.devices."luks-1868ff39-f1b7-4cc5-9624-58872c6e7d4f".device =
     "/dev/disk/by-uuid/1868ff39-f1b7-4cc5-9624-58872c6e7d4f";
-
-  fileSystems."/home/kerojam/Windows" = {
-    device = "/dev/disk/by-uuid/B616C4F716C4B99F";
-    fsType = "ntfs";
-  };
 
   swapDevices = [{
     device = "/var/lib/swapfile";

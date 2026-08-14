@@ -10,9 +10,9 @@
     fish = {
       enable = true;
     };
-    nix-ld = {
-      enable = true;
-    };
+    direnv = {
+	enable = true;
+    }; 
     mango = {
       enable = true;
     };
@@ -32,7 +32,6 @@
       localNetworkGameTransfers.openFirewall = true;
       dedicatedServer.openFirewall = true;
     };
-    ydotool.enable = true;
     java.enable = true;
   };
 }

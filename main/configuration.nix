@@ -28,17 +28,13 @@ in
     networkmanager = {
       enable = true;
       wifi.powersave = false;
+      wifi.scanRandMacAddress = true;
+      wifi.macAddress = "random";
       dns = "none";
     };
-    
     firewall = {
       enable = true;
       allowPing = false;
-      allowedTCPPorts = [ 47984 47989 47990 48010 ];
-      allowedUDPPortRanges = [
-         { from = 47998; to = 48000; }
-         { from = 8000; to = 8010; }
-      ];
     };
   };
 
@@ -82,31 +78,17 @@ in
       "networkmanager"
       "wheel"
       "libvirtd"
-      "ydotool"
     ];
     packages = with pkgs; [ ];
   };
   # Shell
 
   users.defaultUserShell = pkgs.fish;
-  # NIXOS
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
   ];
-
-  # Allow unfree packages
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Software
+  nix.settings.trusted-users = [ "@wheel" ];
 
   hardware.opentabletdriver = {
     enable = true;

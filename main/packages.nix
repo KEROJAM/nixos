@@ -3,6 +3,7 @@
   lib,
   pkgs,
   inputs,
+  pkgs-unstable,
   ...
 }:
 
@@ -21,20 +22,24 @@ in
     permittedInsecurePackages = [
       "olm-3.2.16"
       "pnpm-10.29.2"
-      "electron-40.10.5"
     ];
   };
+
   environment.systemPackages = with pkgs; [
     (pkgs.callPackage ./ryujinx-canary.nix { })
     # Text Editors
     vim
     #jetbrains.idea
+    emacsPackages.vterm
 
     # Terminal
     fzf
-    wezterm 
     lazygit
+    ghostty
+    devenv
+    zoxide
     tmux
+    git
 
     # Notifications
     libnotify
@@ -43,7 +48,7 @@ in
     # Web browser
     librewolf
     ungoogled-chromium
-    
+ 
     # Wallpapers/windowmanagers
     awww
     hyprlock
@@ -54,8 +59,6 @@ in
 
     # Audio
     reaper
-    #kew
-    audacity
     alsa-utils
     ncpamixer
     qpwgraph
@@ -76,7 +79,7 @@ in
 
     # Education
     jq
-    #anki
+    anki
     gnome-calculator
     tesseract
     pandoc
@@ -92,7 +95,7 @@ in
     # Comunication
     signal-desktop
     vesktop
-    moonlight-qt
+    #moonlight-qt
 
     # File Managers
     nemo-with-extensions
@@ -104,7 +107,7 @@ in
     steam-run
     prismlauncher
     mesen
-    azahar
+    #azahar
     #dolphin-emu
     #lutris
     #shadps4
@@ -112,10 +115,9 @@ in
     # Misc
     icu
     supergfxctl
-    gearlever
+    #gearlever
     android-tools
     gnupg
-    networkmanagerapplet
     wineWow64Packages.waylandFull
     findutils
     trash-cli
@@ -128,14 +130,10 @@ in
     ripgrep
     fd
     wl-clipboard
-    wf-recorder
-    ydotool
     gtk3
     xclip
-    xdotool
-    wtype
     libxcb-wm
-    lsd
+    eza
     bat
     tldr
     gparted
@@ -148,21 +146,14 @@ in
     nwg-look
     acpi
     scrot
-
+    ispell
+    nixd
     # Virtualisation
     virt-manager
     virtiofsd
 
-    # Languages
-    ispell
-    python3
-    go
-    multimarkdown
-    markdownlint-cli
-    
     # Important
     keepassxc
-    keepmenu
     polkit_gnome
 
     # NUR

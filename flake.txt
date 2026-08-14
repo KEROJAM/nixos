@@ -40,6 +40,26 @@
         "type": "github"
       }
     },
+    "home-manager": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1786356609,
+        "narHash": "sha256-ou8fYz5w9yhXC8YbvvExybFIa19MyW5G/8dEPqa90hM=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "c30c7955cec30d664a9baced6bc0112e263d4647",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
     "mangowm": {
       "inputs": {
         "flake-parts": "flake-parts",
@@ -49,11 +69,11 @@
         "scenefx": "scenefx"
       },
       "locked": {
-        "lastModified": 1786624990,
-        "narHash": "sha256-du64C4+ZFMXBRGeBGifQ7tSfkNLu10cNKBJFxt6s5Is=",
+        "lastModified": 1786436014,
+        "narHash": "sha256-BBLhLfhgOoOvYYWfGXngyTFkabtaOOTbI21+bjO2+H4=",
         "owner": "mangowm",
         "repo": "mango",
-        "rev": "caa5249f17547acdd1c206fcd66848523eccbef6",
+        "rev": "4a3bff4a3a325218ff1d1dd9462785d392481773",
         "type": "github"
       },
       "original": {
@@ -64,11 +84,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1786599213,
-        "narHash": "sha256-yNJd40f11EzXBjSByCB7IPpeFFAdeoSKKM67dGkfFoU=",
+        "lastModified": 1786247143,
+        "narHash": "sha256-8S3Kcxs7D4UtxJxSJZz0m14CGhuW0MxfrIwJxeGWGnQ=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "0e251e24a4f24e036a084b6b4b2d2491af4167f4",
+        "rev": "279b4a8275f032c566576b3f181fa0f27197f588",
         "type": "github"
       },
       "original": {
@@ -95,11 +115,11 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1786535285,
-        "narHash": "sha256-rG5HKMAgAhMgydvKGtco6rqTxRq4EDZQCx9USLvVqYw=",
+        "lastModified": 1786313170,
+        "narHash": "sha256-9BG7OgUWdu0ONDO5X2q6+K4bsuBITkX/3W4nNJu1Ito=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "9f78f44a87948854445dae0b6bf82b2e87e4efb5",
+        "rev": "fcb8fcd6bf2d0adecae5bd491afaaaf8311b758d",
         "type": "github"
       },
       "original": {
@@ -111,6 +131,7 @@
     },
     "root": {
       "inputs": {
+        "home-manager": "home-manager",
         "mangowm": "mangowm",
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable"
