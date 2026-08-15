@@ -31,6 +31,7 @@ in
     vim
     #jetbrains.idea
     emacsPackages.vterm
+    (llama-cpp.override { cudaSupport = true; })
 
     # Terminal
     fzf
@@ -47,7 +48,6 @@ in
 
     # Web browser
     librewolf
-    ungoogled-chromium
  
     # Wallpapers/windowmanagers
     awww
