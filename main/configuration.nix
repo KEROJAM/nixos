@@ -10,9 +10,9 @@
   ...
 }:
 let
-#  patchedQemu = pkgs.qemu_full.overrideAttrs (old: {
-#    patches = (old.patches or [ ]) ++ [ ./qemu-10.2.2.patch ];
-#  });
+  patchedQemu = pkgs.qemu_full.overrideAttrs (old: {
+    patches = (old.patches or [ ]) ++ [ ./qemu-10.2.2.patch ];
+  });
 in
 {
   imports = [
@@ -78,6 +78,7 @@ in
       "networkmanager"
       "wheel"
       "libvirtd"
+      "libvirt"
     ];
     packages = with pkgs; [ ];
   };
@@ -101,9 +102,9 @@ in
     libvirtd = {
       enable = true;
       qemu = {
-        package = pkgs.qemu;
+        package = patchedQemu;
         swtpm.enable = true;
-        runAsRoot = false;
+        runAsRoot = true;
       };
     };
     spiceUSBRedirection.enable = true;

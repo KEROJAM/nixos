@@ -32,6 +32,8 @@
       localNetworkGameTransfers.openFirewall = true;
       dedicatedServer.openFirewall = true;
     };
-    java.enable = true;
+    gamemode = {
+	enable = true;
+   };
   };
 }

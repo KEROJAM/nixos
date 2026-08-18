@@ -20,12 +20,7 @@
     emacs = { 
       enable = true;
       defaultEditor = true;
-      package = pkgs.emacs-pgtk.override { withXwidgets = true; };
-    };
-    llama-cpp = {
-      enable = true;
-      openFirewall = true;
-      settings.port = 8181;
+      package = pkgs.emacs31-pgtk.override { withXwidgets = true; };
     };
     #sunshine = {
      # enable = true;

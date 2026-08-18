@@ -3,7 +3,6 @@
   lib,
   pkgs,
   inputs,
-  pkgs-unstable,
   ...
 }:
 
@@ -172,6 +171,8 @@ in
       monaspace
       cozette
       nerd-fonts.mononoki
+      nerd-fonts.annotationmono
+      nerd-fonts.monofur
       hachimarupop
       rounded-mgenplus
       google-fonts
