@@ -8,6 +8,7 @@
       url = "github:mangowm/mango";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+   focal.url = "github:iynaix/focal"; 
     #mikuPlymouth = {
     #  url = "github:Thang1191/MikuPlymouth";
     #  inputs.nixpkgs.follows = "nixpkgs";

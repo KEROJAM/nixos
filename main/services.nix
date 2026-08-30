@@ -20,7 +20,7 @@
     emacs = { 
       enable = true;
       defaultEditor = true;
-      package = pkgs.emacs31-pgtk.override { withXwidgets = true; };
+      package = pkgs.emacs-pgtk;
     };
     #sunshine = {
      # enable = true;

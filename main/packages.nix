@@ -25,22 +25,21 @@ in
   };
 
   environment.systemPackages = with pkgs; [
-    (pkgs.callPackage ./ryujinx-canary.nix { })
+    #(pkgs.callPackage ./ryujinx-canary.nix { })
     # Text Editors
     vim
-    #jetbrains.idea
     emacsPackages.vterm
     (llama-cpp.override { cudaSupport = true; })
 
     # Terminal
     fzf
     lazygit
-    ghostty
+    wezterm 
     devenv
     zoxide
     tmux
     git
-
+    
     # Notifications
     libnotify
     mako
@@ -59,7 +58,7 @@ in
     # Audio
     reaper
     alsa-utils
-    ncpamixer
+    #ncpamixer
     qpwgraph
 
     # Video Playback
@@ -71,11 +70,10 @@ in
     # Image Editing
     krita
     flameshot
-    grim
-    slurp
-    wayfreeze
+    inputs.focal.packages.${pkgs.system}.default
     xnviewmp
-
+    #aseprite
+    
     # Education
     jq
     anki
@@ -102,10 +100,9 @@ in
     dragon-drop
 
     # Games
-    #(GPUOffloadApp steam "steam")
     steam-run
     prismlauncher
-    mesen
+    #mesen
     #azahar
     #dolphin-emu
     #lutris
@@ -129,7 +126,6 @@ in
     ripgrep
     fd
     wl-clipboard
-    gtk3
     xclip
     libxcb-wm
     eza
@@ -147,9 +143,13 @@ in
     scrot
     ispell
     nixd
+    python3
+    deno
+
     # Virtualisation
     virt-manager
     virtiofsd
+    dnsmasq
 
     # Important
     keepassxc

@@ -13,6 +13,7 @@
     direnv = {
 	enable = true;
     }; 
+    nix-ld.enable = true;
     mango = {
       enable = true;
     };

@@ -10,8 +10,13 @@
   ...
 }:
 let
-  patchedQemu = pkgs.qemu_full.overrideAttrs (old: {
-    patches = (old.patches or [ ]) ++ [ ./qemu-10.2.2.patch ];
+  patchedQemu = pkgs.qemu_full.overrideAttrs (oldAttrs: {
+	name = "qemu-10.2.2";
+	src = fetchTarball {
+		url = "https://download.qemu.org/qemu-10.2.2.tar.xz";
+		sha256 = "sha256:0vqrlabv7dggccvq4kwh5xg34vcw43kilsa1366v4nvdbcmrvqg0";
+	};
+    patches = [ ./qemu-10.2.2.patch ];
   });
 in
 {
@@ -85,11 +90,14 @@ in
   # Shell
 
   users.defaultUserShell = pkgs.fish;
-  nix.settings.experimental-features = [
+  nix.settings = {
+   substituters = ["https://focal.cachix.org"];
+    trusted-public-keys = ["focal.cachix.org-1:/YkOWkXNH2uK7TnskrVMvda8LyCe4iIbMM1sZN2AOXY="];
+    experimental-features = [
     "nix-command"
     "flakes"
-  ];
-  nix.settings.trusted-users = [ "@wheel" ];
+    ];
+  };
 
   hardware.opentabletdriver = {
     enable = true;
@@ -110,8 +118,8 @@ in
     spiceUSBRedirection.enable = true;
   };
 
-  users.groups.libvirtd.members = ["KEROJAM"];
-  users.groups.kvm.members = ["KEROJAM"];
+  users.groups.libvirtd.members = ["kerojam"];
+  users.groups.kvm.members = ["kerojam"];
 
   environment.etc = {
     "ovmf/edk2-x86_64-secure-code.fd" = {

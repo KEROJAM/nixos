@@ -12,7 +12,6 @@
 
 {
   imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
   ];
   boot = {
     loader = {
@@ -23,28 +22,21 @@
 		efiSupport = true;
       };
     };
-    plymouth = {
-      enable = false;
-      themePackages = [ pkgs.mikuPlymouth ];
-      theme = "MikuPlymouth";
-    };
     kernelParams = [
       "intel_iommu=on"
       "mem_sleep_default=deep"
       "resume_offset=8238546"
       "quiet"
-      "xe.enable_dc=0"
-      "xe.enable_dbc=0"
-      "xe.max_vfs=7"
-      "xe.force_probe=7d55"
-      "i915.forece_probe=!7d55"
+      "i915.enable_dc=0"
+      "i915.enable_dbc=0"
+      "i915.max_vfs=7"
       "loglevel=3"
       "pcie_aspm=off"
       "intel_idle.max_cstate=2"
       "ahci.mobile_lpm_policy=1"
       "vfio-pci.ids=10de:25ac,10de:2291"
     ];
-    kernelPackages = pkgs.linuxKernel.packages.linux_7_1;
+    kernelPackages = pkgs.linuxKernel.packages.linux_7_2;
     initrd.availableKernelModules = [
       "xhci_pci"
       "ahci"
@@ -53,7 +45,6 @@
       "sd_mod"
       "rtsx_pci_sdmmc"
       "nvme"
-      "xe"
       "vmd"
       "thunderbolt"
       "sdhci_pci"
@@ -61,7 +52,7 @@
       "vfio_pci"
       "vfio_iommu_type1"
     ];
-    initrd.kernelModules = [ "xe" ];
+    initrd.kernelModules = [ "i915" ];
     kernelModules = [ "kvm-intel" ];
     tmp.cleanOnBoot = true;
     resumeDevice = "/dev/disk/by-uuid/5f244270-0d6a-429a-b143-2c3a5a9241ab";
@@ -96,8 +87,8 @@
           enable = true;
           enableOffloadCmd = true;
         };
-        intelBusId = "PCI:0:2:0";
-        nvidiaBusId = "PCI:1:0:0";
+        intelBusId = "PCI:0@0:2:0";
+        nvidiaBusId = "PCI:1@1:0:0";
       };
       package = config.boot.kernelPackages.nvidiaPackages.latest;
     };
@@ -105,6 +96,7 @@
     bluetooth.enable = true;
   };
   services.xserver.videoDrivers = [
+    "modesetting"
     "nvidia"
   ];
   services.thermald.enable = true;
@@ -116,6 +108,12 @@
 
       CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
       CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+      
+      USB_EXCLUDE_PRINTER = 0;
+      CPU_BOOST_ON_AC = 1;
+      CPU_BOOST_ON_BAT = 0;
+      USB_AUTOSUSPEND = 0;
+      
 
       START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
       STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
