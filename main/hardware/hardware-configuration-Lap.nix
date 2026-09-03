@@ -16,10 +16,14 @@
   boot = {
     loader = {
       efi.canTouchEfiVariables = true;
-	grub = {
-		enable = true;
-		devices = [ "nodev" ];
-		efiSupport = true;
+      grub = {
+        enable = false;
+        devices = [ "nodev" ];
+        efiSupport = true;
+      };
+      limine = {
+        enable = true;
+        efiSupport = true;
       };
     };
     kernelParams = [
@@ -30,11 +34,13 @@
       "i915.enable_dc=0"
       "i915.enable_dbc=0"
       "i915.max_vfs=7"
+      "i915.enable_guc=3"
       "loglevel=3"
       "pcie_aspm=off"
       "intel_idle.max_cstate=2"
       "ahci.mobile_lpm_policy=1"
       "vfio-pci.ids=10de:25ac,10de:2291"
+      "nvidia.NVreg_TemporaryFilePath=/var/tmp" 
     ];
     kernelPackages = pkgs.linuxKernel.packages.linux_7_2;
     initrd.availableKernelModules = [
@@ -69,8 +75,9 @@
       enable = true;
       enable32Bit = true;
       extraPackages = with pkgs; [
-        #vpl-gpu-rt
+        vpl-gpu-rt
         intel-media-driver
+        #intel-compute-runtime
       ];
       extraPackages32 = with pkgs.pkgsi686Linux; [ intel-vaapi-driver ];
     };
@@ -111,7 +118,7 @@
       
       USB_EXCLUDE_PRINTER = 0;
       CPU_BOOST_ON_AC = 1;
-      CPU_BOOST_ON_BAT = 0;
+      CPU_BOOST_ON_BAT = 1;
       USB_AUTOSUSPEND = 0;
       
 

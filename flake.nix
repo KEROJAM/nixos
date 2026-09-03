@@ -8,6 +8,7 @@
       url = "github:mangowm/mango";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+   musnix.url = "github:musnix/musnix"; 
    focal.url = "github:iynaix/focal"; 
     #mikuPlymouth = {
     #  url = "github:Thang1191/MikuPlymouth";
@@ -25,8 +26,8 @@
       nixpkgs,
       nixpkgs-stable,
       #nur,
+      musnix,
       mangowm,
-     # mikuPlymouth,
       ...
     }@inputs:
     let
@@ -51,6 +52,7 @@
             ./main/configuration.nix
             ./main/hardware/hardware-configuration-Lap.nix
             mangowm.nixosModules.mango
+            musnix.nixosModules.musnix
             #mikuPlymouth.nixosModules.default
           ];
         };

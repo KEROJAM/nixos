@@ -26,20 +26,22 @@ in
 
   environment.systemPackages = with pkgs; [
     #(pkgs.callPackage ./ryujinx-canary.nix { })
+    (pkgs.callPackage ./yabridge.nix {})
+    (pkgs.callPackage ./yabridgectl.nix {})
     # Text Editors
     vim
     emacsPackages.vterm
-    (llama-cpp.override { cudaSupport = true; })
+    #(llama-cpp.override { cudaSupport = true; })
 
     # Terminal
     fzf
     lazygit
-    wezterm 
-    devenv
+    foot 
     zoxide
     tmux
     git
-    
+    zathura
+ 
     # Notifications
     libnotify
     mako
@@ -64,12 +66,12 @@ in
     # Video Playback
     mpv
     ffmpeg_6-full
-    aegisub
+    #aegisub
     davinci-resolve
 
     # Image Editing
     krita
-    flameshot
+    #flameshot
     inputs.focal.packages.${pkgs.system}.default
     xnviewmp
     #aseprite
@@ -77,7 +79,6 @@ in
     # Education
     jq
     anki
-    gnome-calculator
     tesseract
     pandoc
     imagemagick
@@ -90,7 +91,6 @@ in
     onlyoffice-desktopeditors
 
     # Comunication
-    signal-desktop
     vesktop
     #moonlight-qt
 
@@ -110,11 +110,11 @@ in
 
     # Misc
     icu
-    supergfxctl
     #gearlever
     android-tools
     gnupg
     wineWow64Packages.waylandFull
+    dxvk
     findutils
     trash-cli
     udiskie
@@ -137,6 +137,7 @@ in
     xdg-utils
     lzip
     unzip
+    unrar
     xf86inputlibinput
     nwg-look
     acpi
@@ -144,12 +145,10 @@ in
     ispell
     nixd
     python3
-    deno
 
     # Virtualisation
     virt-manager
     virtiofsd
-    dnsmasq
 
     # Important
     keepassxc

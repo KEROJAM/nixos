@@ -11,7 +11,7 @@
       enable = true;
     };
     direnv = {
-	enable = true;
+      enable = true;
     }; 
     nix-ld.enable = true;
     mango = {
@@ -22,8 +22,8 @@
     };
     dconf.enable = true;
     appimage = {
-      enable = true;
-      binfmt = true;
+      enable = false;
+      binfmt = false;
       package = pkgs.appimage-run.override { extraPkgs = pkgs: [
          pkgs.fuse 
       ];};
@@ -33,8 +33,5 @@
       localNetworkGameTransfers.openFirewall = true;
       dedicatedServer.openFirewall = true;
     };
-    gamemode = {
-	enable = true;
-   };
   };
 }

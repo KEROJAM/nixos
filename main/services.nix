@@ -48,9 +48,8 @@
         server_names = [ "quad9-dnscrypt-ip4-filter-ecs-pri" "mullvad-all-doh"  ];
       };
     };
-    blueman.enable = true;
-    gvfs.enable = true;
-    gnome.gnome-keyring.enable = true;
+    #gvfs.enable = true;
+    #gnome.gnome-keyring.enable = true;
     # Enable the OpenSSH daemon.
     openssh = {
       enable = true;
@@ -58,9 +57,6 @@
       settings = {
         PasswordAuthentication = false;
       };
-    };
-    supergfxd = {
-      enable = true;
     };
     syncthing = {
       enable = true;
