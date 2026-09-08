@@ -30,13 +30,13 @@ in
   ];
   musnix.enable = true;
   networking = {
-    nameservers = [ "127.0.0.1" "::1" ];
+    #nameservers = [ "127.0.0.1" "::1" ];
     networkmanager = {
       enable = true;
-      wifi.powersave = false;
+      wifi.powersave = true;
       wifi.scanRandMacAddress = true;
       wifi.macAddress = "random";
-      dns = "none";
+      #dns = "1.1.1.1";
     };
     firewall = {
       enable = true;
@@ -93,8 +93,8 @@ in
 
   users.defaultUserShell = pkgs.fish;
   nix.settings = {
-   substituters = ["https://focal.cachix.org"];
-    trusted-public-keys = ["focal.cachix.org-1:/YkOWkXNH2uK7TnskrVMvda8LyCe4iIbMM1sZN2AOXY="];
+   substituters = [ "https://focal.cachix.org" "https://cache.nixos-cuda.org" ];
+    trusted-public-keys = ["focal.cachix.org-1:/YkOWkXNH2uK7TnskrVMvda8LyCe4iIbMM1sZN2AOXY=" "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="];
     experimental-features = [
     "nix-command"
     "flakes"

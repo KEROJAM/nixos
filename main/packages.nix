@@ -26,12 +26,11 @@ in
 
   environment.systemPackages = with pkgs; [
     #(pkgs.callPackage ./ryujinx-canary.nix { })
-    (pkgs.callPackage ./yabridge.nix {})
-    (pkgs.callPackage ./yabridgectl.nix {})
+    #(pkgs.callPackage ./yabridge.nix {})
+    #(pkgs.callPackage ./yabridgectl.nix {})
     # Text Editors
     vim
     emacsPackages.vterm
-    #(llama-cpp.override { cudaSupport = true; })
 
     # Terminal
     fzf
@@ -48,7 +47,10 @@ in
 
     # Web browser
     librewolf
- 
+
+    # Local LLM
+    llama-cpp-cuda
+    
     # Wallpapers/windowmanagers
     awww
     hyprlock
@@ -59,7 +61,11 @@ in
 
     # Audio
     reaper
+    vital
     alsa-utils
+    yabridge
+    yabridgectl
+
     #ncpamixer
     qpwgraph
 
@@ -113,7 +119,9 @@ in
     #gearlever
     android-tools
     gnupg
-    wineWow64Packages.waylandFull
+    libdecor
+    wineWow64Packages.stagingFull
+    winetricks
     dxvk
     findutils
     trash-cli
