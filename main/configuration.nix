@@ -36,7 +36,7 @@ in
       wifi.powersave = true;
       wifi.scanRandMacAddress = true;
       wifi.macAddress = "random";
-      #dns = "1.1.1.1";
+      #dns = "none";
     };
     firewall = {
       enable = true;

@@ -26,8 +26,8 @@ in
 
   environment.systemPackages = with pkgs; [
     #(pkgs.callPackage ./ryujinx-canary.nix { })
-    #(pkgs.callPackage ./yabridge.nix {})
-    #(pkgs.callPackage ./yabridgectl.nix {})
+    (pkgs.callPackage ./opencode.nix)    
+
     # Text Editors
     vim
     emacsPackages.vterm
@@ -40,6 +40,7 @@ in
     tmux
     git
     zathura
+    pdfarranger
  
     # Notifications
     libnotify
@@ -47,6 +48,7 @@ in
 
     # Web browser
     librewolf
+    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     # Local LLM
     llama-cpp-cuda
@@ -74,11 +76,12 @@ in
     ffmpeg_6-full
     #aegisub
     davinci-resolve
+    yt-dlp
 
     # Image Editing
     krita
     #flameshot
-    inputs.focal.packages.${pkgs.system}.default
+    inputs.focal.packages.${pkgs.stdenv.hostPlatform.system}.default
     xnviewmp
     #aseprite
     
@@ -115,6 +118,7 @@ in
     #shadps4
 
     # Misc
+    pciutils
     icu
     #gearlever
     android-tools
@@ -150,7 +154,9 @@ in
     nwg-look
     acpi
     scrot
-    ispell
+    hunspell
+    hunspellDicts.en-us
+    hunspellDicts.es-mx
     nixd
     python3
 

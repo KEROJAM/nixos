@@ -8,6 +8,10 @@
       url = "github:mangowm/mango";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    zen-browser = {
+	    url = "github:youwen5/zen-browser-flake";
+	    inputs.nixpkgs.follows = "nixpkgs";
+    };
    musnix.url = "github:musnix/musnix"; 
    focal.url = "github:iynaix/focal"; 
     #mikuPlymouth = {
@@ -31,7 +35,7 @@
       ...
     }@inputs:
     let
-      system = "x86_64-linux";
+      stdenv.hostPlatform.system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.system;
       pkgs-stable = nixpkgs-stable.legacyPackages.system;
     in

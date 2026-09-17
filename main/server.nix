@@ -1,6 +1,6 @@
 {
 inputs,
-system,
+stdenv.hostPlatform.system,
 pkgs,
 ...
 }:

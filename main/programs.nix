@@ -28,6 +28,7 @@
          pkgs.fuse 
       ];};
     };
+    gamescope.enable = true;
     steam = {
       enable = true;
       localNetworkGameTransfers.openFirewall = true;

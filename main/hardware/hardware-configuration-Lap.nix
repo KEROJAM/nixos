@@ -29,7 +29,6 @@
     kernelParams = [
       "intel_iommu=on"
       "mem_sleep_default=deep"
-      "resume_offset=8238546"
       "quiet"
       "i915.enable_dc=0"
       "i915.enable_dbc=0"
@@ -58,7 +57,7 @@
       "vfio_pci"
       "vfio_iommu_type1"
     ];
-    initrd.kernelModules = [ "i915" ];
+    initrd.kernelModules = [ "i915"  ];
     kernelModules = [ "kvm-intel" ];
     tmp.cleanOnBoot = true;
     resumeDevice = "/dev/disk/by-uuid/5f244270-0d6a-429a-b143-2c3a5a9241ab";
@@ -145,10 +144,10 @@
       };
     };
   };
-  services.btrfs.autoScrub = {
-    enable = true;
-    interval = "weekly";
-  };
+  #services.btrfs.autoScrub = {
+  #  enable = true;
+  #  interval = "weekly";
+  #};
   networking.hostName = "lily"; # Define your hostname.
 
   fileSystems."/" = {
