@@ -106,25 +106,23 @@
     "nvidia"
   ];
   services.thermald.enable = true;
-  services.tlp = {
-    enable = true;
-    settings = {
-      CPU_SCALING_GOVERNOR_ON_AC = "performance";
-      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+  services.auto-cpufreq = {
+	enable = true;
+	settings = {
+		battery = {
+			governor = "powersave";
+			turbo = "auto";
+			enable_thresholds = true;
+			start_threshold = "20";
+			stop_threshold = "80";
+		};
+		charger = {
+			governor = "performance";
+			turbo = "auto";
+		};
+    	};
+  }; 
 
-      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
-      CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
-      
-      USB_EXCLUDE_PRINTER = 0;
-      CPU_BOOST_ON_AC = 1;
-      CPU_BOOST_ON_BAT = 1;
-      USB_AUTOSUSPEND = 0;
-      
-
-      START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
-      STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
-    };
-  };
   # Sound
 
   security.rtkit.enable = true;

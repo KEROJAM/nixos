@@ -26,7 +26,6 @@ in
 
   environment.systemPackages = with pkgs; [
     #(pkgs.callPackage ./ryujinx-canary.nix { })
-    (pkgs.callPackage ./opencode.nix)    
 
     # Text Editors
     vim
@@ -48,10 +47,11 @@ in
 
     # Web browser
     librewolf
+    firefox
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     # Local LLM
-    llama-cpp-cuda
+    #llama-cpp-cuda
     
     # Wallpapers/windowmanagers
     awww

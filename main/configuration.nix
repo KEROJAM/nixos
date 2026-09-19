@@ -112,8 +112,8 @@ in
     libvirtd = {
       enable = true;
       qemu = {
-        package = pkgs.qemu;
-        #package = patchedQemu;
+        #package = pkgs.qemu;
+        package = patchedQemu;
         swtpm.enable = true;
         runAsRoot = true;
       };
