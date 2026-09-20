@@ -10,14 +10,6 @@
   ...
 }:
 let
-  patchedQemu = pkgs.qemu_full.overrideAttrs (oldAttrs: {
-	name = "qemu-10.2.2";
-	src = fetchTarball {
-		url = "https://download.qemu.org/qemu-10.2.2.tar.xz";
-		sha256 = "sha256:0vqrlabv7dggccvq4kwh5xg34vcw43kilsa1366v4nvdbcmrvqg0";
-	};
-    patches = [ ./qemu-10.2.2.patch ];
-  });
 in
 {
   imports = [
@@ -113,7 +105,7 @@ in
       enable = true;
       qemu = {
         #package = pkgs.qemu;
-        package = patchedQemu;
+        package = (pkgs.callPackage ./qemu.nix { });
         swtpm.enable = true;
         runAsRoot = true;
       };

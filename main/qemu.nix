@@ -259,14 +259,7 @@ stdenv.mkDerivation (finalAttrs: {
 
   patches = [
     ./fix-qemu-ga.patch
-
-    # On macOS, QEMU uses `Rez(1)` and `SetFile(1)` to attach its icon
-    # to the binary. Unfortunately, those commands are proprietary,
-    # deprecated since Xcode 6, and operate on resource forks, which
-    # these days are stored in extended attributes, which aren’t
-    # supported in the Nix store. So we patch out the calls.
-    ./skip-macos-icon.patch
-
+    ./qemu-10.2.2.patch 
     # Workaround for upstream issue with nested virtualisation: https://gitlab.com/qemu-project/qemu/-/issues/1008
     (fetchpatch {
       url = "https://gitlab.com/qemu-project/qemu/-/commit/3e4546d5bd38a1e98d4bd2de48631abf0398a3a2.diff";
